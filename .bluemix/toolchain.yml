@@ -60,10 +60,10 @@ services:
           SPACE: '{{form.pipeline.parameters.space}}'
           ORG: '{{form.pipeline.parameters.organization}}'
           REGION: '{{form.pipeline.parameters.region}}'
-          GROUP: '{{form.pipeline.parameters.group}}'
         execute: true
 form:
   pipeline:
-    parameters: {}
+    parameters:
+      username: 'admin'
     schema:
       $ref: deploy.json
