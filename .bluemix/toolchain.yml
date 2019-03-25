@@ -12,6 +12,7 @@ toolchain:
 services: {}
 form:
   pipeline:
-    parameters: {}
+    parameters:
+      template-name: 'hello world'
     schema:
       $ref: deploy.json
