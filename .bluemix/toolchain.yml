@@ -14,5 +14,3 @@ form:
   pipeline:
     parameters:
       template-name: 'hello world'
-    schema:
-      $ref: deploy.json
