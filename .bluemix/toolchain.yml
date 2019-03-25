@@ -8,7 +8,7 @@ template:
     git branch: >-
       [master](https://github.com/IBM/ibm-cloud-functions-refarch-serverless-apis/tree/master)
 toolchain:
-  name: 'cloud-functions-apis-toolchain'
+  name: '{{form.pipeline.parameters.toolchain-name}}'
 services: {}
 form:
   pipeline:
