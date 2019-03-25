@@ -1,6 +1,6 @@
 version: '2'
 template:
-  name: "Cloud Functions REST APIs Toolchain"
+  name: '{{form.pipeline.parameters.template-name}}'
   description: "Deploy Serverless REST APIs"
   info:
     git url: >-
@@ -9,23 +9,7 @@ template:
       [master](https://github.com/IBM/ibm-cloud-functions-refarch-serverless-apis/tree/master)
 toolchain:
   name: 'cloud-functions-apis-toolchain'
-services:
-  build:
-    service_id: foo
-    parameters:
-      name: 'foo'
-      ui-pipeline: true
-      configuration:
-        env:
-          REPO: repo1
-          USERNAME: '{{form.pipeline.parameters.username}}'
-          PASSWORD: '{{form.pipeline.parameters.password}}'
-          API_KEY: '{{form.pipeline.parameters.api-key}}'
-          SPACE: '{{form.pipeline.parameters.space}}'
-          ORG: '{{form.pipeline.parameters.organization}}'
-          REGION: '{{form.pipeline.parameters.region}}'
-          GROUP: '{{form.pipeline.parameters.group}}'
-        execute: true
+services: {}
 form:
   pipeline:
     schema:
