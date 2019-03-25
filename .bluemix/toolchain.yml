@@ -11,13 +11,11 @@ toolchain:
   name: 'cloud-functions-apis-toolchain'
 services:
   build:
-    service_id: pipeline
+    service_id: foo
     parameters:
       name: 'foo'
       ui-pipeline: true
       configuration:
-        content:
-          $text: pipeline.yml
         env:
           REPO: repo1
           USERNAME: '{{form.pipeline.parameters.username}}'
