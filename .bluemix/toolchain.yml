@@ -13,40 +13,54 @@ template:
 toolchain:
   name: 'cloud-functions-apis-toolchain'
 services:
-  $switch:
-    $default: hostedgit
-    $parameter: repository
-    $value: 
-      - 
-        $case: hostedgit
-        repo: 
-          service_id: hostedgit
-          parameters: 
-            enable_traceability: true
-            has_issues: true
-            repo_name: "java-app-{{timestamp}}"
-            repo_url: "https://www.git.com/open-toolchain/java-spring-microservice"
-            type: clone
-      - 
-        $case: githubpublic
-        repo: 
-          service_id: githubpublic
-          parameters: 
-            enable_traceability: true
-            has_issues: true
-            repo_name: "java-app-{{timestamp}}"
-            repo_url: "https://www.git.com/open-toolchain/java-spring-microservice"
-            type: clone
-      - 
-        $case: githubintegrated
-        repo:
-          service_id: github_integrated
-          parameters:
-            repo_name: '{{toolchain.name}}'
-            repo_url: 'https://cloud.ibm.github.com/open-toolchain/hello-containers'
-            type: clone
-            has_issues: true
-            enable_traceability: true
+  frontend-repo:
+    $selection:
+      $parameter: 'fsr_source_repo'
+      $options:
+      - $ifdef: 'fsr_on_hostedgit'
+        service_id: hostedgit
+        parameters:
+          repo_name: 'java-app-{{timestamp}}'
+          repo_url: 'https://www.git.com/open-toolchain/java-spring-microservice'
+          type: clone
+          has_issues: true
+          enable_traceability: true
+      - $ifdef: 'fsr_on_githubpublic'
+        service_id: githubpublic
+        parameters:
+          repo_name: 'java-app-{{timestamp}}'
+          repo_url: 'https://www.git.com/open-toolchain/java-spring-microservice'
+          type: clone
+          has_issues: true
+          enable_traceability: true
+  backend-repo:
+    $selection:
+      $parameter: 'bsr_source_repo'
+      $default: 'bsr_on_githubpublic'
+      $options:
+      - $ifdef: 'bsr_on_hostedgit'
+        service_id: hostedgit
+        parameters:
+          repo_name: 'java-app-{{timestamp}}'
+          repo_url: 'https://www.git.com/open-toolchain/java-spring-microservice'
+          type: clone
+          has_issues: true
+          enable_traceability: true
+      - $ifdef: 'bsr_on_githubpublic'
+        service_id: githubpublic
+        parameters:
+          repo_name: 'cloud-functions-apis'
+          repo_url: 'https://github.com/tmcguckin/cloud-functions-apis'
+          type: clone
+          has_issues: true
+      - $ifdef: 'bsr_on_github_integrated'
+        service_id: github_integrated
+        parameters:
+          repo_name: '{{toolchain.name}}'
+          repo_url: 'https://cloud.ibm.github.com/open-toolchain/hello-containers'
+          type: clone
+          has_issues: true
+          enable_traceability: true
   build:
     service_id: pipeline
     parameters:
