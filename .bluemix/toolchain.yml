@@ -15,9 +15,9 @@ toolchain:
 services:
   frontend-repo:
     $selection:
-      $parameter: 'fsr_source_repo'
+      $parameter: 'source_provider'
       $options:
-      - $ifdef: 'fsr_on_hostedgit'
+      - $ifdef: 'hostedgit'
         service_id: hostedgit
         parameters:
           repo_name: 'java-app-{{timestamp}}'
@@ -25,7 +25,7 @@ services:
           type: clone
           has_issues: true
           enable_traceability: true
-      - $ifdef: 'fsr_on_githubpublic'
+      - $ifdef: 'githubpublic'
         service_id: githubpublic
         parameters:
           repo_name: 'java-app-{{timestamp}}'
