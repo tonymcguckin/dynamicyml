@@ -1,17 +1,19 @@
 version: '2'
 template:
-  name: "Cloud Functions REST APIs Toolchain"
-  description: "Deploy Serverless REST APIs"
+  name: "Dynamic Source Providers Template"
+  description: "Dynamic Source Providers Template"
   required:
     - build
-    - repo
+    - frontend-repo
+    - middleware-repo
+    - backend-repo
   info:
     git url: >-
-      [https://github.com/IBM/ibm-cloud-functions-refarch-serverless-apis](https://github.com/IBM/ibm-cloud-functions-refarch-serverless-apis)
+      [https://github.com/tonymcguckin/dynamic-source-providers-template](https://github.com/tonymcguckin/dynamic-source-providers-template)
     git branch: >-
-      [master](https://github.com/IBM/ibm-cloud-functions-refarch-serverless-apis/tree/master)
+      [master](https://github.com/tonymcguckin/dynamic-source-providers-template/tree/master)
 toolchain:
-  name: 'cloud-functions-apis-toolchain'
+  name: 'dynamic-source-providers-template-toolchain'
 services:
   frontend-repo:
     $default: 'githubpublic'
@@ -71,14 +73,14 @@ services:
     service_id: pipeline
     parameters:
       services:
-        - repo
-      name: '{{services.repo.parameters.repo_name}}'
+        - frontend-repo
+      name: '{{services.frontend-repo.parameters.repo_name}}'
       ui-pipeline: true
       configuration:
         content:
           $text: pipeline.yml
         env:
-          REPO: repo1
+          REPO: frontend-repo
           USERNAME: '{{form.pipeline.parameters.username}}'
           PASSWORD: '{{form.pipeline.parameters.password}}'
           API_KEY: '{{form.pipeline.parameters.api-key}}'
