@@ -5,8 +5,6 @@ template:
   required:
     - build
     - frontend-repo
-    - middleware-repo
-    - backend-repo
   info:
     git url: >-
       [https://github.com/tonymcguckin/dynamic-source-providers-template](https://github.com/tonymcguckin/dynamic-source-providers-template)
@@ -16,6 +14,7 @@ toolchain:
   name: 'dynamic-source-providers-template-toolchain'
 services:
   frontend-repo:
+    $parameter: 'source_provider'
     $default: 'githubpublic'
     $options:
       - $ifdef: 'hostedgit'
@@ -30,42 +29,7 @@ services:
         service_id: githubpublic
         parameters:
           repo_name: 'frontend-repo-ongithubpublic'
-          repo_url: 'https://www.github.com/otc/frontend-repo-ongithubpublic'
-          type: clone
-          has_issues: true
-          enable_traceability: true
-  middleware-repo:
-    service_id: hostedgit
-    parameters:
-      repo_name: 'middleware-repo-onhostedgit'
-      repo_url: 'https://www.git.com/otc/middleware-repo-onhostedgit'
-      type: clone
-      has_issues: true
-      enable_traceability: true
-  backend-repo:
-    $parameter: 'backend_source_provider'
-    $default: 'githubpublic'
-    $options:
-      - $ifdef: 'hostedgit'
-        service_id: hostedgit
-        parameters:
-          repo_name: 'backend-repo-onhostedgit'
-          repo_url: 'https://www.git.com/backend-repo'
-          type: clone
-          has_issues: true
-          enable_traceability: true
-      - $ifdef: 'githubpublic'
-        service_id: githubpublic
-        parameters:
-          repo_name: 'backend-repo-ongithubpublic'
-          repo_url: 'https://github.com/otc/backend-repo-ongithubpublic'
-          type: clone
-          has_issues: true
-      - $ifdef: 'github_integrated'
-        service_id: github_integrated
-        parameters:
-          repo_name: 'backend-repo-ongithub_integrated'
-          repo_url: 'https://cloud.ibm.github.com/otc/backend-repo-ongithub_integrated'
+          repo_url: $parameter.app_url | staticstringvalue
           type: clone
           has_issues: true
           enable_traceability: true
