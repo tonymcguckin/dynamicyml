@@ -14,7 +14,7 @@ toolchain:
 services:
   frontend-repo:
     $parameter: 'source_provider'
-    $default: 'githubpublic6'
+    $default: 'githubpublic'
     $options:
       - $ifdef: 'hostedgit'
         service_id: hostedgit
