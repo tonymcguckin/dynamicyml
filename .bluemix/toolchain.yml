@@ -21,7 +21,8 @@ services:
         parameters:
           repo_name: 'frontend-repo-onhostedgit'
           repo_url: 'https://www.git.com/otc/frontend-repo-onhostedgit'
-          repo_auth: $parameter.repo_auth | {{form.pipeline.parameters.repo_auth}}
+          repo_auth: $parameter.repo_auth | a7b9ddef66a
+          app_repo: $parameter.app_repo | {{form.pipeline.parameters.app_repo}}
           type: clone
           has_issues: true
           enable_traceability: true
@@ -30,8 +31,6 @@ services:
         parameters:
           repo_name: 'frontend-repo-ongithubpublic'
           repo_url: $parameter.repo_url
-          repo_auth: $parameter.repo_auth | a7b9ddef66a
-          app_repo: $parameter.app_repo | {{form.pipeline.parameters.app_repo}}
           type: clone
           has_issues: true
           enable_traceability: true
