@@ -20,8 +20,9 @@ services:
         service_id: hostedgit
         parameters:
           repo_name: 'frontend-repo-onhostedgit'
-          repo_url: $parameter.source_provider
+          source_provider: $parameter.source_provider
           repo_auth: $parameter.repo_auth | a7b9ddef66a
+          repo_auth: $parameter.repo_auth | 'a7b9ddef66a'
           foo: $parameter.foo | somefoostring
           bar: '$parameter.bar | somebarstring'
           other: '$parameter.other|someotherstring'
