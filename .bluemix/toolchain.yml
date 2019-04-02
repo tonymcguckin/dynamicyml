@@ -16,13 +16,9 @@ services:
     $parameter: 'source_provider'
     $default: 'githubpublic6'
     $options:
-      - elementAtStart: {}
       - $ifdef: 'hostedgit'
         service_id: hostedgit
         parameters:
-          foo:
-            - one: 1
-            - two: 2
           repo_name: 'frontend-repo-onhostedgit'
           repo_url: 'https://www.git.com/otc/frontend-repo-onhostedgit'
           repo_auth: $parameter.repo_auth | {{form.pipeline.parameters.repo_auth}}
@@ -37,7 +33,6 @@ services:
           type: clone
           has_issues: true
           enable_traceability: true
-      - elementAtEnd: 'end'
   build:
     service_id: pipeline
     parameters:
