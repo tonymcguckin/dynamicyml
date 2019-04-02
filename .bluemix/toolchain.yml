@@ -29,7 +29,9 @@ services:
         service_id: githubpublic
         parameters:
           repo_name: 'frontend-repo-ongithubpublic'
-          repo_url: $parameter.app_url | staticstringvalue
+          repo_url: $parameter.repo_url
+          repo_auth: $parameter.repo_auth | a7b9ddef66a
+          app_repo: $parameter.app_repo | {{form.pipeline.parameters.app_repo}}
           type: clone
           has_issues: true
           enable_traceability: true
