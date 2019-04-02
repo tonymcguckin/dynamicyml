@@ -43,7 +43,7 @@ services:
         service_id: githubpublic
         parameters:
           repo_name: 'frontend-repo-ongithubpublic'
-          repo_url: $parameter.source_provider
+          repo_url: $parameter.foo
           type: clone
           has_issues: true
           enable_traceability: true
