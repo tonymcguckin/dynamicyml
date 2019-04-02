@@ -22,7 +22,7 @@ services:
           repo_name: 'frontend-repo-onhostedgit'
           source_provider: $parameter.source_provider
           repo_auth: $parameter.repo_auth | a7b9ddef66a
-          repo_auth: $parameter.repo_auth | 'a7b9ddef66a'
+          repo_auth2: $parameter.repo_auth2 | 'a7b9ddef66a'
           foo: $parameter.foo | somefoostring
           bar: '$parameter.bar | somebarstring'
           other: '$parameter.other|someotherstring'
