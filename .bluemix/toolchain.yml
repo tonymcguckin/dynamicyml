@@ -4,7 +4,6 @@ template:
   description: "Dynamic Source Providers Template"
   required:
     - build
-    - frontend-repo
   info:
     git url: >-
       [https://github.com/tonymcguckin/dynamic-source-providers-template](https://github.com/tonymcguckin/dynamic-source-providers-template)
@@ -26,6 +25,7 @@ services:
             - two: 2
           repo_name: 'frontend-repo-onhostedgit'
           repo_url: 'https://www.git.com/otc/frontend-repo-onhostedgit'
+          repo_auth: $parameter.repo_auth | {{form.pipeline.parameters.repo_auth}}
           type: clone
           has_issues: true
           enable_traceability: true
