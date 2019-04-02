@@ -22,8 +22,9 @@ services:
           repo_name: 'frontend-repo-onhostedgit'
           repo_url: $parameter.source_provider
           repo_auth: $parameter.repo_auth | a7b9ddef66a
-          foo: $parameter.foo|somefoostring
-          bar: '$parameter.bar|somebarstring'
+          foo: $parameter.foo | somefoostring
+          bar: '$parameter.bar | somebarstring'
+          other: '$parameter.other|someotherstring'
           app_repo: $parameter.app_repo | {{app.params.repo}}
           type: clone
           has_issues: true
