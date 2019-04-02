@@ -21,12 +21,19 @@ services:
         parameters:
           repo_name: 'frontend-repo-onhostedgit'
           source_provider: $parameter.source_provider
-          repo_auth: $parameter.repo_auth | a7b9ddef66a
-          repo_auth2: $parameter.repo_auth2 | 'a7b9ddef66a'
+          source_provider2: '$parameter.source_provider'
+          source_provider3: "$parameter.source_provider"
+          auth1: $parameter.auth1 | a7b9ddef66a
+          auth2: $parameter.auth2 | 'a7b9ddef66a'
+          auth3: $parameter.auth3 | "jkeki7837"
+          auth4: $parameter.auth4|"53hdyy777"
           foo: $parameter.foo | somefoostring
           bar: '$parameter.bar | somebarstring'
-          other: '$parameter.other|someotherstring'
+          other: "$parameter.other|someotherstring"
           app_repo: $parameter.app_repo | {{app.params.repo}}
+          app_repo2: $parameter.app_repo2 | '{{app.params.repo2}}'
+          app_repo3: $parameter.app_repo3 | "{{app.params.repo3}}"
+          app_repo4: $parameter.app_repo4|"{{app.params.repo4}}"
           type: clone
           has_issues: true
           enable_traceability: true
