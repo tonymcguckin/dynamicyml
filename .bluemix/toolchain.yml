@@ -4,6 +4,7 @@ template:
   description: "Dynamic Source Providers Template"
   required:
     - build
+    - frontend-repo
   info:
     git url: >-
       [https://github.com/tonymcguckin/dynamic-source-providers-template](https://github.com/tonymcguckin/dynamic-source-providers-template)
@@ -19,6 +20,7 @@ services:
       - $ifdef: 'hostedgit'
         service_id: hostedgit
         parameters:
+          repo_url: 'https://www.git.com/open-toolchain/java-spring-microservice'
           repo_name: 'frontend-repo-onhostedgit'
           source_provider: $parameter.source_provider
           source_provider2: '$parameter.source_provider'
