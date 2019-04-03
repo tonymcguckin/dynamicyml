@@ -50,25 +50,49 @@ services:
           has_issues: true
           enable_traceability: true
   build:
-    service_id: pipeline
-    parameters:
-      services:
-        - frontend-repo
-      name: '{{services.frontend-repo.parameters.repo_name}}'
-      ui-pipeline: true
-      configuration:
-        content:
-          $text: pipeline.yml
-        env:
-          REPO: frontend-repo
-          USERNAME: '{{form.pipeline.parameters.username}}'
-          PASSWORD: '{{form.pipeline.parameters.password}}'
-          API_KEY: '{{form.pipeline.parameters.api-key}}'
-          SPACE: '{{form.pipeline.parameters.space}}'
-          ORG: '{{form.pipeline.parameters.organization}}'
-          REGION: '{{form.pipeline.parameters.region}}'
-          GROUP: '{{form.pipeline.parameters.group}}'
-        execute: true
+    $parameter: 'pipeline_type'
+    $default: 'my_pipeline'
+    $options:
+      - $ifdef: 'my_pipeline'
+        service_id: pipeline
+        parameters:
+          services:
+            - frontend-repo
+          name: '{{services.frontend-repo.parameters.repo_name}}'
+          ui-pipeline: true
+          configuration:
+            content:
+              $text: pipeline.yml
+            env:
+              REPO: frontend-repo
+              USERNAME: '{{form.pipeline.parameters.username}}'
+              PASSWORD: '{{form.pipeline.parameters.password}}'
+              API_KEY: '{{form.pipeline.parameters.api-key}}'
+              SPACE: '{{form.pipeline.parameters.space}}'
+              ORG: '{{form.pipeline.parameters.organization}}'
+              REGION: '{{form.pipeline.parameters.region}}'
+              GROUP: '{{form.pipeline.parameters.group}}'
+            execute: true
+      - $ifdef: 'other_pipeline'
+        service_id: pipeline
+        parameters:
+          services:
+            - frontend-repo
+          name: '{{services.frontend-repo.parameters.repo_name}}'
+          ui-pipeline: true
+          configuration:
+            content:
+              $text: pipeline.yml
+            env:
+              REPO: frontend-repo
+              USERNAME: '{{form.pipeline.parameters.username}}'
+              PASSWORD: '{{form.pipeline.parameters.password}}'
+              API_KEY: '{{form.pipeline.parameters.api-key}}'
+              SPACE: '{{form.pipeline.parameters.space}}'
+              ORG: '{{form.pipeline.parameters.organization}}'
+              REGION: '{{form.pipeline.parameters.region}}'
+              GROUP: '{{form.pipeline.parameters.group}}'
+            execute: true
 form:
   pipeline:
     parameters:
