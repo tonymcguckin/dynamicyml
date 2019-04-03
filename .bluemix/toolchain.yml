@@ -20,21 +20,21 @@ services:
       - $ifdef: 'hostedgit'
         service_id: 'hostedgit'
         parameters:
-          app_repo: $parameter.app_repo | {{app.params.repo}}
-          app_repo2: $parameter.app_repo2 | '{{app.params.repo2}}'
-          app_repo3: $parameter.app_repo3 | "{{app.params.repo3}}"
-          app_repo4: $parameter.app_repo4|"{{app_repo}}"
+          app_repo: $parameter.app_repo || {{app.params.repo}}
+          app_repo2: $parameter.app_repo2 || '{{app.params.repo2}}'
+          app_repo3: $parameter.app_repo3 || "{{app.params.repo3}}"
+          app_repo4: $parameter.app_repo4||"{{app_repo}}"
           app_repo5: '{{app_repo}}'
           app_repo6: '{{repository}}'
-          auth1: $parameter.auth1 | a7b9ddef66a
-          auth2: $parameter.auth2 | 'a7b9ddef66a'
-          auth3: $parameter.auth3 | "jkeki7837"
-          auth4: $parameter.auth4|"53hdyy777"
-          bar: '$parameter.bar | somebarstring'
+          auth1: $parameter.auth1 || a7b9ddef66a
+          auth2: $parameter.auth2 || 'a7b9ddef66a'
+          auth3: $parameter.auth3 || "jkeki7837"
+          auth4: $parameter.auth4||"53hdyy777"
+          bar: '$parameter.bar || somebarstring'
           enable_traceability: true
-          foo: $parameter.foo | somefoostring
+          foo: $parameter.foo || somefoostring
           has_issues: true
-          other: "$parameter.other|someotherstring"
+          other: "$parameter.other||someotherstring"
           repo_name: 'frontend-repo-onhostedgit'
           repo_url: 'https://www.git.com/open-toolchain/java-spring-microservice'
           source_provider: $parameter.source_provider
@@ -46,7 +46,7 @@ services:
         parameters:
           repo_name: 'frontend-repo-ongithubpublic'
           repo_url: $parameter.app_repo
-          repo_url2: app_repo || foo
+          repo_url2: #parameter.app_repo
           type: clone
           has_issues: true
           enable_traceability: true
