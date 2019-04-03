@@ -24,6 +24,8 @@ services:
           app_repo2: $parameter.app_repo2 | '{{app.params.repo2}}'
           app_repo3: $parameter.app_repo3 | "{{app.params.repo3}}"
           app_repo4: $parameter.app_repo4|"{{app_repo}}"
+          app_repo5: {{app_repo}}
+          app_repo6: {{repository}}
           auth1: $parameter.auth1 | a7b9ddef66a
           auth2: $parameter.auth2 | 'a7b9ddef66a'
           auth3: $parameter.auth3 | "jkeki7837"
