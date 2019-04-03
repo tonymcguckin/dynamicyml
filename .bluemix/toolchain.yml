@@ -20,16 +20,15 @@ services:
       - $ifdef: 'hostedgit'
         service_id: 'hostedgit'
         parameters:
-          app_repo: $parameter.app_repo || {{app.params.repo}}
-          app_repo2: $parameter.app_repo2 || '{{app.params.repo2}}'
-          app_repo3: $parameter.app_repo3 || "{{app.params.repo3}}"
-          app_repo4: $parameter.app_repo4||"{{app_repo}}"
+          app_repo: $parameter.app_repo || {{app_repo}}
+          app_repo2: $parameter.app_repo2 || '{{app_repo2}}'
+          app_repo3: $parameter.app_repo3 || "{{app_repo3}}"
+          app_repo4: $parameter.app_repo4||"{{app_repo4}}"
           app_repo5: '{{app_repo}}'
-          app_repo6: '{{repository}}'
-          auth0: '#parameter.auth0 || 66666666366'
-          auth1: '#parameter.auth1 || a7b9ddef66a'
-          auth2: '#parameter.auth2'
-          auth3: '#parameter.auth3 || {{auth1}} says {{timestamp}}'
+          auth0: '$parameter.auth0 || 66666666366'
+          auth1: $parameter.auth1 || a7b9ddef66a
+          auth2: $parameter.auth2
+          auth3: $parameter.auth3 || Timestamp: {{timestamp}}
           auth4: $parameter.auth4 || 'a7b9ddef66a'
           auth5: $parameter.auth5 || "jkeki7837"
           auth6: $parameter.auth6||"53hdyy777"
@@ -40,17 +39,17 @@ services:
           other: "$parameter.other||someotherstring"
           repo_name: 'frontend-repo-onhostedgit'
           repo_url: 'https://www.git.com/open-toolchain/java-spring-microservice'
-          source_provider: "#parameter.source_provider"
-          source_provider2: '#parameter.source_provider'
-          source_provider3: #parameter.source_provider
+          source_provider: "$parameter.source_provider"
+          source_provider2: 'parameter.source_provider'
+          source_provider3: parameter.source_provider
           type: clone
       - $ifdef: 'githubpublic'
         service_id: 'githubpublic'
         parameters:
           repo_name: 'frontend-repo-ongithubpublic'
           repo_url: $parameter.app_repo
-          repo_url2: '#parameter.app_repo'
-          repo_url3: #parameter.app_repo
+          repo_url2: '$parameter.app_repo'
+          repo_url3: "$parameter.app_repo"
           type: clone
           has_issues: true
           enable_traceability: true
