@@ -31,7 +31,7 @@ services:
           auth3: $parameter.auth3 || 'a7b9ddef66a'
           auth4: $parameter.auth4 || "jkeki7837"
           auth5: $parameter.auth5||"53hdyy777"
-          time: $parameter.time || "Timestamp is {{timestamp}}"
+          time: $parameter.time || "{{form.pipeline.parameters.username}} at {{timestamp}}"
           bar: '$parameter.bar || somebarstring'
           enable_traceability: true
           foo: $parameter.foo || somefoostring
