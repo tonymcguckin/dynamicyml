@@ -36,9 +36,9 @@ services:
           app_repo2: $parameter.app_repo2 | '{{app.params.repo2}}'
           app_repo3: $parameter.app_repo3 | "{{app.params.repo3}}"
           app_repo4: $parameter.app_repo4|"{{app.params.repo4}}"
-          app_repo5: '$parameter.app_repo5' | '{{app.params.repo5}}'
-          app_repo6: "$parameter.app_repo6" | "{{app.params.repo6}}"
-          app_repo7: "$parameter.app_repo7"|"{{app.params.repo7}}"
+          app_repo5: '$parameter.app_repo5' | {{app.params.repo5}}
+          app_repo6: "$parameter.app_repo6" | {{app.params.repo6}}
+          app_repo7: "$parameter.app_repo7"|{{app.params.repo7}}
           type: clone
           has_issues: true
           enable_traceability: true
