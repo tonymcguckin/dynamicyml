@@ -40,8 +40,8 @@ services:
           repo_name: 'frontend-repo-onhostedgit'
           repo_url: 'https://www.git.com/open-toolchain/java-spring-microservice'
           source_provider: "$parameter.source_provider"
-          source_provider2: 'parameter.source_provider'
-          source_provider3: parameter.source_provider
+          source_provider2: '$parameter.source_provider'
+          source_provider3: $parameter.source_provider
           type: clone
       - $ifdef: 'githubpublic'
         service_id: 'githubpublic'
