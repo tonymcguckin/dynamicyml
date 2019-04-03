@@ -46,7 +46,7 @@ services:
         parameters:
           repo_name: 'frontend-repo-ongithubpublic'
           repo_url: $parameter.app_repo
-          repo_url2: #parameter.app_repo
+          repo_url2: $$parameter.app_repo
           type: clone
           has_issues: true
           enable_traceability: true
