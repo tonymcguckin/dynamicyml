@@ -20,25 +20,25 @@ services:
       - $ifdef: 'hostedgit'
         service_id: 'hostedgit'
         parameters:
-          repo_url: 'https://www.git.com/open-toolchain/java-spring-microservice'
-          repo_name: 'frontend-repo-onhostedgit'
-          source_provider: $parameter.source_provider
-          source_provider2: '$parameter.source_provider'
-          source_provider3: "$parameter.source_provider"
-          auth1: $parameter.auth1 | a7b9ddef66a
-          auth2: $parameter.auth2 | 'a7b9ddef66a'
-          auth3: $parameter.auth3 | "jkeki7837"
-          auth4: $parameter.auth4|"53hdyy777"
-          foo: $parameter.foo | somefoostring
-          bar: '$parameter.bar | somebarstring'
-          other: "$parameter.other|someotherstring"
           app_repo: $parameter.app_repo | {{app.params.repo}}
           app_repo2: $parameter.app_repo2 | '{{app.params.repo2}}'
           app_repo3: $parameter.app_repo3 | "{{app.params.repo3}}"
           app_repo4: $parameter.app_repo4|"{{app.params.repo4}}"
-          type: clone
-          has_issues: true
+          auth1: $parameter.auth1 | a7b9ddef66a
+          auth2: $parameter.auth2 | 'a7b9ddef66a'
+          auth3: $parameter.auth3 | "jkeki7837"
+          auth4: $parameter.auth4|"53hdyy777"
+          bar: '$parameter.bar | somebarstring'
           enable_traceability: true
+          foo: $parameter.foo | somefoostring
+          has_issues: true
+          other: "$parameter.other|someotherstring"
+          repo_name: 'frontend-repo-onhostedgit'
+          repo_url: 'https://www.git.com/open-toolchain/java-spring-microservice'
+          source_provider: $parameter.source_provider
+          source_provider2: '$parameter.source_provider'
+          source_provider3: "$parameter.source_provider"
+          type: clone
       - $ifdef: 'githubpublic'
         service_id: 'githubpublic'
         parameters:
