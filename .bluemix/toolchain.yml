@@ -14,8 +14,6 @@ toolchain:
   name: 'dynamic-source-providers-template-toolchain'
 services:
   frontend-repo:
-    $parameter: 'source_provider6'
-    $default: 'githubpublic6'
     $options:
       - $ifdef: 'hostedgit'
         service_id: hostedgit
