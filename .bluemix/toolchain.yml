@@ -14,10 +14,11 @@ toolchain:
   name: 'dynamic-source-providers-template-toolchain'
 services:
   frontend-repo:
+    $parameter: 'source_provider'
     $default: 'githubpublic'
     $options:
       - $ifdef: 'hostedgit'
-        service_id: hostedgit
+        service_id: 'hostedgit'
         parameters:
           repo_url: 'https://www.git.com/open-toolchain/java-spring-microservice'
           repo_name: 'frontend-repo-onhostedgit'
@@ -39,10 +40,10 @@ services:
           has_issues: true
           enable_traceability: true
       - $ifdef: 'githubpublic'
-        service_id: githubpublic
+        service_id: 'githubpublic'
         parameters:
           repo_name: 'frontend-repo-ongithubpublic'
-          repo_url: $parameter.foo
+          repo_url: '$parameter.foo'
           type: clone
           has_issues: true
           enable_traceability: true
