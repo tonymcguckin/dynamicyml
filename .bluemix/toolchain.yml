@@ -53,7 +53,11 @@ services:
           test16: $parameter.test||'c6a8f7ac87c'
           test17: $parameter.test||"c6a8f7ac87c"
           
-          test18: $parameter.test || "{{form.pipeline.parameters.username}} says its currently {{timestamp}} ms"
+          test18: $parameter.test||true
+          test19: $parameter.test||'true'
+          test20: $parameter.test||"true"
+          
+          test21: $parameter.test || "{{form.pipeline.parameters.username}} says its currently {{timestamp}} ms"
           
           enable_traceability: true
           has_issues: true
