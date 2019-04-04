@@ -74,11 +74,11 @@ services:
         service_id: 'githubpublic'
         parameters:
           repo_name: 'frontend-repo-ongithubpublic'
-          app_repo: {{app_repo}}
-          repo_url: $parameter.repository
+          app_repo: $parameter.app_repo
+          repo_url: '{{repository}}'
           type: $parameter.type || "link"
           has_issues: $parameter.issues || true
-          enable_traceability: true
+          enable_traceability: $parameter.trace || true
   build:
     $parameter: 'pipeline'
     $default: 'p1'
@@ -127,5 +127,6 @@ form:
   pipeline:
     parameters:
       username: 'admin'
+      group: 'system'
     schema:
       $ref: deploy.json
