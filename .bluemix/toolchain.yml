@@ -20,49 +20,67 @@ services:
       - $ifdef: 'hostedgit'
         service_id: 'hostedgit'
         parameters:
-          app_repo: $parameter.app_repo || {{app_repo}}
-          app_repo2: $parameter.app_repo2 || '{{app_repo2}}'
-          app_repo3: $parameter.app_repo3 || "{{app_repo3}}"
-          app_repo4: $parameter.app_repo4||"{{app_repo4}}"
+          app_repo1: $parameter.app_repo
+          app_repo2: '$parameter.app_repo'
+          app_repo3: "$parameter.app_repo"
+          
+          app_repo4: {{app_repo}}
           app_repo5: '{{app_repo}}'
-          auth0: '$parameter.auth0 || 66666666366'
-          auth1: $parameter.auth1 || a7b9ddef66a
-          auth2: $parameter.auth2
-          auth3: $parameter.auth3 || 'a7b9ddef66a'
-          auth4: $parameter.auth4 || "jkeki7837"
-          auth5: $parameter.auth5||"53hdyy777"
-          time: $parameter.time || "{{form.pipeline.parameters.username}} at {{timestamp}}"
-          bar: '$parameter.bar || somebarstring'
+          app_repo6: "{{app_repo}}"
+          
+          test: $parameter.test
+          
+          test1: $parameter.test1 || {{timestamp}}
+          test2: $parameter.test2 || '{{timestamp}}'
+          test3: $parameter.test3 || "{{timestamp}}"
+          
+          test4: $parameter.test4||{{timestamp}}
+          test5: $parameter.test5||'{{timestamp}}'
+          test6: $parameter.test6||"{{timestamp}}"
+          
+          test7: '$parameter.test7 || {{timestamp}}'
+          test8: "$parameter.test8||{{timestamp}}"
+          
+          test9: {{test}}
+          test10: '{{test}}'
+          test11: "{{test}}"
+          
+          test12: $parameter.test12 || a7b9ddef66a
+          test13: $parameter.test13 || 'a7b9ddef66a'
+          test14: $parameter.test14 || "a7b9ddef66a"
+          
+          test15: $parameter.test15||c6a8f7ac87c
+          test16: $parameter.test16||'c6a8f7ac87c'
+          test17: $parameter.test17||"c6a8f7ac87c"
+          
+          test18: $parameter.test18 || "{{form.pipeline.parameters.username}} says its currently {{timestamp}} ms"
+          test19: $parameter.test19 || "{{organisation}} org - {{region}} region - {{space}} space"
+          
           enable_traceability: true
-          foo: $parameter.foo || somefoostring
           has_issues: true
-          other: "$parameter.other||someotherstring"
           repo_name: 'frontend-repo-onhostedgit'
           repo_url: 'https://www.git.com/open-toolchain/java-spring-microservice'
-          source_provider: "$parameter.source_provider"
-          source_provider2: '$parameter.source_provider'
-          source_provider3: $parameter.source_provider
           type: clone
+          
       - $ifdef: 'githubpublic'
         service_id: 'githubpublic'
         parameters:
           repo_name: 'frontend-repo-ongithubpublic'
-          repo_url: $parameter.app_repo
-          repo_url2: '$parameter.app_repo'
-          repo_url3: "$parameter.app_repo"
-          type: clone
-          has_issues: true
+          app_repo: {{app_repo}}
+          repo_url: $parameter.respository
+          type: $parameter.type || "link"
+          has_issues: $parameter.issues || true
           enable_traceability: true
   build:
-    $parameter: 'pipeline_type'
-    $default: 'my_pipeline'
+    $parameter: 'pipeline'
+    $default: 'p1'
     $options:
-      - $ifdef: 'my_pipeline'
+      - $ifdef: 'p1'
         service_id: pipeline
         parameters:
           services:
             - frontend-repo
-          name: '{{services.frontend-repo.parameters.repo_name}}'
+          name: 'Pipeline 1'
           ui-pipeline: true
           configuration:
             content:
@@ -77,12 +95,12 @@ services:
               REGION: '{{form.pipeline.parameters.region}}'
               GROUP: '{{form.pipeline.parameters.group}}'
             execute: true
-      - $ifdef: 'other_pipeline'
+      - $ifdef: 'p2'
         service_id: pipeline
         parameters:
           services:
             - frontend-repo
-          name: '{{services.frontend-repo.parameters.repo_name}}'
+          name: 'Pipeline 2'
           ui-pipeline: true
           configuration:
             content:
