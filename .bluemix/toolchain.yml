@@ -30,31 +30,30 @@ services:
           
           test: $parameter.test
           
-          test1: $parameter.test1 || {{timestamp}}
-          test2: $parameter.test2 || '{{timestamp}}'
-          test3: $parameter.test3 || "{{timestamp}}"
+          test1: $parameter.test || {{timestamp}}
+          test2: $parameter.test || '{{timestamp}}'
+          test3: $parameter.test || "{{timestamp}}"
           
-          test4: $parameter.test4||{{timestamp}}
-          test5: $parameter.test5||'{{timestamp}}'
-          test6: $parameter.test6||"{{timestamp}}"
+          test4: $parameter.test||{{timestamp}}
+          test5: $parameter.test||'{{timestamp}}'
+          test6: $parameter.test||"{{timestamp}}"
           
-          test7: '$parameter.test7 || {{timestamp}}'
-          test8: "$parameter.test8||{{timestamp}}"
+          test7: '$parameter.test || {{timestamp}}'
+          test8: "$parameter.test||{{timestamp}}"
           
           test9: {{test}}
           test10: '{{test}}'
           test11: "{{test}}"
           
-          test12: $parameter.test12 || a7b9ddef66a
-          test13: $parameter.test13 || 'a7b9ddef66a'
-          test14: $parameter.test14 || "a7b9ddef66a"
+          test12: $parameter.test || a7b9ddef66a
+          test13: $parameter.test || 'a7b9ddef66a'
+          test14: $parameter.test || "a7b9ddef66a"
           
-          test15: $parameter.test15||c6a8f7ac87c
-          test16: $parameter.test16||'c6a8f7ac87c'
-          test17: $parameter.test17||"c6a8f7ac87c"
+          test15: $parameter.test||c6a8f7ac87c
+          test16: $parameter.test||'c6a8f7ac87c'
+          test17: $parameter.test||"c6a8f7ac87c"
           
-          test18: $parameter.test18 || "{{form.pipeline.parameters.username}} says its currently {{timestamp}} ms"
-          test19: $parameter.test19 || "{{organisation}} org - {{region}} region - {{space}} space"
+          test18: $parameter.test || "{{form.pipeline.parameters.username}} says its currently {{timestamp}} ms"
           
           enable_traceability: true
           has_issues: true
@@ -67,7 +66,7 @@ services:
         parameters:
           repo_name: 'frontend-repo-ongithubpublic'
           app_repo: {{app_repo}}
-          repo_url: $parameter.respository
+          repo_url: $parameter.repository
           type: $parameter.type || "link"
           has_issues: $parameter.issues || true
           enable_traceability: true
