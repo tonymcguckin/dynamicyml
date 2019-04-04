@@ -56,7 +56,13 @@ services:
           test18: $parameter.test || true
           test19: $parameter.test || false
           
-          test20: $parameter.test || "{{form.pipeline.parameters.username}} says its currently {{timestamp}} ms"
+          test20: $parameter.test || 0
+          test21: $parameter.test || 1
+          test22: $parameter.test || 2
+          test23: $parameter.test || 10.0
+          test24: $parameter.test || 10.1
+          test25: $parameter.test || 0.0
+          test26: $parameter.test || 0.1
           
           enable_traceability: true
           has_issues: true
