@@ -1,6 +1,6 @@
 version: '2'
 template:
-  name: "Dynamic Source Providers Template (flavour1)"
+  name: "Dynamic Source Providers Template"
   description: "Dynamic Source Providers Template"
   required:
     - build
@@ -64,13 +64,11 @@ services:
           test16: $parameter.test||'c6a8f7ac87c'
           test17: $parameter.test||"c6a8f7ac87c"
           
-          
           # yml preprocessor translates to {{test}}
           # if 'test' is present on the query context...
           # otherwise returns the RHS alternative...
           test18: $parameter.test || true
           test19: $parameter.test || false
-          
           
           # yml preprocessor translates to {{test}}
           # if 'test' is present on the query context...
