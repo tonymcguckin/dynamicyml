@@ -13,6 +13,7 @@ template:
 toolchain:
   name: 'dynamic-source-providers-template-toolchain'
 services:
+  # dynamic yml 'services' entry...
   frontend-repo:
     $parameter: 'source_provider'
     $default: 'githubpublic'
