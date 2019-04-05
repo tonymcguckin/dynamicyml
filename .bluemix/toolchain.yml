@@ -17,7 +17,7 @@ services:
   frontend-repo:
   
     #$parameter: 'source_provider'
-    #$default: 'githubpublic'
+    $default: 'githubpublic'
     
     $options:
       - $ifdef: 'hostedgit'
