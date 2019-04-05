@@ -15,8 +15,10 @@ toolchain:
 services:
   # dynamic yml 'services' entry...
   frontend-repo:
-    $parameter: 'source_provider'
-    $default: 'githubpublic'
+  
+    #$parameter: 'source_provider'
+    #$default: 'githubpublic'
+    
     $options:
       - $ifdef: 'hostedgit'
         service_id: 'hostedgit'
@@ -97,8 +99,8 @@ services:
           has_issues: $parameter.issues || true
           enable_traceability: $parameter.trace || true
   build:
-    $parameter: 'pipeline'
-    $default: 'p1'
+    #$parameter: 'pipeline'
+    #$default: 'p1'
     $options:
       - $ifdef: 'p1'
         service_id: pipeline
