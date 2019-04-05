@@ -16,7 +16,7 @@ services:
   # dynamic yml 'services' entry...
   frontend-repo:
   
-    #$parameter: 'source_provider'
+    $parameter: 'source_provider'
     $default: 'githubpublic'
     
     $options:
