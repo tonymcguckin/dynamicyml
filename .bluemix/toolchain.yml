@@ -1,6 +1,6 @@
 version: '2'
 template:
-  name: "Dynamic Source Providers Template"
+  name: "Dynamic Source Providers Template (flavour1)"
   description: "Dynamic Source Providers Template"
   required:
     - build
