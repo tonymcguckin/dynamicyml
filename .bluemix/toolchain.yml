@@ -94,12 +94,15 @@ services:
           test25: $parameter.test || 0.0
           test26: $parameter.test || 0.1
           
+          # misc object tests - all ignored
+          # by the yml preprocessor...
           test27: {}
           test28: {window}
           test29: {{window}}
           test30: "javascript:eval('window')"
           test31: javascript:eval('window')
           test32: {javascript:eval('window')}
+          test32: {a:1, b:2, c:3 }
           test33: console.log("test33")
           test34: javascript:console.log("test34")
           
