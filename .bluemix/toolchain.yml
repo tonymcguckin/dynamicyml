@@ -1,15 +1,15 @@
 version: '2'
 template:
-  name: "Dynamic Source Providers Template"
-  description: "Dynamic Source Providers Template"
+  name: "Dynamic YML - Testing Template"
+  description: "Dynamic YML - Testing Template"
   required:
     - build
     - frontend-repo
   info:
     git url: >-
-      [https://github.com/tonymcguckin/dynamic-source-providers-template](https://github.com/tonymcguckin/dynamic-source-providers-template)
+      [https://github.com/tonymcguckin/empty-toolchain-3](https://github.com/tonymcguckin/empty-toolchain-3)
     git branch: >-
-      [master](https://github.com/tonymcguckin/dynamic-source-providers-template/tree/master)
+      [master](https://github.com/tonymcguckin/empty-toolchain-3/tree/master)
 toolchain:
   name: 'dynamic-source-providers-template-toolchain'
 services:
