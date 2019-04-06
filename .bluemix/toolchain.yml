@@ -1,17 +1,17 @@
 version: '2'
 template:
-  name: "Dynamic YML - Testing Toolchain"
-  description: "Dynamic YML - Testing Toolchain"
+  name: "Dynamic YML - $options/$ifdef & $parameters - Testing Toolchain"
+  description: "Dynamic YML - $options/$ifdef & $parameters - Testing Toolchain"
   required:
     - build
     - frontend-repo
   info:
     git url: >-
-      [https://github.com/tonymcguckin/empty-toolchain-3](https://github.com/tonymcguckin/empty-toolchain-3)
+      [https://github.com/tonymcguckin/dynamicyml](https://github.com/tonymcguckin/dynamicyml)
     git branch: >-
-      [master](https://github.com/tonymcguckin/empty-toolchain-3/tree/master)
+      [master](https://github.com/tonymcguckin/dynamicyml/tree/master)
 toolchain:
-  name: 'Dynamic YML - Testing Toolchain'
+  name: 'Dynamic YML - $options/$ifdef & $parameters - Testing Toolchain'
 services:
 
   # dynamic yml 'services' entry...
