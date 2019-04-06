@@ -1,7 +1,7 @@
 version: '2'
 template:
-  name: "Dynamic YML - Testing Template"
-  description: "Dynamic YML - Testing Template"
+  name: "Dynamic YML - Testing Toolchain"
+  description: "Dynamic YML - Testing Toolchain"
   required:
     - build
     - frontend-repo
@@ -11,8 +11,9 @@ template:
     git branch: >-
       [master](https://github.com/tonymcguckin/empty-toolchain-3/tree/master)
 toolchain:
-  name: 'dynamic-source-providers-template-toolchain'
+  name: 'Dynamic YML - Testing Toolchain'
 services:
+
   # dynamic yml 'services' entry...
   frontend-repo:
     $parameter: 'source_provider'
@@ -96,6 +97,7 @@ services:
           type: $parameter.type || "link"
           has_issues: $parameter.issues || true
           enable_traceability: $parameter.trace || true
+  
   build:
     $parameter: 'pipeline'
     $default: 'p1'
