@@ -89,7 +89,6 @@ services:
           enable_traceability: true
           has_issues: true
           repo_name: 'frontend-repo-onhostedgit'
-          repo_url: 'https://www.git.com/open-toolchain/java-spring-microservice'
           type: clone
           
       - $ifdef: 'githubpublic'
@@ -97,7 +96,7 @@ services:
         parameters:
           repo_name: 'frontend-repo-ongithubpublic'
           app_repo: $parameter.app_repo
-          repo_url: '{{repository}}'
+          repo_url: $parameter.app_repo
           type: $parameter.type || "link"
           has_issues: $parameter.issues || true
           enable_traceability: $parameter.trace || true
