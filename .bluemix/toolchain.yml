@@ -14,10 +14,17 @@ toolchain:
   name: 'Dynamic YML - $options/$ifdef/$parameters - Testing Toolchain'
 services:
 
-  # dynamic yml 'services' entry...
+  # dynamic yml 'service' entry...
   frontend-repo:
+
+    # yml preprocessor checks for the specified
+    # $parameter (ie: 'source_provider in this example)
+    # on the query string context to determine which $ifdef
+    # option to match... if no match found, then it
+    # attempts to match using the specified $default... 
     $parameter: 'source_provider'
     $default: 'githubpublic'
+    
     $options:
       - $ifdef: 'hostedgit'
         service_id: 'hostedgit'
@@ -54,6 +61,7 @@ services:
           test7: '$parameter.test || {{timestamp}}'
           test8: "$parameter.test||{{timestamp}}"
           
+          # ignored by the yml preprocessor...
           test9: {{test}}
           test10: '{{test}}'
           test11: "{{test}}"
