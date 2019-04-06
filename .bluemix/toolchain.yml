@@ -98,10 +98,10 @@ services:
           test28: {window}
           test29: {{window}}
           test30: "javascript:eval('window')"
-          test30: javascript:eval('window')
-          test31: {javascript:eval('window')}
-          test32: console.log("test32")
-          test33: javascript:console.log("test33")
+          test31: javascript:eval('window')
+          test32: {javascript:eval('window')}
+          test33: console.log("test33")
+          test34: javascript:console.log("test34")
           
           enable_traceability: true
           has_issues: true
