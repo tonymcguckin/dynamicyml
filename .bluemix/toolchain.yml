@@ -25,6 +25,7 @@ services:
           
           # yml preprocessor translates to {{app_repo}}...
           app_repo: $parameter.app_repo
+          repo_url: $parameter.app_repo
           
           # yml preprocessor translates to {{app_repo}}...
           app_repo1: $parameter.app_repo
