@@ -94,6 +94,11 @@ services:
           test25: $parameter.test || 0.0
           test26: $parameter.test || 0.1
           
+          test27: {}
+          test28: {window}
+          test29: {{window}}
+          test30: "javascript:eval('window')"
+          
           enable_traceability: true
           has_issues: true
           repo_name: 'frontend-repo-onhostedgit'
