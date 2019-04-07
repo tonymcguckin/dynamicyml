@@ -94,17 +94,18 @@ services:
           test25: $parameter.test || 0.0
           test26: $parameter.test || 0.1
           
-          # misc object tests - all ignored
+          # misc object/js tests - all ignored
           # by the yml preprocessor...
           test27: {}
           test28: {window}
-          test29: {{window}}
-          test30: "javascript:eval('window')"
-          test31: javascript:eval('window')
-          test32: {javascript:eval('window')}
+          test29: {eval('window')}
+          test30: {javascript:eval('window')}
+          test31: "javascript:eval('window')"
+          test32: javascript:eval('window')
           test33: {a:1, b:2, c:3 }
-          test34: console.log("test34")
-          test35: javascript:console.log("test35")
+          test34: '{a:1, b:2, c:3 }'
+          test35: console.log("test34")
+          test36: javascript:console.log("test35")
           
           enable_traceability: true
           has_issues: true
