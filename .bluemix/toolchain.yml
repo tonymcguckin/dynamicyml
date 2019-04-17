@@ -1,19 +1,24 @@
 version: '2'
+
 template:
   name: "DYML: $switch/$case construct"
   description: "DYML: $switch/$case construct"
   required:
     - build
     - frontend-repo
+    - sample-repo
   info:
     git url: >-
       [https://github.com/tonymcguckin/dynamicyml](https://github.com/tonymcguckin/dynamicyml)
     git branch: >-
       [master](https://github.com/tonymcguckin/dynamicyml/tree/master)
+
 toolchain:
   name: 'DYML: $switch/$case construct'
+
 services:
 
+  # dynamic yml 'service' entry...
   sample-repo:
 
     $switch:
@@ -50,26 +55,27 @@ services:
   frontend-repo:
 
     # yml preprocessor checks for the specified
-    # $parameter (ie: 'source_provider in this example)
-    # on the query string context to determine which $ifdef
-    # option to match... if no match found, then it
-    # attempts to match using the specified $default... 
-    $parameter: 'source_provider'
-    $default: 'githubpublic'
+    # $env.var (ie: 'source_provider in this example)
+    # on the query string context to determine which $case
+    # to match... if no match found, then it attempts
+    # to use the specified $default case...
     
-    $options:
-      - $ifdef: 'hostedgit'
+    $switch:
+    
+      - $expr: $env.source_provider
+ 
+      - $case: 'hostedgit'
         service_id: 'hostedgit'
         parameters:
           
           # yml preprocessor translates to {{app_repo}}...
-          app_repo: $parameter.app_repo
-          repo_url: $parameter.app_repo
+          app_repo: $env.app_repo
+          repo_url: $env.app_repo
           
           # yml preprocessor translates to {{app_repo}}...
-          app_repo1: $parameter.app_repo
-          app_repo2: '$parameter.app_repo'
-          app_repo3: "$parameter.app_repo"
+          app_repo1: $env.app_repo
+          app_repo2: '$env.app_repo'
+          app_repo3: "$env.app_repo"
           
           # ignored by the yml preprocessor...
           app_repo4: {{app_repo}}
@@ -77,21 +83,21 @@ services:
           app_repo6: "{{app_repo}}"
           
           # yml preprocessor translates to {{test}}...
-          test: $parameter.test
+          test: $env.test
           
           # yml preprocessor translates to {{test}}
           # if 'test' is present on the query context...
           # otherwise returns the RHS alternative...
-          test1: $parameter.test || {{timestamp}}
-          test2: $parameter.test || '{{timestamp}}'
-          test3: $parameter.test || "{{timestamp}}"
+          test1: $env.test || {{timestamp}}
+          test2: $env.test || '{{timestamp}}'
+          test3: $env.test || "{{timestamp}}"
           
-          test4: $parameter.test||{{timestamp}}
-          test5: $parameter.test||'{{timestamp}}'
-          test6: $parameter.test||"{{timestamp}}"
+          test4: $env.test||{{timestamp}}
+          test5: $env.test||'{{timestamp}}'
+          test6: $env.test||"{{timestamp}}"
           
-          test7: '$parameter.test || {{timestamp}}'
-          test8: "$parameter.test||{{timestamp}}"
+          test7: '$env.test || {{timestamp}}'
+          test8: "$env.test||{{timestamp}}"
           
           # ignored by the yml preprocessor...
           test9: {{test}}
@@ -101,30 +107,30 @@ services:
           # yml preprocessor translates to {{test}}
           # if 'test' is present on the query context...
           # otherwise returns the RHS alternative...
-          test12: $parameter.test || a7b9ddef66a
-          test13: $parameter.test || 'a7b9ddef66a'
-          test14: $parameter.test || "a7b9ddef66a"
+          test12: $env.test || a7b9ddef66a
+          test13: $env.test || 'a7b9ddef66a'
+          test14: $env.test || "a7b9ddef66a"
           
-          test15: $parameter.test||c6a8f7ac87c
-          test16: $parameter.test||'c6a8f7ac87c'
-          test17: $parameter.test||"c6a8f7ac87c"
-          
-          # yml preprocessor translates to {{test}}
-          # if 'test' is present on the query context...
-          # otherwise returns the RHS alternative...
-          test18: $parameter.test || true
-          test19: $parameter.test || false
+          test15: $env.test||c6a8f7ac87c
+          test16: $env.test||'c6a8f7ac87c'
+          test17: $env.test||"c6a8f7ac87c"
           
           # yml preprocessor translates to {{test}}
           # if 'test' is present on the query context...
           # otherwise returns the RHS alternative...
-          test20: $parameter.test || 0
-          test21: $parameter.test || 1
-          test22: $parameter.test || 2
-          test23: $parameter.test || 10.0
-          test24: $parameter.test || 10.1
-          test25: $parameter.test || 0.0
-          test26: $parameter.test || 0.1
+          test18: $env.test || true
+          test19: $env.test || false
+          
+          # yml preprocessor translates to {{test}}
+          # if 'test' is present on the query context...
+          # otherwise returns the RHS alternative...
+          test20: $env.test || 0
+          test21: $env.test || 1
+          test22: $env.test || 2
+          test23: $env.test || 10.0
+          test24: $env.test || 10.1
+          test25: $env.test || 0.0
+          test26: $env.test || 0.1
           
           # misc object/js tests - all ignored
           # by the yml preprocessor...
@@ -144,21 +150,23 @@ services:
           repo_name: 'frontend-repo-onhostedgit'
           type: clone
           
-      - $ifdef: 'githubpublic'
+      - $default: 'githubpublic'
         service_id: 'githubpublic'
         parameters:
           repo_name: 'frontend-repo-ongithubpublic'
-          app_repo: $parameter.app_repo
-          repo_url: $parameter.app_repo
-          type: $parameter.type || "link"
-          has_issues: $parameter.issues || true
-          enable_traceability: $parameter.trace || true
+          app_repo: $env.app_repo
+          repo_url: $env.app_repo
+          type: $env.type || "link"
+          has_issues: $env.issues || true
+          enable_traceability: $env.trace || true
   
   build:
-    $parameter: 'pipeline'
-    $default: 'p1'
-    $options:
-      - $ifdef: 'p1'
+  
+    $switch:
+
+      - $expr: $env.pipeline
+
+      - $default: 'p1'
         service_id: pipeline
         parameters:
           services:
@@ -178,7 +186,8 @@ services:
               REGION: '{{form.pipeline.parameters.region}}'
               GROUP: '{{form.pipeline.parameters.group}}'
             execute: true
-      - $ifdef: 'p2'
+
+      - $case: 'p2'
         service_id: pipeline
         parameters:
           services:
@@ -198,6 +207,7 @@ services:
               REGION: '{{form.pipeline.parameters.region}}'
               GROUP: '{{form.pipeline.parameters.group}}'
             execute: true
+
 form:
   pipeline:
     parameters:
