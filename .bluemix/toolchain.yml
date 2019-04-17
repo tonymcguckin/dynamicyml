@@ -1,7 +1,7 @@
 version: '2'
 template:
-  name: "Dynamic YML - $options/$ifdef/$parameters - Testing Toolchain"
-  description: "Dynamic YML - $options/$ifdef/$parameters - Testing Toolchain"
+  name: "DYML: $switch/$case construct"
+  description: "DYML: $switch/$case construct"
   required:
     - build
     - frontend-repo
@@ -11,7 +11,7 @@ template:
     git branch: >-
       [master](https://github.com/tonymcguckin/dynamicyml/tree/master)
 toolchain:
-  name: 'Dynamic YML - $options/$ifdef/$parameters - Testing Toolchain'
+  name: 'DYML: $switch/$case construct'
 services:
 
   sample-repo:
