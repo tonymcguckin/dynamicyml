@@ -14,6 +14,38 @@ toolchain:
   name: 'Dynamic YML - $options/$ifdef/$parameters - Testing Toolchain'
 services:
 
+  sample-repo:
+
+    $switch:
+
+      - $expr: $env.source_provider
+
+      - $default: 'hostedgit'
+        service_id: hostedgit
+        parameters:
+          repo_name: 'BYOC MyApp'
+          repo_url: $env.app_repo || 'http://blah.com/repo'
+          type: 'link'
+          has_issues: true
+          enable_traceability: true
+  
+      - $case: 'githubpublic'
+        service_id: githubpublic
+        parameters:
+          repo_name: 'BYOC MyApp'
+          repo_url: '{{app_repo}}'
+          type: 'link'
+          visibility: public
+
+      - $case: 'github_integrated'
+        service_id: github_integrated
+        parameters:
+          repo_name: 'BYOC MyApp'
+          repo_url: '{{app_repo}}'
+          type: 'link'
+          has_issues: true
+          enable_traceability: true
+
   # dynamic yml 'service' entry...
   frontend-repo:
 
