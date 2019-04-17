@@ -160,6 +160,7 @@ services:
           has_issues: $env.issues || true
           enable_traceability: $env.trace || true
   
+  # dynamic yml 'service' entry...
   build:
   
     $switch:
