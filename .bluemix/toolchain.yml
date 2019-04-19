@@ -23,7 +23,7 @@ services:
 
     $switch:
 
-      - $expr: $env.source_provider
+      - $fooexpr: $fooenv.source_provider
 
       - $foodefault: ''
   
