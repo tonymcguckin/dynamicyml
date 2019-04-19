@@ -31,7 +31,6 @@ services:
           repo_name: 'BYOC MyApp'
           repo_url: $env.app_repo || 'http://blah.com/repo'
           type: $env.type || 'link'
-          foo4: $env.foo4 || 'japp'
           visibility: public
   
       - $case: 'githubpublic'
