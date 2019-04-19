@@ -30,6 +30,8 @@ services:
         parameters:
           repo_name: 'BYOC MyApp'
           repo_url: $env.app_repo || 'http://blah.com/repo'
+          repo_urlf5: $env.f5 || 'foo-boo'
+          repo_urlf6: $env.f6
           type: 'link'
           has_issues: true
           enable_traceability: true
