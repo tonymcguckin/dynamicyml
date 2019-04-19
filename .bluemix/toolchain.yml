@@ -23,32 +23,6 @@ services:
 
     $switch:
 
-      - $fooexpr: $fooenv.source_provider
-
-      - $foodefault: ''
-  
-      - $case: 'githubpublic'
-        service_id: githubpublic
-        parameters:
-          repo_name: 'BYOC MyApp'
-          repo_url: $env.app_repo || 'http://blah.com/repo'
-          type: $env.type || 'link'
-          visibility: public
-
-      - $case: 'github_integrated'
-        service_id: github_integrated
-        parameters:
-          repo_name: 'BYOC MyApp'
-          repo_url: '{{app_repo}}'
-          type: 'link'
-          has_issues: true
-          enable_traceability: true
-
-  # dynamic yml 'service' entry...
-  sample-repo2:
-
-    $switch:
-
       - $expr: $env.source_provider
 
       - $default: ''
