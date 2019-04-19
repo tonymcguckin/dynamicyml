@@ -25,7 +25,7 @@ services:
 
       - $expr: $env.source_provider
 
-      - $default: 99
+      - $ggggggdefault: hostedgit
   
       - $case: 'githubpublic'
         service_id: githubpublic
