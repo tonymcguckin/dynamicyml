@@ -24,8 +24,6 @@ services:
     $switch:
 
       - $expr: $env.source_provider
-
-      - $default: {}
   
       - $case: 'githubpublic'
         service_id: githubpublic
