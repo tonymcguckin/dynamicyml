@@ -30,6 +30,8 @@ services:
         parameters:
           repo_name: 'BYOC MyApp'
           repo_url: $env.app_repo || 'http://blah.com/repo'
+          type1: $env.type1 || "fo'rk'eee"
+          type2: $env.type2 || 'fo'rk'e'
           type: $env.type || 'clone'
           foo: $env.foo
           visibility: public
