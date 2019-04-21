@@ -25,11 +25,11 @@ services:
 
       - $expr: $env.source_provider
   
-      - $default: 'hostedgit'
+      - $default: false
       
       - my_custom_entry: {}
 
-      - $case: hostedgit
+      - $case: true
         service_id: hostedgit
         parameters:
           repo_name: 'BYOC MyApp'
