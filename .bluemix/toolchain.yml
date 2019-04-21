@@ -1,7 +1,12 @@
 version: '2'
 
 template:
-  name: "DYML: $switch/$case construct"
+  $if:
+    - $expr: '$env.foo == true'
+    - $true:
+      name: "DYML: $switch/$case construct (true name)"
+    - $false:
+      name: "DYML: $switch/$case construct (false name)"
   description: "DYML: $switch/$case construct"
   required:
     - build
