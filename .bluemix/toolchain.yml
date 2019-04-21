@@ -24,6 +24,8 @@ services:
     $switch:
 
       - $expr: $env.source_provider
+      
+      - my_custom_entry: {}
   
       - $default: 'hostedgit'
         service_id: hostedgit
@@ -34,7 +36,7 @@ services:
           type2: $env.type2 || 'fo'rk'e'
           foo: $env.foo == 'foo' ? 'bar' || 'http://blah.com/repo'
           type: $env.type || 'clone'
-          foo: $env.foo
+          foo1: $env.foo
           visibility: public
   
       - $case: 'githubpublic'
@@ -53,6 +55,8 @@ services:
           type: 'link'
           has_issues: true
           enable_traceability: true
+          
+      - my_other_custom_entry: true
 
 form:
   pipeline:
