@@ -1,12 +1,33 @@
 version: '2'
 
 template:
+
   $if:
     - $expr: '$env.foo == true'
     - $true:
       name: "DYML: $switch/$case construct (true name)"
     - $false:
       name: "DYML: $switch/$case construct (false name)"
+      
+  $if:
+    - $expr: '$env.foo == true'
+    - $true:
+      name: "DYML: $switch/$case construct (true name)"
+    - $false:
+      name: "DYML: $switch/$case construct (false name)"
+    - $else:
+      name: "DYML: $switch/$case construct (false name)"
+
+  $ifelse:
+    - $if: $env.foo == 10
+      name: "DYML: $switch/$case construct (if)"
+    - $else:
+      name: "DYML: $switch/$case construct (else)"
+    - $elseif: $env.foo == 50
+      name: "DYML: $switch/$case construct (elseif)"
+    - $elseif: $env.foo == 100
+      name: "DYML: $switch/$case construct (elseif)"
+  
   description: "DYML: $switch/$case construct"
   required:
     - build
