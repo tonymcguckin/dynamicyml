@@ -32,6 +32,7 @@ services:
           repo_url: $env.app_repo || 'http://blah.com/repo'
           type1: $env.type1 || "fo'rk'eee"
           type2: $env.type2 || 'fo'rk'e'
+          foo: $env.foo == 'foo' ? 'bar' || 'http://blah.com/repo'
           type: $env.type || 'clone'
           foo: $env.foo
           visibility: public
