@@ -30,13 +30,14 @@ services:
       - $default: "hostedgit"
         service_id: hostedgit
         parameters:
-          test1: $env.test || 'http://blah.com/repo'
-          test2: $env.test || "fo'rk'eee"
-          test3: $env.test || "Can't do this!"
-          test4: "$env.test == 'foo' ? 'bar' : 'http://blah.com/repo'"
-          test5: "$env.test == 'foo' ? 99.99 : 199.98"
-          test6: $env.test || 'clone'
-          test7: $env.test
+          test1: $env.test1 || 'http://blah.com/repo'
+          test2: $env.test2 || "fo'rk'eee"
+          test3: $env.test3 || "Can't do this!"
+          test4: "$env.test4 == 'foo' ? 'bar' : 'http://blah.com/repo'"
+          test5: "$env.test5 == 'foo' ? 99.99 : 199.98"
+          test6: $env.test6 || 'clone'
+          test7: "$env.test6 || {{a}} is {{b}}"
+          test8: $env.test7
 
 form:
   pipeline:
