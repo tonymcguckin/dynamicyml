@@ -27,40 +27,17 @@ services:
 
       - $expr: $env.source_provider
   
-      - $default: false
-      
-      - my_custom_entry: {}
-
-      - $case: true
+      - $default: true
         service_id: hostedgit
         parameters:
-          repo_name: 'BYOC MyApp'
           repo_url: $env.app_repo || 'http://blah.com/repo'
           type1: $env.type1 || "fo'rk'eee"
-          type2: $env.type2 || 'fo'rk'e'
-          foo: $env.foo == 'foo' ? 'bar' || 'http://blah.com/repo'
+          type2: $env.type2 || "Can't do this!"
+          foo: $env.foo == 'foo' ? 'bar' : 'http://blah.com/repo'
+          bar: $env.foo == 'foo' ? 99.99 : 199.98
           type: $env.type || 'clone'
           foo1: $env.foo
           visibility: public
-  
-      - $case: 'githubpublic'
-        service_id: githubpublic
-        parameters:
-          repo_name: 'BYOC MyApp'
-          repo_url: $env.app_repo || 'http://blah.com/repo'
-          type: $env.type || 'link'
-          visibility: public
-
-      - $case: 'github_integrated'
-        service_id: github_integrated
-        parameters:
-          repo_name: 'BYOC MyApp'
-          repo_url: '{{app_repo}}'
-          type: 'link'
-          has_issues: true
-          enable_traceability: true
-          
-      - my_other_custom_entry: true
 
 form:
   pipeline:
