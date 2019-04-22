@@ -2,42 +2,7 @@ version: '2'
 
 template:
 
-  # dyml name property with value determined by dyml $if construct...
-  name:
-  
-    - $if: "$env.i == 1"
-      $result: 
-        a: a
-        b: {}
-        c: 
-          - 
-            c: "1"
-          - 
-            c: "2"
-        d: 
-          d1: d1
-          d2: d2
-        e: 1
-        f: 0
-        g: true
-        h: false
-        i: 99
-        j: 88.77
-
-    - $elseif: "$env.i == 2"
-      $result: "DYML: $switch/$case construct 2"
-      
-    - $elseif: "$env.i == 3"
-      $result: "DYML: $switch/$case construct 3"
-      
-    - $elseif: "$env.i == 4"
-      $result: "DYML: $switch/$case construct 4"
-      
-    - $elseif: "$env.i == 4"
-      $result: "DYML: $switch/$case construct 5"
-      
-    - $else:
-      $result: "DYML: $switch/$case construct (else)"
+  name: "DYML: $switch/$case construct"
 
   description: "DYML: $switch/$case construct"
   required:
