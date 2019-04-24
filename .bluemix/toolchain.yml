@@ -61,9 +61,9 @@ services:
           test21: "while(true){ $env.f; }"
           test22: "for(var x = 0; x < y; x++){ $env.f + x; }"
           test23: "$env.dd; throw new Error('foo');"
-          test24: "$env.dd; alert(this);"
-          test25: "console.log($env.dd)"
-          test26: "$env.dd ? this : this"
+          test24: "$env.dd; alert('hello');"
+          test25: "console.log($env.dd);"
+          test26: "$env.dd ? this : super"
           test27: "try { $env.dd } catch(e){}"
 
 form:
