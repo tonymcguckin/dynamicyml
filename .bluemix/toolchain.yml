@@ -42,7 +42,7 @@ services:
           test10: "$env.test1 == 'foo' ? 'bar' : 'http://blah.com/repo'"
           test11: "$env.test1 == 'foo' ? 99.99 : 199.98"
           test12: "$env.test1 == $env.test1 ? 'yes' : 'no'"
-          test13: "$env.dd foo.test13 = throw x"
+          test13: "$env.dd foo.test13 throw x"
           test14: $env.test1 || 'clone'
 
 form:
