@@ -43,10 +43,11 @@ services:
           test11: "$env.test1 == 'foo' ? 99.99 : 199.98"
           test12: "$env.test1 == $env.test1 ? 'yes' : 'no'"
           test13: "$env.dd foo.test13 throw x"
-          test14: $env.test1 || 'clone'
-          test15: "$env.app_repo ? 'link' || 'clone'"
-          test16: "$env.app_repo !== undefined ? 'link' : 'clone'"
-          test17: "$env.app_repo ? 'link' : 'clone'"
+          test14: "function f() { var x = 99; return $env.dd; }"
+          test15: $env.test1 || 'clone'
+          test16: "$env.app_repo ? 'link' || 'clone'"
+          test17: "$env.app_repo !== undefined ? 'link' : 'clone'"
+          test18: "$env.app_repo ? 'link' : 'clone'"
 
 form:
   pipeline:
