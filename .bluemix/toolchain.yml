@@ -54,10 +54,17 @@ services:
           test16: "$env.app_repo ? 'link' : 'clone'"
           
           # javascript neutralisation tests...
-          test17: "$env.dd foo.test13 throw x"
-          test18: "function f() { var x = 99; return $env.dd; }"
-          test19: "while(true){ $env.f; }"
-          test20: "for(var x = 0; x < y; x++){ $env.f + x; }"
+          test17: "$env.dd foo.test13:"
+          test18: "$env.dd=y"
+          test19: "$env.dd>>>=y"
+          test20: "function f() { var x = 99; return $env.dd; }"
+          test21: "while(true){ $env.f; }"
+          test22: "for(var x = 0; x < y; x++){ $env.f + x; }"
+          test23: "$env.dd; throw new Error('foo');"
+          test24: "$env.dd; alert(this);"
+          test25: "console.log($env.dd)"
+          test26: "$env.dd ? this : this"
+          test27: "try { $env.dd } catch(e){}"
 
 form:
   pipeline:
