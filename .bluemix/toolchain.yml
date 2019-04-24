@@ -32,9 +32,9 @@ services:
         parameters:
           test1: $env.test1
           test2: $env.test1 || $env.test1 + ' ' + $env.test1
-          test3: $env.test1 || $env.test1 + ' ' + $env.test1 || 'grand job'
+          test3: $env.x || $env.y || 'grand job'
           test4: $env.test1 || '{{a}} and {{b}}'
-          test5: $env.test1 || {{a}} and {{b}}
+          test5: $env.test1 || "{{a}} and {{b}}"
           test6: $env.test1 || "{{f}} can't be {{x}}"
           test7: $env.test1 || 'http://blah.com/repo'
           test8: $env.test1 || "fo'rk'eee"
@@ -42,7 +42,7 @@ services:
           test10: "$env.test1 == 'foo' ? 'bar' : 'http://blah.com/repo'"
           test11: "$env.test1 == 'foo' ? 99.99 : 199.98"
           test12: "$env.test1 == $env.test1 ? 'yes' : 'no'"
-          test13: "$env. foo.test13 = throw x"
+          test13: "$env.dd foo.test13 = throw x"
           test14: $env.test1 || 'clone'
 
 form:
