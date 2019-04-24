@@ -30,19 +30,17 @@ services:
       - $default: "hostedgit"
         service_id: hostedgit
         parameters:
-          #test1: $env.test1
-          #test1: $env.test1 || $env.test2 + $env.test3
-          test1: $env.test1 || '{{a}} and {{b}}'
-          test2: $env.test1 || {{a}} and {{b}}
-          test3: $env.test1 || "{{f}} can't be {{x}}"
-          #test1: $env.test1 || 'http://blah.com/repo'
-          #test2: $env.test2 || "fo'rk'eee"
-          #test3: $env.test3 || "Can't do this!"
-          #test4: "$env.test4 == 'foo' ? 'bar' : 'http://blah.com/repo'"
-          #test5: "$env.test5 == 'foo' ? 99.99 : 199.98"
-          #test6: $env.test6 || 'clone'
-          #test7: "$env.test6 || {{a}} is {{b}}"
-          #test8: $env.test7
+          test1: $env.test1
+          test2: $env.test1 || $env.test2 + $env.test3
+          test3: $env.test1 || '{{a}} and {{b}}'
+          test4: $env.test1 || {{a}} and {{b}}
+          test5: $env.test1 || "{{f}} can't be {{x}}"
+          test6: $env.test1 || 'http://blah.com/repo'
+          test7: $env.test1 || "fo'rk'eee"
+          test8: $env.test1 || "Can't do this!"
+          test9: "$env.test1 == 'foo' ? 'bar' : 'http://blah.com/repo'"
+          test10: "$env.test1 == 'foo' ? 99.99 : 199.98"
+          test11: $env.test1 || 'clone'
 
 form:
   pipeline:
