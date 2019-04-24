@@ -44,8 +44,8 @@ services:
           test12: "$env.test1 == $env.test1 ? 'yes' : 'no'"
           test13: "$env.dd foo.test13 throw x"
           test14: $env.test1 || 'clone'
-          test15: "$env.app_repo ? ‘link’ || ‘clone’"
-          test16: "$env.app_repo !== undefined ? ‘link’ : ‘clone’"
+          test15: "$env.app_repo ? 'link' || 'clone'"
+          test16: "$env.app_repo !== undefined ? 'link' : 'clone'"
 
 form:
   pipeline:
