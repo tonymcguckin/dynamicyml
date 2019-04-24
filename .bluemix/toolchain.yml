@@ -34,7 +34,7 @@ services:
           #test1: $env.test1 || $env.test2 + $env.test3
           test1: $env.test1 || '{{a}} and {{b}}'
           test2: $env.test1 || {{a}} and {{b}}
-          test3: $env.test1 || "{{a}} and {{b}}"
+          test3: $env.test1 || "{{f}} can't be {{x}}"
           #test1: $env.test1 || 'http://blah.com/repo'
           #test2: $env.test2 || "fo'rk'eee"
           #test3: $env.test3 || "Can't do this!"
