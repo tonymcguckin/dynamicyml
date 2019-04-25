@@ -25,22 +25,13 @@ services:
 
     $switch:
 
-      - $expr: $env.sou || $env.yyy
-  
-      - $case: "undefined"
-        service_id: hostedgit
-        parameters:
-
-          # singular test
-          test1: $env.test1
+      - $expr: $env.source_provider
   
       - $default: "hostedgit"
         service_id: hostedgit
         parameters:
 
-          test0: $env.sou || $env.yyy
-
-          # singular test
+          # unary test
           test1: $env.test1
           
           # binary tests
@@ -76,7 +67,7 @@ services:
           test27: "$env.dd ? this : super"
           test28: "try { $env.dd } catch(e){}"
           
-          test29: "$env:5 + 2"
+          test29: "$env.(5 + 2)"
 
 form:
   pipeline:
