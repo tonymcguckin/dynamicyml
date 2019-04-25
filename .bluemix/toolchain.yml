@@ -147,6 +147,9 @@ services:
           test35: console.log("test34")
           test36: javascript:console.log("test35")
           
+          test37: "{{USERNAME}}"
+          test38: '{{form.pipeline.parameters.username}}'
+          
           enable_traceability: true
           has_issues: true
           repo_name: 'frontend-repo-onhostedgit'
