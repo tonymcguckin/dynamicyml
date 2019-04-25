@@ -71,8 +71,8 @@ services:
           test27: "$env.dd ? this : super"
           test28: "try { $env.dd } catch(e){}"
           
-          test29: "$env.(5 + 2)"
-          test30: "$env.foo ? document.cookie : window"
+          test29: "$env.y + (5 + 2)"
+          test30: "$env.foo ? document.cookie : document"
 
 form:
   pipeline:
