@@ -25,7 +25,7 @@ services:
 
     $switch:
 
-      - $expr: $env.sou
+      - $expr: $env.sou || $env.yyy
   
       - $case: "undefined"
         service_id: hostedgit
