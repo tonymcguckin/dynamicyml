@@ -25,9 +25,19 @@ services:
 
     $switch:
 
-      - $expr: $env.source_provider
+      - $expr: $env.sou
   
-      - $default: "hostedgit"
+      - $case: "undefined"
+        service_id: hostedgit
+        parameters:
+
+          # singular test
+          test1: $env.test1
+          
+          # binary tests
+          test2: $env.test1 || 'clone'
+  
+      - $defaultddd: "hostedgit"
         service_id: hostedgit
         parameters:
 
@@ -66,6 +76,8 @@ services:
           test26: "console.log($env.dd);"
           test27: "$env.dd ? this : super"
           test28: "try { $env.dd } catch(e){}"
+          
+          test29: "$env:5 + 2"
 
 form:
   pipeline:
