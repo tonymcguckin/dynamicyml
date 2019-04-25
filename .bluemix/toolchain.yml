@@ -25,7 +25,11 @@ services:
 
     $switch:
 
-      - $expr: $env.source_provider
+      - $expr: $env.source_provider || 'hostedgitty'
+  
+      - $case: "hostedgitty"
+        service_id: flubber
+        parameters: {}
   
       - $default: "hostedgit"
         service_id: hostedgit
