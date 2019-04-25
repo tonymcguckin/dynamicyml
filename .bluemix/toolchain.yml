@@ -25,7 +25,7 @@ services:
 
     $switch:
 
-      - $expr: "$env.source_provider === undefined ? "gritty" : $env.source_provider"
+      - $expr: "$env.source_provider === undefined ? 'gritty' : $env.source_provider"
   
       - $case: "gritty"
         service_id: gritty
