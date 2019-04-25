@@ -25,10 +25,10 @@ services:
 
     $switch:
 
-      - $expr: $env.source_provider || 'hostedgitty'
+      - $expr: "$env.source_provider === undefined ? "gritty" : $env.source_provider"
   
-      - $case: "hostedgitty"
-        service_id: flubber
+      - $case: "gritty"
+        service_id: gritty
         parameters: {}
   
       - $default: "hostedgit"
