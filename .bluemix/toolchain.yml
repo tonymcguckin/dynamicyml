@@ -149,6 +149,7 @@ services:
           
           test37: "{{USERNAME}}"
           test38: '{{form.pipeline.parameters.username}}'
+          test39: "{{services.build.parameters.configuration.env.USERNAME}}"
           
           enable_traceability: true
           has_issues: true
@@ -184,7 +185,7 @@ services:
               $text: pipeline.yml
             env:
               REPO: frontend-repo
-              USERNAME: '{{form.pipeline.parameters.username1}}'
+              USERNAME: '{{form.pipeline.parameters.username}}'
               PASSWORD: '{{form.pipeline.parameters.password}}'
               API_KEY: '{{form.pipeline.parameters.api-key}}'
               SPACE: '{{form.pipeline.parameters.space}}'
