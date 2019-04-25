@@ -33,13 +33,12 @@ services:
 
           # singular test
           test1: $env.test1
-          
-          # binary tests
-          test2: $env.test1 || 'clone'
   
-      - $defaultddd: "hostedgit"
+      - $default: "hostedgit"
         service_id: hostedgit
         parameters:
+
+          test0: $env.sou || $env.yyy
 
           # singular test
           test1: $env.test1
