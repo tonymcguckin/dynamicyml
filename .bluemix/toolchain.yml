@@ -52,19 +52,20 @@ services:
           test14: $env.app_repo === 'link' || 'clone'
           test15: "$env.app_repo !== undefined ? 'link' : 'clone'"
           test16: "$env.app_repo ? 'link' : 'clone'"
+          test17: $env.app_repo ? 'link' || 'clone'
           
           # javascript neutralisation tests...
-          test17: "$env.dd foo.test13:"
-          test18: "$env.dd=y"
-          test19: "$env.dd>>>=y"
-          test20: "function f() { var x = 99; return $env.dd; }"
-          test21: "while(true){ $env.f; }"
-          test22: "for(var x = 0; x < y; x++){ $env.f + x; }"
-          test23: "$env.dd; throw new Error('foo');"
-          test24: "$env.dd; alert('hello');"
-          test25: "console.log($env.dd);"
-          test26: "$env.dd ? this : super"
-          test27: "try { $env.dd } catch(e){}"
+          test18: "$env.dd foo.test13:"
+          test19: "$env.dd=y"
+          test20: "$env.dd>>>=y"
+          test21: "function f() { var x = 99; return $env.dd; }"
+          test22: "while(true){ $env.f; }"
+          test23: "for(var x = 0; x < y; x++){ $env.f + x; }"
+          test24: "$env.dd; throw new Error('foo');"
+          test25: "$env.dd; alert('hello');"
+          test26: "console.log($env.dd);"
+          test27: "$env.dd ? this : super"
+          test28: "try { $env.dd } catch(e){}"
 
 form:
   pipeline:
