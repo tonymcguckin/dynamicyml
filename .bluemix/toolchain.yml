@@ -41,7 +41,8 @@ services:
   
       - $case: "github"
         service_id: github
-        parameters: {}
+        parameters:
+          test: "$env.foo ? $env.foo : $env.branch"
   
       - $default: "gitlab"
         service_id: gitlab
