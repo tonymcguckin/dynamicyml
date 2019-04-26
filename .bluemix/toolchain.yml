@@ -35,8 +35,12 @@ services:
         service_id: gritty
         parameters: {}
   
-      - $default: "hostedgit"
+      - $case: "hostedgit"
         service_id: hostedgit
+        parameters: {}
+  
+      - $default: "flubber"
+        service_id: flubber
         parameters: {}
 
 form:
