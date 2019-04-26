@@ -29,7 +29,10 @@ services:
       #- $expr: $env.case
       #- $expr: github
       #- $expr: 'github'
-      - $expr: "github"
+      #- $expr: "github"
+      - $expr: {{case}}
+      #- $expr: '{{case}}'
+      #- $expr: "{{case}}"
   
       - $case: "bitbucket"
         service_id: bitbucket
