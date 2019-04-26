@@ -9,11 +9,12 @@ template:
     - build
     - frontend-repo
     - sample-repo
+
   info:
     git url: >-
-      [https://github.com/tonymcguckin/dynamicyml](https://github.com/tonymcguckin/dynamicyml)
+      $env.repository ? '[' + $env.repository + '](' + $env.repository + ')' : "[https://github.com/open-toolchain/simple-toolchain-hosted](https://github.com/open-toolchain/simple-toolchain-hosted)"
     git branch: >-
-      [master](https://github.com/tonymcguckin/dynamicyml/tree/master)
+      $env.repository && $env.branch ? '[' + $env.branch + ']('+ $env.repository + '/tree/master)': "[master](https://github.com/open-toolchain/simple-toolchain-hosted/tree/master)"
 
 toolchain:
   name: 'DYML: $switch/$case construct'
@@ -25,12 +26,8 @@ services:
 
     $switch:
 
-      #- $expr: "$env.case === undefined ? 'gritty' : $env.case"
-      - $expr: $env.case
-  
-      - $case: "undefined"
-        service_id: undefined
-        parameters: {}
+      #- $expr: $env.case
+      - $expr: github
   
       - $case: "bitbucket"
         service_id: bitbucket
