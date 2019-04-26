@@ -25,7 +25,11 @@ services:
 
     $switch:
 
-      - $expr: "$env.source_provider == 'undefined' ? 'gritty' : $env.source_provider"
+      - $expr: "$env.case === undefined ? 'gritty' : $env.case"
+  
+      - $case: "undefined"
+        service_id: undefined_service
+        parameters: {}
   
       - $case: "gritty"
         service_id: gritty
@@ -33,46 +37,7 @@ services:
   
       - $default: "hostedgit"
         service_id: hostedgit
-        parameters:
-
-          # unary test
-          test1: $env.test1
-          
-          # binary tests
-          test2: $env.test1 || 'clone'
-          test3: $env.test1 || '{{a}} and {{b}}'
-          test4: $env.test1 || "{{a}} and {{b}}"
-          test5: $env.test1 || "{{a}} can't be {{b}} so what!"
-          test6: $env.test1 || 'http://blah.com/repo'
-          test7: $env.test1 || "fo'rk'eee"
-          test8: $env.test1 || "Can't do this!"
-          
-          # javascript complex & ternary tests...
-          test9: $env.x || $env.y + ' ' + $env.z
-          test10: $env.x || $env.y || $env.z
-          test11: "$env.test1 == 'foo' ? 'bar' : 'http://blah.com/repo'"
-          test12: "$env.test1 == 'foo' ? 99.99 : 199.98"
-          test13: "$env.test1 == $env.test2 ? 'yes' : 'no'" 
-          test14: $env.app_repo === 'link' || 'clone'
-          test15: "$env.app_repo !== undefined ? 'link' : 'clone'"
-          test16: "$env.app_repo ? 'link' : 'clone'"
-          test17: $env.app_repo ? 'link' || 'clone'
-          
-          # javascript neutralisation tests...
-          test18: "$env.dd foo.test13:"
-          test19: "$env.dd=y"
-          test20: "$env.dd>>>=y"
-          test21: "function f() { var x = 99; return $env.dd; }"
-          test22: "while(true){ $env.f; }"
-          test23: "for(var x = 0; x < y; x++){ $env.f + x; }"
-          test24: "$env.dd; throw new Error('foo');"
-          test25: "$env.dd; alert('hello');"
-          test26: "console.log($env.dd);"
-          test27: "$env.dd ? this : super"
-          test28: "try { $env.dd } catch(e){}"
-          
-          test29: "$env.y + (5 + 2)"
-          test30: "$env.foo ? document.cookie : document"
+        parameters: {}
 
 form:
   pipeline:
