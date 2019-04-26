@@ -73,7 +73,8 @@ services:
           test29: "$env.y + (5 + 2)"
           test30: "$env.foo ? document.cookie : document"
           test31: "$env.foo ? process : global"
-          test33: "$env.foo ? Headers : Request"
+          test32: "$env.foo ? Headers : Request"
+          test33: "if($env.foo !== undefined) return Headers; } else { return this; }"
 
 form:
   pipeline:
