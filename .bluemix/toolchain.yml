@@ -26,14 +26,14 @@ services:
 
     $switch:
 
-      #- $expr: $env.case
+      #- $expr: $env.expr
       #- $expr: github
       #- $expr: 'github'
       #- $expr: "github"
       
-      #- $expr: {{case}}
-      #- $expr: '{{case}}'
-      - $expr: "{{case}}"
+      #- $expr: {{expr}}
+      #- $expr: '{{expr}}'
+      - $expr: "{{expr}}"
   
       - $case: "bitbucket"
         service_id: bitbucket
