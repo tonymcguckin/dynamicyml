@@ -25,7 +25,7 @@ services:
 
     $switch:
 
-      - $expr: "$env.case == `undefined` ? 'gritty' : $env.case"
+      - $expr: "$env.case == 'undefined' ? 'gritty' : $env.case"
   
       - $case: "gritty"
         service_id: gritty
