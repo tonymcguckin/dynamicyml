@@ -40,7 +40,7 @@ services:
         service_id: hostedgit
         parameters: {}
   
-      - $default: "flubber"
+      - $default999: "flubber"
         service_id: flubber
         parameters: {}
 
