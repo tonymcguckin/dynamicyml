@@ -1,10 +1,7 @@
 version: '2'
 template:
   name: "padraics test"
-  header: '![](toolchain.svg?localize)'
-  icon: icon.svg
   required:
-    - sample-build
     - sample-repo
   info:
     git url: >-
@@ -12,7 +9,7 @@ template:
     git branch: >-
       [master](https://github.com/open-toolchain/simple-toolchain-hosted/tree/master)
 toolchain:
-  name: 'simple-toolchain-{{timestamp}}'
+  name: 'padraics-test'
 services:
   sample-repo:
     $switch:
