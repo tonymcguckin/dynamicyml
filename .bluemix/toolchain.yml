@@ -40,9 +40,9 @@ services:
         service_id: hostedgit
         parameters: {}
   
-      - $defdddault999: "flubber"
-        service_iddd: flubber
-        parametersddd: {}
+      - $default: "flubber"
+        service_id: flubber
+        parameters: {}
 
 form:
   pipeline:
