@@ -43,7 +43,7 @@ services:
         service_id: github
         parameters:
           #test: "$env.foo ? process : global"
-          test: "$env.foo; $env['this']"
+          test: "$env.foo;"
   
       - $default: "gitlab"
         service_id: gitlab
