@@ -20,7 +20,6 @@ services:
           repo_name: '{{toolchain.name}}'
           repo_url: $env.app_repo || 'https://github.com/open-toolchain/node-hello-world'
           type: $env.type || 'clone'
-          type2: $env.type2 || 'clone'
           has_issues: true
           enable_traceability: true
       - $case: 'githubconsolidated'
