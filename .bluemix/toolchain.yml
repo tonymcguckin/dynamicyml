@@ -42,7 +42,7 @@ services:
       - $case: "github"
         service_id: github
         parameters:
-          test: "$env.foo ? new $env.foo : $env.branch"
+          test: "$env.foo ? new $env.foo : $env.branch = 99"
   
       - $default: "gitlab"
         service_id: gitlab
