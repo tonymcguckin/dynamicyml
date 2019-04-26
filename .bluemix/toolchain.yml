@@ -23,15 +23,13 @@ services:
 
     $switch:
 
-      - $expr: $env.source_provider
+      - $expr: $env.case
 
       - $default: 'hostedgit'
         service_id: hostedgit
         parameters:
           repo_name: 'BYOC MyApp'
           repo_url: $env.app_repo || 'http://blah.com/repo'
-          repo_urlf5: $env.f5 || 'foo-boo'
-          repo_urlf6: $env.f6
           type: 'link'
           has_issues: true
           enable_traceability: true
@@ -64,7 +62,7 @@ services:
     
     $switch:
     
-      - $expr: $env.source_provider
+      - $expr: $env.case
  
       - $case: 'hostedgit'
         service_id: 'hostedgit'
