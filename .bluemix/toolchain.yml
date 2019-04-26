@@ -33,7 +33,7 @@ services:
       
       #- $expr: {{expr}}
       #- $expr: '{{expr}}'
-      - $expr: "{{expr}}"
+      - $expr: "{{expr}}{{bbb}}"
   
       - $case: "bitbucket"
         service_id: bitbucket
