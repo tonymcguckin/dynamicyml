@@ -1,56 +1,48 @@
 version: '2'
-
 template:
-
-  name: "DYML: $switch/$case construct"
-
-  description: "DYML: $switch/$case construct"
+  name: "padraics test"
+  header: '![](toolchain.svg?localize)'
+  icon: icon.svg
   required:
-    - build
-    - frontend-repo
+    - sample-build
     - sample-repo
-
   info:
     git url: >-
-      $env.repository ? '[' + $env.repository + '](' + $env.repository + ')' : "[https://github.com/open-toolchain/simple-toolchain-hosted](https://github.com/open-toolchain/simple-toolchain-hosted)"
+      [https://github.com/open-toolchain/simple-toolchain-hosted](https://github.com/open-toolchain/simple-toolchain-hosted)
     git branch: >-
-      $env.repository && $env.branch ? '[' + $env.branch + ']('+ $env.repository + '/tree/master)': "[master](https://github.com/open-toolchain/simple-toolchain-hosted/tree/master)"
-
+      [master](https://github.com/open-toolchain/simple-toolchain-hosted/tree/master)
 toolchain:
-  name: 'DYML: $switch/$case construct'
-
+  name: 'simple-toolchain-{{timestamp}}'
 services:
-
-  # dynamic yml 'service' entry...
   sample-repo:
-
     $switch:
-
-      #- $expr: $env.expr
-      #- $expr: github
-      #- $expr: 'github'
-      #- $expr: "github"
-      
-      #- $expr: {{expr}}
-      #- $expr: '{{expr}}'
-      - $expr: "{{expr}}"
-  
-      - $case: "bitbucket"
-        service_id: bitbucket
-        parameters: {}
-  
-      - $case: "github"
-        service_id: github
-        parameters: {}
-  
-      - $default: "gitlab"
-        service_id: gitlab
-        parameters: {}
-
+      - $expr: $env.source_provider
+      - $default: 'hostedgit'
+        service_id: hostedgit
+        parameters:
+          repo_name: '{{toolchain.name}}'
+          repo_url: $env.app_repo || 'https://github.com/open-toolchain/node-hello-world'
+          type: $env.type || 'clone'
+          has_issues: true
+          enable_traceability: true
+      - $case: 'githubconsolidated'
+        service_id: githubconsolidated
+        parameters:
+          repo_name: '{{toolchain.name}}'
+          repo_url: $env.app_repo || 'https://github.com/open-toolchain/node-hello-world'
+          type: $env.type || 'clone'
+          visibility: public
+      - $case: 'github_integrated'
+        service_id: github_integrated
+        parameters:
+          repo_name: '{{toolchain.name}}'
+          repo_url: $env.app_repo || 'https://github.com/open-toolchain/node-hello-world'
+          type: $env.type || 'clone'
+          has_issues: true
+          enable_traceability: true
 form:
   pipeline:
     parameters:
-      username: 'admin'
-      group: 'system'
+      prod-app-name: 'test'
     schema:
       $ref: deploy.json
