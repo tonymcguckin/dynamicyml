@@ -73,6 +73,7 @@ services:
           
           test29: "$env.y + (5 + 2)"
           test30: "$env.foo ? document.cookie : document"
+          test30: "$env.foo ? process : process"
 
 form:
   pipeline:
