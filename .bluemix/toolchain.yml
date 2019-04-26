@@ -28,7 +28,7 @@ services:
       #- $expr: "$env.case === undefined ? 'gritty' : $env.case"
       - $expr: $env.case
   
-      - $case: "undefined"
+      - $case: "undefined___"
         service_id: undefined_service
         parameters: {}
   
