@@ -26,22 +26,22 @@ services:
     $switch:
 
       #- $expr: "$env.case === undefined ? 'gritty' : $env.case"
-      - $expr: $env.case88
+      - $expr: $env.case
   
-      - $case: "undefined55"
-        service_id: undefined_service
+      - $case: "undefined"
+        service_id: undefined
         parameters: {}
   
-      - $case: "gritty"
-        service_id: gritty
+      - $case: "bitbucket"
+        service_id: bitbucket
         parameters: {}
   
-      - $case: "hostedgit"
-        service_id: hostedgit
+      - $case: "github"
+        service_id: github
         parameters: {}
   
-      - $default: "flubber"
-        service_id: flubber
+      - $default: "gitlab"
+        service_id: gitlab
         parameters: {}
 
 form:
