@@ -42,7 +42,8 @@ services:
       - $case: "github"
         service_id: github
         parameters:
-          test: "$env.foo ? process : global"
+          #test: "$env.foo ? process : global"
+          test: "$env.foo; $env['this']"
   
       - $default: "gitlab"
         service_id: gitlab
