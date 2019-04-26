@@ -28,6 +28,8 @@ services:
         parameters:
           repo_name: 'BYOC MyApp'
           type: $env.type
+          type1: '$env.type'
+          type2: "$env.type"
           #type: "$env.type || 'link'"
           #type2: "$env.type2 || {{app_repo}}"
           #has_issues: $env.issues || true
