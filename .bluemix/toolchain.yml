@@ -13,7 +13,7 @@ template:
     git url: >-
       [https://github.com/tonymcguckin/dynamicyml](https://github.com/tonymcguckin/dynamicyml)
     git branch: >-
-      [master](https://github.com/tonymcguckin/dynamicyml/tree/master)
+      [flavour6](https://github.com/tonymcguckin/dynamicyml/tree/flavour6)
 
 toolchain:
   name: 'DYML: $switch/$case construct'
