@@ -6,24 +6,10 @@ template:
     - sample-repo
 
   info:
-    git url: $env.repository
-    git branch: "$env.repository + '/tree/' + $env.branch"
-
-  info1:
     git url: >-
       $env.repository ? '[' + $env.repository + '](' + $env.repository + ')' : "[https://github.com/tonymcguckin/dynamicyml](https://github.com/tonymcguckin/dynamicyml)"
     git branch: >-
       $env.repository && $env.branch ? '[' + $env.branch + ']('+ $env.repository + '/tree/' + $env.branch + ')': "[flavour9](https://github.com/tonymcguckin/dynamicyml/tree/flavour9)"
-
-  info2:
-    git url: >-
-      '[' + $env.repository + '](' + $env.repository + ')'
-    git branch: >-
-      '[' + $env.branch + ']('+ $env.repository + '/tree/' + $env.branch + ')'
-
-  info3:
-    git url: "'[' + $env.repository + '](' + $env.repository + ')'"
-    git branch: "'[' + $env.branch + ']('+ $env.repository + '/tree/' + $env.branch + ')'"
 
 toolchain:
   name: 'DYML: $env Scripting Expressions'
