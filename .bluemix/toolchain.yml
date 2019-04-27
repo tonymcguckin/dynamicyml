@@ -21,6 +21,10 @@ template:
     git url: "'[' + $env.repository + '](' + $env.repository + ')'"
     git branch: "'[' + $env.branch + ']('+ $env.repository + '/tree/' + $env.branch + ')'"
 
+  info4:
+    git url: $env.repository
+    git branch: "$env.repository + '/tree/' + $env.branch"
+
 toolchain:
   name: 'DYML: $env Scripting Expressions'
 
@@ -34,25 +38,25 @@ services:
       - $expr: $env.expr
   
       - $default: "a"
-        service_id: default_service
+        service_id: orion
         parameters:
           branch: $env.branch
           expr: $env.expr
   
       - $case: "b"
-        service_id: b_case_service
+        service_id: orion
         parameters:
           branch: $env.branch
           expr: $env.expr
   
       - $case: "c"
-        service_id: c_case_service
+        service_id: orion
         parameters:
           branch: $env.branch
           expr: $env.expr
   
       - $case: "undefined"
-        service_id: undefined_service
+        service_id: orion
         parameters:
           branch: $env.branch
           expr: $env.expr
