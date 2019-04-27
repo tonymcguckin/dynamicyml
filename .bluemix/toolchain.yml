@@ -1,7 +1,7 @@
 version: '2'
 template:
-  name: "DYML: $switch/$case construct"
-  description: "DYML: $switch/$case construct"
+  name: "DYML: $env Scripting Expressions"
+  description: "DYML: $env Scripting Expressions"
   required:
     - sample-repo
 
@@ -22,7 +22,7 @@ template:
     git branch: "'[' + $env.branch + ']('+ $env.repository + '/tree/' + $env.branch + ')'"
 
 toolchain:
-  name: 'DYML: $switch/$case construct'
+  name: 'DYML: $env Scripting Expressions'
 
 services:
 
