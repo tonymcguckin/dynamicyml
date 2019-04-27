@@ -1,20 +1,27 @@
 version: '2'
-
 template:
-
   name: "DYML: $switch/$case construct"
-
   description: "DYML: $switch/$case construct"
   required:
-    - build
-    - frontend-repo
     - sample-repo
 
   info:
     git url: >-
-      [https://github.com/tonymcguckin/dynamicyml](https://github.com/tonymcguckin/dynamicyml)
+      $env.repository ? '[' + $env.repository + '](' + $env.repository + ')' : >-
+        "[https://github.com/tonymcguckin/dynamicyml](https://github.com/tonymcguckin/dynamicyml)"
     git branch: >-
-      [flavour8](https://github.com/tonymcguckin/dynamicyml/tree/flavour8)
+      $env.repository && $env.branch ? '[' + $env.branch + ']('+ $env.repository + '/tree/' + $env.branch + ')': >-
+        "[flavour9](https://github.com/tonymcguckin/dynamicyml/tree/flavour9)"
+
+  info2:
+    git url: >-
+      '[' + $env.repository + '](' + $env.repository + ')'
+    git branch: >-
+      '[' + $env.branch + ']('+ $env.repository + '/tree/' + $env.branch + ')'
+
+  info3:
+    git url: "'[' + $env.repository + '](' + $env.repository + ')'"
+    git branch: "'[' + $env.branch + ']('+ $env.repository + '/tree/' + $env.branch + ')'"
 
 toolchain:
   name: 'DYML: $switch/$case construct'
@@ -26,31 +33,33 @@ services:
 
     $switch:
 
-      #- $expr: $env.expr
-      #- $expr: github
-      #- $expr: 'github'
-      #- $expr: "github"
-      
-      #- $expr: {{expr}}
-      #- $expr: '{{expr}}'
-      - $expr: "{{expr}}"
+      - $expr: $env.expr
   
       - $default: "a"
-        service_id: default_case_service
-        parameters: {}
+        service_id: default_service
+        parameters:
+          branch: $env.branch
+          expr: $env.expr
   
       - $case: "b"
         service_id: b_case_service
-        parameters: {}
+        parameters:
+          branch: $env.branch
+          expr: $env.expr
   
       - $case: "c"
         service_id: c_case_service
-        parameters: {}
+        parameters:
+          branch: $env.branch
+          expr: $env.expr
+  
+      - $case: "undefined"
+        service_id: undefined_service
+        parameters:
+          branch: $env.branch
+          expr: $env.expr
 
 form:
   pipeline:
-    parameters:
-      username: 'admin'
-      group: 'system'
-    schema:
-      $ref: deploy.json
+    parameters: {}
+    schema: {}
