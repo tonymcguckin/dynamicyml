@@ -12,9 +12,9 @@ template:
 
   info:
     git url: >-
-      $env.repository ? '[' + $env.repository + '](' + $env.repository + ')' : "[https://github.com/open-toolchain/simple-toolchain-hosted](https://github.com/open-toolchain/simple-toolchain-hosted)"
+      [https://github.com/tonymcguckin/dynamicyml](https://github.com/tonymcguckin/dynamicyml)
     git branch: >-
-      $env.repository && $env.branch ? '[' + $env.branch + ']('+ $env.repository + '/tree/master)': "[master](https://github.com/open-toolchain/simple-toolchain-hosted/tree/master)"
+      [flavour8](https://github.com/tonymcguckin/dynamicyml/tree/flavour8)
 
 toolchain:
   name: 'DYML: $switch/$case construct'
@@ -35,16 +35,16 @@ services:
       #- $expr: '{{expr}}'
       - $expr: "{{expr}}"
   
-      - $case: "bitbucket"
-        service_id: bitbucket
+      - $default: "a"
+        service_id: default_case_service
         parameters: {}
   
-      - $case: "github"
-        service_id: github
+      - $case: "b"
+        service_id: b_case_service
         parameters: {}
   
-      - $default: "gitlab"
-        service_id: gitlab
+      - $case: "c"
+        service_id: c_case_service
         parameters: {}
 
 form:
