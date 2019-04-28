@@ -65,7 +65,7 @@ services:
           test21: "function f() { return $env.dd }"
           test22: "while(true)($env.f)"
           test23: "for(var x = 0; x < y; x++){ $env.f + x; }"
-          test24: "[].for(var x = 0; x < y; x++){ $env.f + x; }"
+          test24: "[$env.arr].forEach(v => f())"
           test25: "throw new Error($env.app_repo)"
           test26: "alert($env.dd)"
           test27: "console.log($env.dd)"
