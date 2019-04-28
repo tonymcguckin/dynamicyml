@@ -25,7 +25,7 @@ services:
     
       - $expr: $env.case
  
-      - $case: 'hostedgit'
+      - $default: 'hostedgit'
         service_id: 'hostedgit'
         parameters:
           test1: $env.test
