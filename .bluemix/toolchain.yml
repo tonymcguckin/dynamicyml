@@ -28,12 +28,12 @@ services:
       - $case: 'hostedgit'
         service_id: 'hostedgit'
         parameters:
-          test1: $env.test
-          test2: $env.test || a7b9ddef66a
-          test3: $env.test || {{timestamp}}
-          test4: $env.test || 'hello' + ' '+ 'world'
-          test5: $env.test || $env.test + ' world'
-          test6: "$env.test ? 'yes' : 'no'"
+          test1: $env.test1
+          test2: $env.test2 || test2
+          test3: $env.test3 || {{test3}}
+          test4: $env.test4 || 'test' + '4'
+          test5: $env.test5 || $env.test5 + ' test5'
+          test6: "$env.test6 ? 'test6_true' : 'test6_false'"
           
 
 form:
