@@ -27,13 +27,13 @@ services:
     $switch:
 
       #- $expr: $env.expr
-      - $expr: github
+      #- $expr: github
       #- $expr: 'github'
       #- $expr: "github"
       
       #- $expr: {{expr}}
       #- $expr: '{{expr}}'
-      #- $expr: "{{expr}}"
+      - $expr: "{{expr}}"
   
       - $default: "a"
         service_id: default_case_service
