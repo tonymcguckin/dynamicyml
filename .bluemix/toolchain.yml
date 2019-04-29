@@ -7,11 +7,12 @@ template:
     - build
     - frontend-repo
     - sample-repo
+
   info:
     git url: >-
-      [https://github.com/tonymcguckin/dynamicyml](https://github.com/tonymcguckin/dynamicyml)
+      $env.repository ? '[' + $env.repository + '](' + $env.repository + ')' : "[https://github.com/tonymcguckin/dynamicyml](https://github.com/tonymcguckin/dynamicyml)"
     git branch: >-
-      [master](https://github.com/tonymcguckin/dynamicyml/tree/master)
+      $env.repository && $env.branch ? '[' + $env.branch + ']('+ $env.repository + '/tree/' + $env.branch + ')': "[flavour9](https://github.com/tonymcguckin/dynamicyml/tree/flavour9)"
 
 toolchain:
   name: 'DYML: $switch/$case construct'
