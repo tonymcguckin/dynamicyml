@@ -22,18 +22,54 @@ services:
   frontend-repo:
     
     $switch:
-    
-      - $expr: $env.case
+      
+      # $expr can be a unary/binary/ternary/complex, static string, or {{mustache}}
+      #
+      - $expr: $env.expr
+
+      #- $expr: hostedgit
+      #- $expr: 'hostedgit'
+      #- $expr: "hostedgit"
+      
+      #- $expr: {{expr}}
+      #- $expr: '{{expr}}'
+      #- $expr: "{{expr}}"
  
       - $default: 'hostedgit'
         service_id: 'hostedgit'
         parameters:
+
+          # [ type: unary ] -> translates to {{test}}
+          # will raise a warning if 'test' cannot be resolved
+          #
           test1: $env.test
+ 
+          # [ type: binary ] -> LHS translates to {{test}} if resolved
+          # and will raise a warning if 'test' cannot be resolved
+          # RHS will be used if LHS didn't resolve
+          #
           test2: $env.test || test2
           test3: $env.test || {{test3}}
-          test4: $env.test || 'test' + '4'
-          test5: $env.test || $env.env_id + ' test5'
-          test6: "$env.test ? 'test6_true' : 'test6_false'"
+ 
+          # [ type: ternary js ] -> evaluated in $env expression engine
+          #
+          test4: "$env.test !== undefined ? 'test6_true' : $env.branch"
+          
+          # [ type: complex js ] -> evaluated in $env expression engine
+          #
+          test5: "$env.test || 'test' + '5'"
+          test6: "'test' + '6' || $env.expr"
+          test7: "$env.env_id + ' test7 ' + Date.now()"
+          
+          # [ type: complex js ] -> invalid as mustache {{test3}}
+          # won't resolve on the server-side
+          #
+          test8: {{test3}} || $env.app_repo
+          
+          # [ type: regular js ] ignored by the $env expression engine
+          #
+          test9: "eval('process.exit(0)');"
+          test10: "javascript:Date.now()"
           
 
 form:
