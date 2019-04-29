@@ -49,7 +49,7 @@ services:
           # RHS will be used if LHS didn't resolve
           #
           test2: $env.test || test2
-          test3: $env.test || {{test3}}
+          test3: "$env.test || {{test3}}"
  
           # [ type: ternary js ] -> evaluated in $env expression engine
           #
@@ -64,7 +64,7 @@ services:
           # [ type: complex js ] -> invalid as mustache {{test3}}
           # won't resolve on the server-side
           #
-          test8: {{test3}} || $env.app_repo
+          test8: "{{test3}} || $env.app_repo"
           
           # [ type: regular js ] ignored by the $env expression engine
           #
