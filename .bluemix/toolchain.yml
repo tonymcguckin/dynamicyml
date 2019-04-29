@@ -67,7 +67,7 @@ services:
           # [ type: complex js ] -> invalid as mustache {{test3}}
           # won't resolve on the server-side
           #
-          test8: "{{test3}} || $env.app_repo"
+          #test8: "{{test3}} || $env.app_repo"
           
           # [ type: regular js ] ignored by the $env expression engine
           #
