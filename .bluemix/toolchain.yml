@@ -58,7 +58,7 @@ services:
           # [ type: complex js ] -> evaluated in $env expression engine
           #
           test5: "$env.test || 'test' + '5'"
-          test6: "'test' + '6' || $env.expr"
+          test6: "$env.test || $env.expr || $env.tenant"
           test7: "$env.env_id + ' test7 ' + Date.now()"
           
           # [ type: complex js ] -> invalid as mustache {{test3}}
