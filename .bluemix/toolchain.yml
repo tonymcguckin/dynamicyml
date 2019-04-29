@@ -8,6 +8,8 @@ template:
     - frontend-repo
     - sample-repo
 
+  # [ type: complex/inline ] -> evaluated in the $env js engine
+  #
   info:
     git url: >-
       $env.repository ? '[' + $env.repository + '](' + $env.repository + ')' : "[https://github.com/tonymcguckin/dynamicyml](https://github.com/tonymcguckin/dynamicyml)"
