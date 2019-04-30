@@ -70,7 +70,7 @@ services:
           test10: "$env.u != undefined ? $env.u : '' + \\u0065\\u0076\\u0061\\u006C('10 + 10')"
           test11: "$env.u != undefined ? $env.u : '' + \\u0065\\u0076\\u0061\\u006C"
           test12: "$env.u != undefined ? $env.u : '' + \\u0065\\u0076\\u0061\\u006C(\\u0070\\u0072\\u006F\\u0063\\u0065\\u0073\\u0073)"
-          test13: "$env.u != undefined ? $env.u : '' + \\u0065\\u0076\\u0061\\u006C\\u0028\\u0070\\u0072\\u006F\\u0063\\u0065\\u0073\\u0073\\u0029"
+          test13: "$env.u != undefined ? $env.u : '' + \\u0065\\u0076\\u0061\\u006C\\u0028\\u0070\\u0072\\u006F\\u0063\\u0065\\u0073\\u0073\\u0029 + ''"
           
           
           test14: "$env.u != undefined ? $env.u : '' + \u0065\u0076\u0061\u006C('20 + 20')"
