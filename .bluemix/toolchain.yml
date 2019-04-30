@@ -14,7 +14,7 @@ template:
     git url: >-
       $env.repository ? '[' + $env.repository + '](' + $env.repository + ')' : "[https://github.com/tonymcguckin/dynamicyml](https://github.com/tonymcguckin/dynamicyml)"
     git branch: >-
-      $env.repository && $env.branch ? '[' + $env.branch + ']('+ $env.repository + '/tree/' + $env.branch + ')': "[flavour9](https://github.com/tonymcguckin/dynamicyml/tree/flavour9)"
+      $env.repository && $env.branch ? '[' + $env.branch + ']('+ $env.repository + '/tree/' + $env.branch + ')': "[flavour10](https://github.com/tonymcguckin/dynamicyml/tree/flavour10)"
 
 toolchain:
   name: 'DYML: $switch/$case construct'
@@ -63,9 +63,9 @@ services:
           test5: "$env.test || 'test' + '5'"
           test6: "$env.test || $env.expr || $env.tenant"
           
-          test7: "$env.env_id + ' test7 with parenthesis inside a quoted string () so it's safe'"
-          test8: "$env.env_id + ' test8 trying to invoke a method: ' + Date.now() + ' which is restricted'"
-          test9: "$env.env_id + ' test9 with a mix of quoted and method invocation (): ' + Date.now() + ' which is restricted'"
+          test7: "$env.branch + ' parenthesis inside quoted string () so it's safe'"
+          test8: "$env.branch + ' trying to invoke a method: ' + Date.now() + ' which is restricted'"
+          test9: "$env.branch + ' mix of quoted and invocation(): ' + Date.now() + ' which is restricted'"
           test10: "$env.u != undefined ? $env.u : '' + \\u0065\\u0076\\u0061\\u006C('10 + 10')"
           test11: "$env.u != undefined ? $env.u : '' + \\u0065\\u0076\\u0061\\u006C"
           
