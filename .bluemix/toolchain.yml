@@ -63,16 +63,17 @@ services:
           test5: "$env.test || 'test' + '5'"
           test6: "$env.test || $env.expr || $env.tenant"
           test7: "$env.env_id + ' test7 ' + Date.now() + 'and here() we go'"
+          test8: "$env.u != undefined ? $env.u : '' + \\u0065\\u0076\\u0061\\u006C('10 + 10')"
           
           # [ type: complex js ] -> invalid as mustache {{test3}}
           # won't resolve on the server-side
           #
-          #test8: "{{test3}} || $env.app_repo"
+          test9: "{{test3}} || $env.app_repo"
           
           # [ type: regular js ] ignored by the $env expression engine
           #
-          test9: "eval('process.exit(0)');"
-          test10: "javascript:Date.now()"
+          test10: "eval('process.exit(0)');"
+          test11: "javascript:Date.now()"
           
 
 form:
