@@ -45,39 +45,48 @@ services:
           # [ type: unary ] -> translates to {{test}}
           # will raise a warning if 'test' cannot be resolved
           #
-          test1: $env.test
+          #test1: $env.test
  
           # [ type: binary ] -> LHS translates to {{test}} if resolved
           # and will raise a warning if 'test' cannot be resolved
           # RHS will be used if LHS didn't resolve
           #
-          test2: $env.test || test2
-          test3: "$env.test || {{test3}}"
+          #test2: $env.test || test2
+          #test3: "$env.test || {{test3}}"
  
           # [ type: ternary js ] -> evaluated in $env expression engine
           #
-          test4: "$env.test !== undefined ? 'test6_true' : $env.branch"
+          #test4: "$env.test !== undefined ? 'test6_true' : $env.branch"
           
           # [ type: complex js ] -> evaluated in $env expression engine
           #
-          test5: "$env.test || 'test' + '5'"
-          test6: "$env.test || $env.expr || $env.tenant"
+          #test5: "$env.test || 'test' + '5'"
+          #test6: "$env.test || $env.expr || $env.tenant"
           
           test7: "$env.branch + ' parenthesis inside quoted string () so it's safe'"
           test8: "$env.branch + ' trying to invoke a method: ' + Date.now() + ' which is restricted'"
           test9: "$env.branch + ' mix of quoted and invocation(): ' + Date.now() + ' which is restricted'"
+
           test10: "$env.u != undefined ? $env.u : '' + \\u0065\\u0076\\u0061\\u006C('10 + 10')"
           test11: "$env.u != undefined ? $env.u : '' + \\u0065\\u0076\\u0061\\u006C"
+          test12: "$env.u != undefined ? $env.u : '' + \\u0065\\u0076\\u0061\\u006C(\\u0070\\u0072\\u006F\\u0063\\u0065\\u0073\\u0073)"
+          test13: "$env.u != undefined ? $env.u : '' + \\u0065\\u0076\\u0061\\u006C\\u0028\\u0070\\u0072\\u006F\\u0063\\u0065\\u0073\\u0073\\u0029"
+          
+          
+          test14: "$env.u != undefined ? $env.u : '' + \u0065\u0076\u0061\u006C('20 + 20')"
+          test15: "$env.u != undefined ? $env.u : '' + \u0065\u0076\u0061\u006C"
+          test16: "$env.u != undefined ? $env.u : '' + \u0065\u0076\u0061\u006C(\u0070\u0072\u006F\u0063\u0065\u0073\u0073)"
+          test17: "$env.u != undefined ? $env.u : '' + \u0065\u0076\u0061\u006C\u0028\u0070\u0072\u006F\u0063\u0065\u0073\u0073\u0029"
           
           # [ type: complex js ] -> invalid as mustache {{test3}}
           # won't resolve on the server-side
           #
-          test12: "{{test3}} || $env.app_repo"
+          #test14: "{{test3}} || $env.app_repo"
           
           # [ type: regular js ] ignored by the $env expression engine
           #
-          test13: "eval('process.exit(0)');"
-          test14: "javascript:Date.now()"
+          #test15: "eval('process.exit(0)');"
+          #test16: "javascript:Date.now()"
           
 
 form:
