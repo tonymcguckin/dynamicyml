@@ -62,18 +62,22 @@ services:
           #
           test5: "$env.test || 'test' + '5'"
           test6: "$env.test || $env.expr || $env.tenant"
-          test7: "$env.env_id + ' test7 ' + Date.now() + 'and here() we go'"
-          test8: "$env.u != undefined ? $env.u : '' + \\u0065\\u0076\\u0061\\u006C('10 + 10')"
+          
+          test7: "$env.env_id + ' test7 with parenthesis inside a quoted string () so it's safe'"
+          test8: "$env.env_id + ' test8 trying to invoke a method: ' + Date.now() + ' which is restricted'"
+          test9: "$env.env_id + ' test9 with a mix of quoted and method invocation (): ' + Date.now() + ' which is restricted'"
+          test10: "$env.u != undefined ? $env.u : '' + \\u0065\\u0076\\u0061\\u006C('10 + 10')"
+          test11: "$env.u != undefined ? $env.u : '' + \\u0065\\u0076\\u0061\\u006C"
           
           # [ type: complex js ] -> invalid as mustache {{test3}}
           # won't resolve on the server-side
           #
-          test9: "{{test3}} || $env.app_repo"
+          test12: "{{test3}} || $env.app_repo"
           
           # [ type: regular js ] ignored by the $env expression engine
           #
-          test10: "eval('process.exit(0)');"
-          test11: "javascript:Date.now()"
+          test13: "eval('process.exit(0)');"
+          test14: "javascript:Date.now()"
           
 
 form:
