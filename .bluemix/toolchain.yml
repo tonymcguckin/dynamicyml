@@ -62,7 +62,7 @@ services:
           #
           test5: "$env.test || 'test' + '5'"
           test6: "$env.test || $env.expr || $env.tenant"
-          test7: "$env.env_id + ' test7 ' + Date.now()"
+          test7: "$env.env_id + ' test7 ' + Date.now() + 'and here() we go'"
           
           # [ type: complex js ] -> invalid as mustache {{test3}}
           # won't resolve on the server-side
