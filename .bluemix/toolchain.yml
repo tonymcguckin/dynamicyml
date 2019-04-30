@@ -63,7 +63,7 @@ services:
           #test5: "$env.test || 'test' + '5'"
           #test6: "$env.test || $env.expr || $env.tenant"
           
-          test7: "$env.branch + ' parenthesis inside quoted string () so it's safe'"
+          test7: "$env.branch + ' parenthesis inside quoted string () so it\'s safe'"
           test8: "$env.branch + ' trying to invoke a method: ' + Date.now() + ' which is restricted'"
           test9: "$env.branch + ' mix of quoted and invocation(): ' + Date.now() + ' which is restricted'"
 
