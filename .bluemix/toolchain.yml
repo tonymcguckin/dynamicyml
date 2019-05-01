@@ -16,6 +16,13 @@ template:
 toolchain:
   name: 'DYML: $switch/$case construct'
 
+  atom:
+    $switch:
+      - $expr: $env.case
+      - $default: 'particle'
+      - $case: 'beam'
+      - $case: 'neutron'
+
 services:
 
   # dynamic yml 'service' entry...
