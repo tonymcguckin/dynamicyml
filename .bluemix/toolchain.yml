@@ -68,49 +68,49 @@ services:
           test8: "$env.branch + ' trying to invoke a method: ' + Date.now() + ' which is restricted'"
           test9: "$env.branch + ' mix of quoted and invocation(): ' + Date.now() + ' which is restricted'"
 
-          test10: "$env.u != undefined ? $env.u : '' + \\u0065\\u0076\\u0061\\u006C('10 + 10')"
-          test11: "$env.u != undefined ? $env.u : '' + \\u0065\\u0076\\u0061\\u006C"
-          test12: "$env.u != undefined ? $env.u : '' + \\u0070\\u0072\\u006F\\u0063\\u0065\\u0073\\u0073"
-          test13: "$env.u != undefined ? $env.u : '' + \\u0065\\u0076\\u0061\\u006C(\\u0070\\u0072\\u006F\\u0063\\u0065\\u0073\\u0073)"
-          test14: "$env.u != undefined ? $env.u : '' + \\u0065\\u0076\\u0061\\u006C\\u0028\\u0070\\u0072\\u006F\\u0063\\u0065\\u0073\\u0073\\u0029 + ''"
+          test10: "$env.test10 != undefined ? $env.u : '' + \\u0065\\u0076\\u0061\\u006C('10 + 10')"
+          test11: "$env.test11 != undefined ? $env.u : '' + \\u0065\\u0076\\u0061\\u006C"
+          test12: "$env.test12 != undefined ? $env.u : '' + \\u0070\\u0072\\u006F\\u0063\\u0065\\u0073\\u0073"
+          test13: "$env.test13 != undefined ? $env.u : '' + \\u0065\\u0076\\u0061\\u006C(\\u0070\\u0072\\u006F\\u0063\\u0065\\u0073\\u0073)"
+          test14: "$env.test14 != undefined ? $env.u : '' + \\u0065\\u0076\\u0061\\u006C\\u0028\\u0070\\u0072\\u006F\\u0063\\u0065\\u0073\\u0073\\u0029 + ''"
           
           
-          test15: "$env.u != undefined ? $env.u : '' + \u0065\u0076\u0061\u006C('20 + 20')"
-          test16: "$env.u != undefined ? $env.u : '' + \u0065\u0076\u0061\u006C"
-          test17: "$env.u != undefined ? $env.u : '' + \u0070\u0072\u006F\u0063\u0065\u0073\u0073"
-          test18: "$env.u != undefined ? $env.u : '' + \u0065\u0076\u0061\u006C(\u0070\u0072\u006F\u0063\u0065\u0073\u0073)"
-          test19: "$env.u != undefined ? $env.u : '' + \u0065\u0076\u0061\u006C\u0028\u0070\u0072\u006F\u0063\u0065\u0073\u0073\u0029"
+          test15: "$env.test15 != undefined ? $env.u : '' + \u0065\u0076\u0061\u006C('20 + 20')"
+          test16: "$env.test16 != undefined ? $env.u : '' + \u0065\u0076\u0061\u006C"
+          test17: "$env.test17 != undefined ? $env.u : '' + \u0070\u0072\u006F\u0063\u0065\u0073\u0073"
+          test18: "$env.test18 != undefined ? $env.u : '' + \u0065\u0076\u0061\u006C(\u0070\u0072\u006F\u0063\u0065\u0073\u0073)"
+          test19: "$env.test19 != undefined ? $env.u : '' + \u0065\u0076\u0061\u006C\u0028\u0070\u0072\u006F\u0063\u0065\u0073\u0073\u0029"
           
           # base64 encoded...
-          test20: "$env.u != undefined ? $env.u : 'ZXZhbChnbG9iYWwp'"
-          test21: "$env.u != undefined ? $env.u : '' + ZXZhbChnbG9iYWwp"
+          test20: "$env.test20 != undefined ? $env.u : 'ZXZhbChnbG9iYWwp'"
+          test21: "$env.test21 != undefined ? $env.u : '' + ZXZhbChnbG9iYWwp"
 
           # hexidecimal encoded...
-          test22: "$env.u != undefined ? $env.u : '6576616C287468697329'"
-          test23: "$env.u != undefined ? $env.u : '' + 6576616C287468697329"
+          test22: "$env.test22 != undefined ? $env.u : '6576616C287468697329'"
+          test23: "$env.test23 != undefined ? $env.u : '' + 6576616C287468697329"
 
           # ascii encoded...
-          test24: "$env.u != undefined ? $env.u : '\x65\x76\x61\x6C\x28\x29'"
-          test25: "$env.u != undefined ? $env.u : '' + \x65\x76\x61\x6C\x28\x29"
+          test24: "$env.test24 != undefined ? $env.u : '\x65\x76\x61\x6C\x28\x29'"
+          test25: "$env.test25 != undefined ? $env.u : '' + \x65\x76\x61\x6C\x28\x29"
 
-          test26: "$env.u != undefined ? $env.u : '\\x65\\x76\\x61\\x6C\\x28\\x29'"
-          test27: "$env.u != undefined ? $env.u : '' + \\x65\\x76\\x61\\x6C\\x28\\x29"
-          test28: "$env.u != undefined ? $env.u : '' + \\x65\\x76\\x61\\x6C()"
+          test26: "$env.test26 != undefined ? $env.u : '\\x65\\x76\\x61\\x6C\\x28\\x29'"
+          test27: "$env.test27 != undefined ? $env.u : '' + \\x65\\x76\\x61\\x6C\\x28\\x29"
+          test28: "$env.test28 != undefined ? $env.u : '' + \\x65\\x76\\x61\\x6C()"
   
-          test29: "$env.u != undefined ? $env.u : \\x65\\x76\\x61\\x6C"
-          test30: "$env.u != undefined ? $env.u : \\x65\\x76\\x61\\x6C()"
-          test31: "$env.u != undefined ? $env.u : \\x65\\x76\\x61\\x6C\\x28\\x29"
-          test32: "$env.u != undefined ? $env.u : \\x65\\x76\\x61\\x6C()"
+          test29: "$env.test29 != undefined ? $env.u : \\x65\\x76\\x61\\x6C"
+          test30: "$env.test30 != undefined ? $env.u : \\x65\\x76\\x61\\x6C()"
+          test31: "$env.test31 != undefined ? $env.u : \\x65\\x76\\x61\\x6C\\x28\\x29"
+          test32: "$env.test32 != undefined ? $env.u : \\x65\\x76\\x61\\x6C()"
   
-          test33: "$env.u != undefined ? $env.u : \x65\x76\x61\x6C"
-          test34: "$env.u != undefined ? $env.u : \x65\x76\x61\x6C()"
-          test35: "$env.u != undefined ? $env.u : \x65\x76\x61\x6C\x28\x29"
-          test36: "$env.u != undefined ? $env.u : \x65\x76\x61\x6C()"
+          test33: "$env.test33 != undefined ? $env.u : \x65\x76\x61\x6C"
+          test34: "$env.test34 != undefined ? $env.u : \x65\x76\x61\x6C()"
+          test35: "$env.test35 != undefined ? $env.u : \x65\x76\x61\x6C\x28\x29"
+          test36: "$env.test36 != undefined ? $env.u : \x65\x76\x61\x6C()"
   
-          test37: "$env.u != undefined ? $env.u : 0x650x760x610x6C"
-          test38: "$env.u != undefined ? $env.u : 0x650x760x610x6C()"
-          test39: "$env.u != undefined ? $env.u : 0x650x760x610x6C0x280x29"
-          test40: "$env.u != undefined ? $env.u : 0x650x760x610x6C()"
+          test37: "$env.test37 != undefined ? $env.u : 0x650x760x610x6C"
+          test38: "$env.test38 != undefined ? $env.u : 0x650x760x610x6C()"
+          test39: "$env.test39 != undefined ? $env.u : 0x650x760x610x6C0x280x29"
+          test40: "$env.test40 != undefined ? $env.u : 0x650x760x610x6C()"
           
           # [ type: complex js ] -> invalid as mustache {{test3}}
           # won't resolve on the server-side
