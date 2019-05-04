@@ -80,6 +80,12 @@ services:
           test18: "$env.u != undefined ? $env.u : '' + \u0065\u0076\u0061\u006C(\u0070\u0072\u006F\u0063\u0065\u0073\u0073)"
           test19: "$env.u != undefined ? $env.u : '' + \u0065\u0076\u0061\u006C\u0028\u0070\u0072\u006F\u0063\u0065\u0073\u0073\u0029"
           
+          test20: "$env.u != undefined ? $env.u : 'ZXZhbChnbG9iYWwp'"
+          test21: "$env.u != undefined ? $env.u : '' + ZXZhbChnbG9iYWwp"
+
+          test22: "$env.u != undefined ? $env.u : '6576616C287468697329'"
+          test23: "$env.u != undefined ? $env.u : '' + 6576616C287468697329"
+          
           # [ type: complex js ] -> invalid as mustache {{test3}}
           # won't resolve on the server-side
           #
