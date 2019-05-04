@@ -96,8 +96,16 @@ services:
           test26: "$env.u != undefined ? $env.u : '\\x65\\x76\\x61\\x6C\\x28\\x29'"
           test27: "$env.u != undefined ? $env.u : '' + \\x65\\x76\\x61\\x6C\\x28\\x29"
           test28: "$env.u != undefined ? $env.u : '' + \\x65\\x76\\x61\\x6C()"
-          test29: "$env.u != undefined ? $env.u : \\x65\\x76\\x61\\x6C\\x28\\x29"
+  
+          test29: "$env.u != undefined ? $env.u : \\x65\\x76\\x61\\x6C"
           test30: "$env.u != undefined ? $env.u : \\x65\\x76\\x61\\x6C()"
+          test31: "$env.u != undefined ? $env.u : \\x65\\x76\\x61\\x6C\\x28\\x29"
+          test32: "$env.u != undefined ? $env.u : \\x65\\x76\\x61\\x6C()"
+  
+          test33: "$env.u != undefined ? $env.u : 0x650x760x610x6C"
+          test34: "$env.u != undefined ? $env.u : 0x650x760x610x6C()"
+          test35: "$env.u != undefined ? $env.u : 0x650x760x610x6C0x280x29"
+          test36: "$env.u != undefined ? $env.u : 0x650x760x610x6C()"
           
           # [ type: complex js ] -> invalid as mustache {{test3}}
           # won't resolve on the server-side
