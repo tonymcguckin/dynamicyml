@@ -1,3 +1,4 @@
+---
 version: '2'
 
 template:
@@ -80,11 +81,20 @@ services:
           test18: "$env.u != undefined ? $env.u : '' + \u0065\u0076\u0061\u006C(\u0070\u0072\u006F\u0063\u0065\u0073\u0073)"
           test19: "$env.u != undefined ? $env.u : '' + \u0065\u0076\u0061\u006C\u0028\u0070\u0072\u006F\u0063\u0065\u0073\u0073\u0029"
           
+          # base64 encoded...
           test20: "$env.u != undefined ? $env.u : 'ZXZhbChnbG9iYWwp'"
           test21: "$env.u != undefined ? $env.u : '' + ZXZhbChnbG9iYWwp"
 
+          # hexidecimal encoded...
           test22: "$env.u != undefined ? $env.u : '6576616C287468697329'"
           test23: "$env.u != undefined ? $env.u : '' + 6576616C287468697329"
+
+          # ascii encoded...
+          test24: "$env.u != undefined ? $env.u : '\x65\x76\x61\x6C\x28\x29'"
+          test25: "$env.u != undefined ? $env.u : '' + \x65\x76\x61\x6C\x28\x29"
+
+          test26: "$env.u != undefined ? $env.u : '\\x65\\x76\\x61\\x6C\\x28\\x29'"
+          test27: "$env.u != undefined ? $env.u : '' + \\x65\\x76\\x61\\x6C\\x28\\x29"
           
           # [ type: complex js ] -> invalid as mustache {{test3}}
           # won't resolve on the server-side
@@ -101,3 +111,4 @@ form:
   pipeline:
     parameters: {}
     schema: {}
+---
