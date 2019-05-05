@@ -19,12 +19,12 @@ services:
         service_id: 'hostedgit'
         parameters:
           test1: $env.test
-          test2: $env.test
+          test2: $$env.test
           test3: $env.test || test3
           test4: $$env.test || test4
           test5: "$env.test || {{branch}}"
           test6: "$$env.test || {{branch}}"
-          test4: "$$env.test !== 'foo' ? 'hello' : \"world\""
+          test7: "$$env.test == 'foo' ? \"hello world\" : \"joe shmoe\""
           #test5: "$env.test || 'test' + '5'"
           #test6: "$env.test || $env.expr || $env.tenant"
           
