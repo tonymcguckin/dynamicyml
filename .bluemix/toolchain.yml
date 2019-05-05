@@ -16,7 +16,7 @@ services:
       - $expr: $env.expr
       - $default: 'hostedgit'
         service_id: 'hostedgit'
-        parameters:
+        parameters: {}
 
           #test1: $env.test
           #test2: $env.test || test2
