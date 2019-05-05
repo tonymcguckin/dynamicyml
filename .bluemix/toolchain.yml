@@ -33,15 +33,14 @@ services:
         parameters:
           test1: $env.test
           test2: $$env.test
-
-          #test3: $env.test || test3
-          #test4: $$env.test || test4
-          #test5: "$env.test || {{branch}}"
-          #test6: "$$env.test || {{branch}}"
-          #test7: "$$env.test == 'foo' ? \"hello world\" : \"joe shmoe\""
-          #test8: "$env.test || 'test' + '5'"
-          #test9: "$env.test || $env.expr || $env.tenant"
-          #test10: "{{test3}} || $env.app_repo"
+          test3: $env.test || test3
+          test4: $$env.test || test4
+          test5: "$env.test || {{branch}}"
+          test6: "$$env.test || {{branch}}"
+          test7: "$$env.test == 'foo' ? \"hello world\" : \"joe shmoe\""
+          test8: "$env.test || 'test' + '5'"
+          test9: "$env.test || $env.expr || $env.tenant"
+          test10: "'{{test3}}'|| $env.app_repo"
 
 form:
   pipeline:
