@@ -22,7 +22,8 @@ services:
           test2: $env.test
           test3: $env.test || test3
           test4: $$env.test || test4
-          #test3: "$env.test || {{test3}}"
+          test5: "$env.test || {{branch}}"
+          test6: "$$env.test || {{branch}}"
           #test4: "$env.test !== undefined ? 'test6_true' : $env.branch"
           #test5: "$env.test || 'test' + '5'"
           #test6: "$env.test || $env.expr || $env.tenant"
@@ -30,7 +31,7 @@ services:
           # [ type: complex js ] -> invalid as mustache {{test3}}
           # won't resolve on the server-side
           #
-          #test14: "{{test3}} || $env.app_repo"
+          test14: "{{test3}} || $env.app_repo"
 
 form:
   pipeline:
