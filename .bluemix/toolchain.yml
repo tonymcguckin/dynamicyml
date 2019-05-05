@@ -13,10 +13,23 @@ services:
   frontend-repo:
     
     $switch:
-      - $expr: $env.expr
-      - $default: hostedgit
-      - $case: 'hostedgit'
-        service_id: 'hostedgit'
+      #- $expr: $env.expr
+      #- $expr: "{{expr}}"
+      #- $expr: b
+      - $expr: undefined
+      
+      - $default: b
+      
+      - $case: undefined
+        service_id: undefined
+        parameters: {}
+      
+      - $case: a
+        service_id: hostedgit
+        parameters: {}
+
+      - $case: b
+        service_id: hostedgit
         parameters:
           test1: $env.test
           test2: $$env.test
@@ -26,13 +39,9 @@ services:
           #test5: "$env.test || {{branch}}"
           #test6: "$$env.test || {{branch}}"
           #test7: "$$env.test == 'foo' ? \"hello world\" : \"joe shmoe\""
-          #test5: "$env.test || 'test' + '5'"
-          #test6: "$env.test || $env.expr || $env.tenant"
-          
-          # [ type: complex js ] -> invalid as mustache {{test3}}
-          # won't resolve on the server-side
-          #
-          test14: "{{test3}} || $env.app_repo"
+          #test8: "$env.test || 'test' + '5'"
+          #test9: "$env.test || $env.expr || $env.tenant"
+          #test10: "{{test3}} || $env.app_repo"
 
 form:
   pipeline:
