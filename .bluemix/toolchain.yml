@@ -14,7 +14,7 @@ services:
     
     $switch:
       - $expr: $env.expr
-      - $default hostedgit
+      - $default: hostedgit
       - $case: 'hostedgit'
         service_id: 'hostedgit'
         parameters: {}
