@@ -24,7 +24,7 @@ services:
           test4: $$env.test || test4
           test5: "$env.test || {{branch}}"
           test6: "$$env.test || {{branch}}"
-          #test4: "$env.test !== undefined ? 'test6_true' : $env.branch"
+          test4: "$$env.test !== 'foo' ? 'hello' : \"world\""
           #test5: "$env.test || 'test' + '5'"
           #test6: "$env.test || $env.expr || $env.tenant"
           
