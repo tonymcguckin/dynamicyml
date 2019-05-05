@@ -19,6 +19,7 @@ services:
         service_id: 'hostedgit'
         parameters:
           test1: $env.test
+          test2: $$env.test
           #test2: $env.test || test2
           #test3: "$env.test || {{test3}}"
           #test4: "$env.test !== undefined ? 'test6_true' : $env.branch"
