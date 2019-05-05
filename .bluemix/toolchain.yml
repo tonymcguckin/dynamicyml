@@ -14,9 +14,9 @@ services:
     
     $switch:
       #- $expr: $env.expr
-      #- $expr: "{{expr}}"
+      - $expr: "{{expr}}"
       #- $expr: b
-      - $expr: undefined
+      #- $expr: undefined
       
       - $default: b
       
