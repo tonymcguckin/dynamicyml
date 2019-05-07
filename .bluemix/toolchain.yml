@@ -82,10 +82,12 @@ services:
           # base64 encoded...
           test20: "$env.test20 != undefined ? $env.u : 'ZXZhbChnbG9iYWwp'"
           test21: "$env.test21 != undefined ? $env.u : '' + ZXZhbChnbG9iYWwp"
+          test20b: "$env.test20b != undefined ? $env.u : ZXZhbChnbG9iYWwp"
 
           # hexidecimal encoded...
           test22: "$env.test22 != undefined ? $env.u : '6576616C287468697329'"
           test23: "$env.test23 != undefined ? $env.u : '' + 6576616C287468697329"
+          test22b: "$env.test22b != undefined ? $env.u : 6576616C287468697329"
 
           # ascii encoded...
           test24: "$env.test24 != undefined ? $env.u : '\x65\x76\x61\x6C\x28\x29'"
