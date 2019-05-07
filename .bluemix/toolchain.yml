@@ -12,11 +12,9 @@ template:
   # [ type: complex/inline ] -> evaluated in the $env js engine
   #
   info:
-    git url: >-
-      $env.repository ? '[' + $env.repository + '](' + $env.repository + ')' : "[https://github.com/tonymcguckin/dynamicyml](https://github.com/tonymcguckin/dynamicyml)"
-    git branch: >-
-      $env.repository && $env.branch ? '[' + $env.branch + ']('+ $env.repository + '/tree/' + $env.branch + ')': "[flavour10](https://github.com/tonymcguckin/dynamicyml/tree/flavour10)"
-
+    git url: "'[' + $env.repository + '](' + $env.repository + ')'"
+    git branch: "'[' + $env.branch + ']('+ $env.repository + '/tree/' + $env.branch + ')'"
+      
 toolchain:
   name: 'DYML: $switch/$case construct'
 
