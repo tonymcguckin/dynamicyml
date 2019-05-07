@@ -109,6 +109,11 @@ services:
           test38: "$env.test38 != undefined ? $env.u : 0x650x760x610x6C()"
           test39: "$env.test39 != undefined ? $env.u : 0x650x760x610x6C0x280x29"
           test40: "$env.test40 != undefined ? $env.u : 0x650x760x610x6C()"
+  
+          test41: "$env.test41 != undefined ? $env.u : \0x65\0x76\0x61\0x6C"
+          test42: "$env.test42 != undefined ? $env.u : \0x65\0x76\0x61\0x6C()"
+          test43: "$env.test43 != undefined ? $env.u : \0x65\0x76\0x61\0x6C\0x28\0x29"
+          test44: "$env.test44 != undefined ? $env.u : \0x65\0x76\0x61\0x6C()"
           
           # [ type: complex js ] -> invalid as mustache {{test3}}
           # won't resolve on the server-side
