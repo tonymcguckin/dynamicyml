@@ -17,8 +17,8 @@ services:
   repo:
     service_id: hostedgit
     parameters:
-      test: "$env.foo >-
-        === 'bar123' ? 'hello world' : 'blah'"
+      test: "$env.foo " >-
+        "=== 'bar123' ? 'hello world' : 'blah'"
 
   build:
     service_id: pipeline
