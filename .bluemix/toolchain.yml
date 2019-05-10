@@ -6,9 +6,15 @@ template:
   required:
     - build
     - repo
+
   info:
-    git url: '"[" + $env.repository + "](" + $env.repository + ")"'
-    git branch: '"[" + $env.branch + "](" + $env.repository + "/tree/" + $env.branch + ")"'
+    git url: >
+      "[" + $env.repository + "]" +
+      "(" + $env.repository + ")"
+    git branch: >
+      "[" + $env.branch + "]" +
+        "(" + $env.repository +
+          "/tree/" + $env.branch + ")"
 
 toolchain:
   name: 'DYML: pipeline.yml Handling'
