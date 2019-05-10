@@ -29,6 +29,7 @@ services:
         } else {
           return 99;
         }
+      test2: if($env.foo == "5678"){ return 44; } else { return 55; }
 
   build:
     service_id: pipeline
