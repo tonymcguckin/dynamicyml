@@ -29,7 +29,7 @@ services:
       #  } else {
       #    return 99;
       #  }
-      test2: if($env.foo == 5678){ 44; } else 55;
+      test2: if($env.foo == "5678"){ 44; } else { 55 };
       test3: if($env.foo == '9101112'){ return 22; } else { return 11; }
       test4: if($env.foo == "736363"){ return 231; } else { return 244; }
 
