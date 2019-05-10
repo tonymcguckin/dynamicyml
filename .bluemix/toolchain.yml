@@ -10,7 +10,7 @@ template:
   info:
     git url: >
       "[" + $env.repository + "]" +
-      "(" + $env.repository + ")"
+                "(" + $env.repository + ")"
     git branch: >
       "[" + $env.branch + "]" +
         "(" + $env.repository +
@@ -25,8 +25,8 @@ services:
     parameters:
       test: >
         $env.foo
-        === 'bar123' ?
-        'hello world' : 'blah'
+          === 'bar123' ?
+            'hello world' : 'blah'
 
   build:
     service_id: pipeline
