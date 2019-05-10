@@ -10,7 +10,7 @@ template:
   info:
     git url: >
       "[" + $env.repository + "]" +
-                "(" + $env.repository + ")"
+        "(" + $env.repository + ")"
     git branch: >
       "[" + $env.branch + "]" +
         "(" + $env.repository +
@@ -24,9 +24,11 @@ services:
     service_id: hostedgit
     parameters:
       test: >
-        $env.foo
-          === 'bar123' ?
-            'hello world' : 'blah'
+        if($env.foo == "1234" && $env.bar > 99){
+          return 88;
+        } else {
+          return 99;
+        }
 
   build:
     service_id: pipeline
