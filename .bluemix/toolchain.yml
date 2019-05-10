@@ -23,15 +23,15 @@ services:
   repo:
     service_id: hostedgit
     parameters:
-      #test1: >
-      #  if($env.foo == 1234){
-      #    return 88;
-      #  } else {
-      #    return 99;
-      #  }
+      test1: >
+        if($env.foo == 1234){
+          88;
+        } else {
+          99;
+        }
       test2: if($env.foo == "5678"){ 44; } else { 55 };
-      test3: if($env.foo == '9101112'){ return 22; } else { return 11; }
-      test4: if($env.foo == "736363"){ return 231; } else { return 244; }
+      test3: if($env.foo == '9101112'){ 22; } else { 11; }
+      test4: if($env.foo == "736363"){ 231; } else { 244; }
 
   build:
     service_id: pipeline
