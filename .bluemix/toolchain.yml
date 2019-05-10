@@ -24,7 +24,7 @@ services:
     service_id: hostedgit
     parameters:
       test: >
-        if($env.foo == "1234" && $env.bar > 99){
+        if($env.foo == "1234"){
           return 88;
         } else {
           return 99;
