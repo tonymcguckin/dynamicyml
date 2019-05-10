@@ -8,7 +8,8 @@ stages:
   inputs:
   - type: git
     branch: master
-    service: ${GIT_REPO}    
+    service: ${GIT_REPO}
+    service2: $env.foo 
   triggers:
   - type: commit
   properties:
