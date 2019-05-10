@@ -9,7 +9,8 @@ stages:
   - type: git
     branch: master
     service: ${GIT_REPO}
-    service2: $env.foo 
+    service2: $env.foo
+    service3: $$env.foo
   triggers:
   - type: commit
   properties:
@@ -18,7 +19,7 @@ stages:
     type: text
   - name: DOCKER_FILE
     value: Dockerfile
-    type: text  
+    type: text
   jobs:
   - name: Pre-build check
     type: builder
@@ -31,6 +32,7 @@ stages:
     image_name: ${CF_APP_NAME}
     script: |-
       #!/bin/bash
+      # foo1
       # uncomment to debug the script
       # set -x
       # copy the script below into your app code repo (e.g. ./scripts/check_prebuild.sh) and 'source' it from your pipeline job
@@ -115,6 +117,7 @@ stages:
     image_name: ${CF_APP_NAME}
     script: |
       #!/bin/bash
+      # foo2
       # uncomment to debug the script
       #set -x
       # copy the script below into your app code repo (e.g. ./scripts/build_image.sh) and 'source' it from your pipeline job
@@ -233,6 +236,7 @@ stages:
       api_key: ${API_KEY}
     script: |
       #!/bin/bash
+      # foo3
       # uncomment to debug the script
       # set -x
       # copy the script below into your app code repo (e.g. ./scripts/check_vulnerabilities.sh) and 'source' it from your pipeline job
@@ -319,6 +323,7 @@ stages:
       kubernetes_cluster: ${PROD_CLUSTER_NAME}
     script: |
       #!/bin/bash
+      # foo4
       # uncomment to debug the script
       #set -x
       # copy the script below into your app code repo (e.g. ./scripts/check_predeploy_helm.sh) and 'source' it from your pipeline job
@@ -473,6 +478,7 @@ stages:
       kubernetes_cluster: ${PROD_CLUSTER_NAME}
     script: |
       #!/bin/bash
+      # foo5
       # uncomment to debug the script
       #set -x
       # copy the script below into your app code repo (e.g. ./scripts/deploy_helm.sh) and 'source' it from your pipeline job
