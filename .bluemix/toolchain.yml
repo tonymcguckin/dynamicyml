@@ -227,8 +227,9 @@ form:
       group: 'system'
     schema:
       $ref: deploy.json
-      
-toolchain-loading-events:
+
+# DYML toolchain building events...
+events:
   on-before-load: >
     if($env.mergeType == 1){
       // if merge type 1 then dynamically inject
