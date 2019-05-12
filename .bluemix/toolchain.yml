@@ -23,7 +23,10 @@ services:
     service_id: hostedgit
     parameters:
       test4: >
-          if($env.foo === "foo"){ typeof $env.foo; } else { $env.bar; }
+        // try this...
+        if($env.foo === "foo"){
+          $env.createObject("hello world");
+        } else { $env.bar; }
 
 form:
   pipeline:
