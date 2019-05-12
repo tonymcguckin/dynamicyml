@@ -23,7 +23,7 @@ services:
     service_id: hostedgit
     parameters:
       test4: >
-        // try this...
+        // create the hello world obj...
         if($env.foo === "foo"){
           $env.createObject("hello world");
         } else { $env.bar; }
