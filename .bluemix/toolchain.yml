@@ -22,7 +22,7 @@ services:
   repo:
     service_id: hostedgit
     parameters:
-      test4: if($env.foo == "foo"){ return $env.foo; } else { $env.bar; }
+      test4: if($env.foo == "foo"){ function blah(){ $env.foo; }; blah(); } else { $env.bar; }
 
 form:
   pipeline:
