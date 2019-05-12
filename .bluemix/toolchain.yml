@@ -22,10 +22,7 @@ services:
   repo:
     service_id: hostedgit
     parameters:
-      test4: >
-        if($env.foo === "foo"){
-          $env.____$____.____$$yml$$____.services.repo.service_id;
-        } else { $env.bar; }
+      test4: $env.services.repo.service_id
 
 form:
   pipeline:
