@@ -22,7 +22,8 @@ services:
   repo:
     service_id: hostedgit
     parameters:
-      test4: if($env.foo === "foo"){ typeof $env.foo; } else { $env.bar; }
+      test4: >
+      if($env.foo === "foo"){ typeof $env.foo; } else { $env.bar; }
 
 form:
   pipeline:
