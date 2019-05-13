@@ -22,7 +22,8 @@ services:
   repo:
     service_id: hostedgit
     parameters:
-      test4: $env.services.repo.service_id
+      test4: >
+        $env.services.repo.service_id ? $env.services.repo.service_id : "don't have it!"
 
 form:
   pipeline:
