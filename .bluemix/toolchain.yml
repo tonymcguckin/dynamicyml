@@ -16,7 +16,8 @@ services:
       - $expr: $env.case
 
       - $case: undefined
-        s: 1
+        service_id: ""
+        parameters: {}
 
       - $case: b
         $ref: hostedgit-repo.yml
