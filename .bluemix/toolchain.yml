@@ -1,56 +1,27 @@
 version: '2'
-
 template:
-
-  name: "DYML: $switch/$case construct"
-
-  description: "DYML: $switch/$case construct"
+  name: "DYML: $switch construct"
+  description: "DYML: $switch construct"
   required:
-    - build
-    - frontend-repo
-    - sample-repo
+    - repo
   info:
     git url: >-
       [https://github.com/tonymcguckin/dynamicyml](https://github.com/tonymcguckin/dynamicyml)
     git branch: >-
       [flavour7](https://github.com/tonymcguckin/dynamicyml/tree/flavour7)
-
 toolchain:
   name: 'DYML: $switch/$case construct'
 
 services:
-
-  # dynamic yml 'service' entry...
-  sample-repo:
-
+  repo:
     $switch:
-
-      #- $expr: "$env.case === undefined ? 'gritty' : $env.case"
       - $expr: $env.case
-  
+      - $default: "a"
+      - $case: "a"
+      - $case: "b"
       - $case: "undefined"
-        service_id: undefined
-        parameters: {}
-  
-      - $case: "bitbucket"
-        service_id: bitbucket
-        parameters:
-          test: $env.branch
-  
-      - $case: "github"
-        service_id: github
-        parameters:
-          test: $env.branch
-  
-      - $default: "gitlab"
-        service_id: gitlab
-        parameters:
-          test: $env.branch
 
 form:
   pipeline:
-    parameters:
-      username: 'admin'
-      group: 'system'
-    schema:
-      $ref: deploy.json
+    parameters: {}
+    schema: {}
