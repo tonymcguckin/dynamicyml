@@ -22,14 +22,12 @@ services:
   repo:
     service_id: hostedgit
     parameters:
-      test4: >
-        $env.services.build.service_id ?
-          $env.services.build.service_id :
-            "didn't find it!"
-      #test5: >
-      #  $env.____$____.____$$yml$$____.services.build.service_id ?
-      #    $env.____$____.____$$yml$$____.services.build.service_id :
-      #      "don't have it!"
+      test1: $env.services.build.service_id
+      test2: $env.services.repo.parameters.test4
+      test3: $env.form.pipeline.parameters.user
+      test4: $env.toolchain.name
+      test5: $env.template.name
+      test6: $env.version
 
   build:
     service_id: pipeline
@@ -38,5 +36,6 @@ services:
 
 form:
   pipeline:
-    parameters: {}
+    parameters:
+      user: admin
     schema: {}
