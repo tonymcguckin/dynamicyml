@@ -14,14 +14,18 @@ services:
   repo:
     $switch:
       - $expr: $env.case
+
       - $default: a
-        $ref: hostedgit-repo.yml
+        $ref: githubconsolidated-repo.yml
+
       - $case: b
         $ref: hostedgit-repo.yml
+
       - $case: c
-        $ref: hostedgit-repo.yml
+        $ref: github_integrated-repo.yml
+
       - $case: undefined
-        $ref: hostedgit-repo.yml
+        $ref: bitbucket-repo.yml
 
 form:
   pipeline:
