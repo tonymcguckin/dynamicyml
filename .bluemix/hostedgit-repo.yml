@@ -1,0 +1,4 @@
+service_id: hostedgit
+  parameters:
+    test1: $env.test
+    test2: 'hello world'
