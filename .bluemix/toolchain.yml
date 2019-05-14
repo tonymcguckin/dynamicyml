@@ -16,16 +16,15 @@ services:
       - $expr: $env.case
 
       - $default: a
-        $ref: githubconsolidated-repo.yml
+        $ref: hostedgit-repo.yml
 
       - $case: b
         $ref: hostedgit-repo.yml
 
       - $case: c
-        $ref: github_integrated-repo.yml
+        $ref: hostedgit-repo.yml
 
       - $case: undefined
-        $ref: bitbucket-repo.yml
 
 form:
   pipeline:
