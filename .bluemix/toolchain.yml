@@ -14,9 +14,10 @@ services:
   repo:
     $switch:
       - $expr: $env.case
-      - $default: 1
-      - $case: 2
-      - $case: 3
+      - $default: a
+      - $case: b
+        $ref: hostedgit.yml
+      - $case: c
       - $case: undefined
 
 form:
