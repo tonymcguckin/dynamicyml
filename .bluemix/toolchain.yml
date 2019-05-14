@@ -81,6 +81,7 @@ services:
           test37: "$env.foo ? Headers : Request"
           test38: "if($env.foo !== undefined) return Headers else return globalThis"
           test39: "$env.x($env.y)"
+          test40: "return $env.x;"
 
 form:
   pipeline:
