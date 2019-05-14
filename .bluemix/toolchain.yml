@@ -5,10 +5,8 @@ template:
   required:
     - repo
   info:
-    git url: >-
-      [https://github.com/tonymcguckin/dynamicyml](https://github.com/tonymcguckin/dynamicyml)
-    git branch: >-
-      [flavour7](https://github.com/tonymcguckin/dynamicyml/tree/flavour7)
+    git url: "'[' + $env.repository + '](' + $env.repository + ')'"
+    git branch: "'[' + $env.branch + ']('+ $env.repository + '/tree/' + $env.branch + ')'"
 toolchain:
   name: 'DYML: $switch/$case construct'
 
