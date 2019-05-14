@@ -22,8 +22,8 @@ services:
   repo:
     service_id: hostedgit
     parameters:
-      test1: $env.services.build.service_id
-      test2: $env.services.repo.parameters.test4
+      test1: $env.services.repo.service_id
+      test2: $env.services.build.parameters.test5
       test3: $env.form.pipeline.parameters.user
       test4: $env.toolchain.name
       test5: $env.template.name
