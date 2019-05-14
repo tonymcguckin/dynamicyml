@@ -25,11 +25,11 @@ services:
       test4: >
         $env.services.build.service_id ?
           $env.services.build.service_id :
-            "don't have it!"
-      test5: >
-        $env.____$____.____$$yml$$____.services.build.service_id ?
-          $env.____$____.____$$yml$$____.services.build.service_id :
-            "don't have it!"
+            "didn't find it!"
+      #test5: >
+      #  $env.____$____.____$$yml$$____.services.build.service_id ?
+      #    $env.____$____.____$$yml$$____.services.build.service_id :
+      #      "don't have it!"
 
   build:
     service_id: pipeline
