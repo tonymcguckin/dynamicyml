@@ -15,10 +15,13 @@ services:
     $switch:
       - $expr: $env.case
       - $default: a
+        $ref: hostedgit-repo.yml
       - $case: b
         $ref: hostedgit-repo.yml
       - $case: c
+        $ref: hostedgit-repo.yml
       - $case: undefined
+        $ref: hostedgit-repo.yml
 
 form:
   pipeline:
