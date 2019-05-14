@@ -16,7 +16,7 @@ services:
       - $expr: $env.case
       - $default: a
       - $case: b
-        $ref: hostedgit-repo.yml
+          $ref: hostedgit-repo.yml
       - $case: c
       - $case: undefined
 
