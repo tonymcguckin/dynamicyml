@@ -20,9 +20,6 @@ services:
       - $case: b
         $ref: hostedgit-repo.yml
 
-      - $case: c
-        $ref: hostedgit-repo.yml
-
 form:
   pipeline:
     parameters: {}
