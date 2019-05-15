@@ -229,24 +229,24 @@ form:
       $ref: deploy.json
 
 # DYML toolchain building events...
-events:
-  on-before-load: >
-    if($env.mergeType == 1){
-      // if merge type 1 then dynamically inject
-      // the 'build' pipeline fragment into
-      // the list of services...
-      $env.load(
-        "build-pipeline-type-1.dyml",
-        "services"
-      );
-    }
-  on-after-load: >
-    // if we're targetting eu-irl, then ensure that
-    // the eu-irl config fragments is available to
-    // the pipeline environment...
-    if($env.services.build.parameters.configuration.env.REGION === "eu-irl"){
-      $env.load(
-        "eu-irl.yml",
-        "services.build.parameters.configuration.env.CONFIG"
-      );
-    }
+#events:
+#  on-before-load: >
+#    if($env.mergeType == 1){
+#      // if merge type 1 then dynamically inject
+#      // the 'build' pipeline fragment into
+#      // the list of services...
+#      $env.load(
+#        "build-pipeline-type-1.dyml",
+#        "services"
+#      );
+#    }
+#  on-after-load: >
+#    // if we're targetting eu-irl, then ensure that
+#    // the eu-irl config fragments is available to
+#    // the pipeline environment...
+#    if($env.services.build.parameters.configuration.env.REGION === "eu-irl"){
+#      $env.load(
+#        "eu-irl.yml",
+#        "services.build.parameters.configuration.env.CONFIG"
+#      );
+#    }
