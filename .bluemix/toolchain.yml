@@ -29,6 +29,8 @@ services:
       test5: $env.template.name
       test6: $env.version
 
+      test7: "{{version}}"
+
   build:
     service_id: pipeline
     parameters:
