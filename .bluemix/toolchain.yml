@@ -29,7 +29,15 @@ services:
       test5: $env.template.name
       test6: $env.version
 
-      test7: "{{version}}"
+      test7: "{{services.repo.service_id}}"
+      test8: "{{services.build.parameters.test5}}"
+      test9: "{{form.pipeline.parameters.user}}"
+      test10: "{{toolchain.name}}"
+      test11: "{{template.name}}"
+      test12: "{{version}}"
+
+      test13: "{{foo}}"
+      test14: "{{foo.bar}}"
 
   build:
     service_id: pipeline
