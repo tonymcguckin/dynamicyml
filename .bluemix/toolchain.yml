@@ -22,22 +22,22 @@ services:
   repo:
     service_id: hostedgit
     parameters:
-      #test1: $env.services.repo.service_id
-      test2: $env.services.build.parameters.test5
-      #test3: $env.form.pipeline.parameters.user
-      #test4: $env.toolchain.name
-      #test5: $env.template.name
-      #test6: $env.version
-
-      #test7: "{{services.repo.service_id}}"
-      #test8: "{{services.build.parameters.test5}}"
-      #test9: "{{form.pipeline.parameters.user}}"
-      #test10: "{{toolchain.name}}"
-      #test11: "{{template.name}}"
-      #test12: "{{version}}"
-
-      #test13: "{{foo}}"
-      #test14: "{{foo.bar}}"
+      env1: $env.services.repo.service_id
+      env2: $env.services.build.parameters.test5
+      env3: $env.form.pipeline.parameters.user
+      env4: $env.toolchain.name
+      env5: $env.template.name
+      env6: $env.version
+      env7: $env.foo
+      env8: $env.foo.bar
+      must1: "{{services.repo.service_id}}"
+      must2: "{{services.build.parameters.test5}}"
+      must3: "{{form.pipeline.parameters.user}}"
+      must4: "{{toolchain.name}}"
+      must5: "{{template.name}}"
+      must6: "{{version}}"
+      must7: "{{foo}}"
+      must8: "{{foo.bar}}"
 
   build:
     service_id: pipeline
