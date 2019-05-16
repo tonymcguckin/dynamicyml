@@ -29,8 +29,6 @@ services:
       - $expr: $env.case
   
       - $case: "undefined"
-        service_id: undefined
-        parameters: {}
   
       - $case: "bitbucket"
         service_id: bitbucket
