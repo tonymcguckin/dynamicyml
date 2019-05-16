@@ -16,7 +16,6 @@ services:
       - $expr: $env.case
 
       - $case: undefined
-        service_id: undefined
         parameters:
           undef1: foo
 
