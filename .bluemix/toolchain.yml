@@ -39,7 +39,7 @@ services:
       #must6: "{{version}}"
       #must7: "{{foo}}"
       #must8: "{{foo.bar}}"
-      must9: "{{services}}"
+      must9: "{{services.build}}"
 
   build:
     service_id: pipeline
