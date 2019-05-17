@@ -30,6 +30,7 @@ services:
       env6: $env.version
       env7: $env.foo
       env8: $env.foo.bar
+      env9: $env.services.repo
       must1: "{{services.repo.service_id}}"
       must2: "{{services.build.parameters.test5}}"
       must3: "{{form.pipeline.parameters.user}}"
@@ -38,6 +39,7 @@ services:
       must6: "{{version}}"
       must7: "{{foo}}"
       must8: "{{foo.bar}}"
+      must9: "{{services.repo}}"
 
   build:
     service_id: pipeline
