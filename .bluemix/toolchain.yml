@@ -30,7 +30,7 @@ services:
       env6: $env.version
       env7: $env.foo
       env8: $env.foo.bar
-      env9: $env.services
+      #env9: $env.services
       env10: $env.services.repo
       env11: $env.services.repo.parameters
       must1: "{{services.repo.service_id}}"
@@ -42,7 +42,7 @@ services:
       must7: "{{foo}}"
       must8: "{{foo.bar}}"
       #must9: "{{services}}"
-      #must10: "{{services.repo}}"
+      must10: "{{services.repo}}"
       #must11: "{{services.repo.parameters}}"
 
   build:
