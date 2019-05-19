@@ -45,7 +45,7 @@ services:
       #must9: "{{services}}"
       #must10: "{{services.repo}}"
       #must11: "{{services.repo.parameters}}"
-      #must12: "{{form}}"
+      must12: "{{form}}"
 
   build:
     service_id: pipeline
