@@ -33,10 +33,10 @@ services:
       must6: "{{version}}"
       must7: "{{foo}}"
       must8: "{{foo.bar}}"
-      must9: "{{services}}"
+      #must9: "{{services}}"
       must10: "{{services.repo}}"
       must11: "{{services.repo.parameters}}"
-      must12: "{{form}}"
+      #must12: "{{form}}"
 
   build:
     service_id: pipeline
