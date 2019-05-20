@@ -13,7 +13,7 @@ services:
   repo:
     service_id: hostedgit
     parameters:
-      env1: $env.services.repo.service_id
+      #env1: $env.services.repo.service_id
       #env2: $env.services.build.parameters.test5
       #env3: $env.form.pipeline.parameters.user
       #env4: $env.toolchain.name
@@ -21,7 +21,7 @@ services:
       #env6: $env.version
       #env7: $env.foo
       #env8: $env.foo.bar
-      #env9: $env.services
+      env9: $env.services
       #env10: $env.services.repo
       #env11: $env.services.repo.parameters
       #env12: $env.form
