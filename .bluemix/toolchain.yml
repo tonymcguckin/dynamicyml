@@ -40,7 +40,7 @@ services:
         parameters:
           test: $env.branch
   
-      - $default: "gitlab"
+      - $case: "gitlab"
         service_id: gitlab
         parameters:
           test: $env.branch
