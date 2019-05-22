@@ -20,30 +20,38 @@ toolchain:
 
 services:
 
-  # dynamic yml 'service' entry...
   sample-repo:
-
     $switch:
-
-      #- $expr: "$env.case === undefined ? 'gritty' : $env.case"
       - $expr: $env.case
-  
-      - $case: "undefined"
-  
-      - $case: "bitbucket"
+      - $case: true
         service_id: bitbucket
         parameters:
           test: $env.branch
-  
-      - $case: "github"
-        service_id: github
-        parameters:
-          test: $env.branch
-  
-      - $case: "gitlab"
-        service_id: gitlab
-        parameters:
-          test: $env.branch
+
+  # dynamic yml 'service' entry...
+  #sample-repo:
+
+  #  $switch:
+
+   #   #- $expr: "$env.case === undefined ? 'gritty' : $env.case"
+    #  - $expr: $env.case
+  #
+   #   - $case: "undefined"
+  #
+   #   - $case: "bitbucket"
+#        service_id: bitbucket
+ #       parameters:
+  #        test: $env.branch
+  #
+   #   - $case: "github"
+    #    service_id: github
+     #   parameters:
+      #    test: $env.branch
+  #
+   #   - $case: "gitlab"
+    #    service_id: gitlab
+     #   parameters:
+      #    test: $env.branch
 
 form:
   pipeline:
