@@ -18,6 +18,8 @@ toolchain:
 
   atom:
     $switch:
+      - foo1: 11
+      - foo2: 88
       - $expr: $env.atom
       - $default: particle
       - $case: particle
@@ -28,6 +30,7 @@ toolchain:
         happy: days
       - $case: undefined
         zoo: blue
+      - xyz: {}
 
 services:
 
