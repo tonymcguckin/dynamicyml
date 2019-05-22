@@ -18,19 +18,17 @@ toolchain:
 
   atom:
     $switch:
-      - foo1: 11
-      - foo2: 88
       - $expr: $env.atom
       - $default: particle
-      - $case: particle
-        hello: world
+        blah: deblah
       - $case: beam
-        foo: bar
-      - $case: neutron
-        happy: days
-      - $case: undefined
-        zoo: blue
-      - xyz: {}
+        atom2:
+          $switch:
+            - $expr: $env.atom2
+            - $default: particle
+              hello: "world again"
+            - $case: beam
+              foo: bar
 
 services:
 
