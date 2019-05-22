@@ -18,10 +18,13 @@ toolchain:
 
   atom:
     $switch:
-      - $expr: $env.case
+      - $expr: $env.atom
       - $default: 'particle'
+        hello: world
       - $case: 'beam'
+        foo: bar
       - $case: 'neutron'
+        happy: days
 
 services:
 
