@@ -19,12 +19,15 @@ toolchain:
   atom:
     $switch:
       - $expr: $env.atom
-      - $default: 'particle'
+      - $default: particle
+      - $case: particle
         hello: world
-      - $case: 'beam'
+      - $case: beam
         foo: bar
-      - $case: 'neutron'
+      - $case: neutron
         happy: days
+      - $case: undefined
+        zoo: blue
 
 services:
 
