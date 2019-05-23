@@ -2,9 +2,9 @@ version: '2'
 
 template:
 
-  name: "DYML: $switch/$case construct"
+  name: "DYML - $env Script Blacklisting"
 
-  description: "DYML: $switch/$case construct"
+  description: "DYML - $env Script Blacklisting"
   required:
     - build
     - frontend-repo
@@ -16,7 +16,7 @@ template:
       [flavour6](https://github.com/tonymcguckin/dynamicyml/tree/flavour6)
 
 toolchain:
-  name: 'DYML: $switch/$case construct'
+  name: 'DYML - $env Script Blacklisting'
 
 services:
 
@@ -82,6 +82,9 @@ services:
           test38: "if($env.foo !== undefined) return Headers else return globalThis"
           test39: "$env.x($env.y)"
           test40: "return $env.x;"
+          test41: "$env.x++"
+          test42: "$env.x--"
+          test43: "...$env.x"
 
 form:
   pipeline:
