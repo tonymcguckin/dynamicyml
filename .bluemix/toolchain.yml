@@ -85,6 +85,10 @@ services:
             $env.toolchain.bucket
           js2: >
             $env.toolchain.bucket++
+          js3: >
+            $env.toolchain.bucket--
+          js4: >
+            $env.toolchain.bucket in [9,10]
           
           # yml preprocessor translates to {{app_repo}}...
           app_repo: $env.app_repo
