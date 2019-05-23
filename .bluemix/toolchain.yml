@@ -12,6 +12,8 @@ template:
     git branch: "'[' + $env.branch + ']('+ $env.repository + '/tree/' + $env.branch + ')'"
 toolchain:
   name: 'DYML: $switch/$case construct'
+  
+  bucket: 9
 
   atom:
     $switch:
@@ -78,6 +80,11 @@ services:
       - $case: 'hostedgit'
         service_id: 'hostedgit'
         parameters:
+
+          js1: >
+            $env.toolchain.bucket
+          js2: >
+            $env.toolchain.bucket++
           
           # yml preprocessor translates to {{app_repo}}...
           app_repo: $env.app_repo
