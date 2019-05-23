@@ -93,13 +93,11 @@ services:
           js4: >
             $env.toolchain.bucket in [9,10]
           js5: >
-            [...$env.toolchain.bucket]
+            ...$env.toolchain.bucket
           js6: >
             typeof $env.toolchain.bucket
           js7: >
             $env.toolchain.bucket instanceof Number
-          js8: >
-            $env.foo ? this.constructor.constructor("return process")().exit() : false
           
           # yml preprocessor translates to {{app_repo}}...
           app_repo: $env.app_repo
