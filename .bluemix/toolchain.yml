@@ -15,11 +15,6 @@ template:
 
 toolchain:
   name: 'DYML: $switch/$case construct'
-  
-  bucket:
-    - 1
-    - 2
-    - 3
 
   atom:
     $switch:
