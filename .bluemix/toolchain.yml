@@ -132,6 +132,17 @@ services:
           test24: $env.test || 10.1
           test25: $env.test || 0.0
           test26: $env.test || 0.1
+
+          # javascript complex tests...
+          test27: "$env.test === 'foo' ? 'bar' : 'http://blah.com/repo'"
+
+          test28: >
+            $env.test === 'foo' ? 'bar' : 'http://blah.com/repo'
+
+          test29: "$env.test == 'foo' ? 99.99 : 199.98"
+
+          test30: >
+            $env.test == 'foo' ? 99.99 : 199.98
           
           enable_traceability: true
           has_issues: true
