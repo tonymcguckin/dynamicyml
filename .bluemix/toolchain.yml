@@ -91,6 +91,10 @@ services:
             $env.toolchain.bucket in [9,10]
           js5: >
             [...$env.toolchain.bucket]
+          js6: >
+            typeof $env.toolchain.bucket
+          js7: >
+            $env.toolchain.bucket instanceof Number
           
           # yml preprocessor translates to {{app_repo}}...
           app_repo: $env.app_repo
