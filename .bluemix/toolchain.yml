@@ -18,6 +18,11 @@ template:
 toolchain:
   name: 'DYML - $env Script Blacklisting'
 
+  bucket:
+    - 1
+    - 2
+    - 3
+
 services:
 
   sample-repo:
