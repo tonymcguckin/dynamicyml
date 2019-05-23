@@ -8,11 +8,8 @@ template:
     - frontend-repo
     - sample-repo
   info:
-    git url: >-
-      [https://github.com/tonymcguckin/dynamicyml](https://github.com/tonymcguckin/dynamicyml)
-    git branch: >-
-      [master](https://github.com/tonymcguckin/dynamicyml/tree/master)
-
+    git url: "'[' + $env.repository + '](' + $env.repository + ')'"
+    git branch: "'[' + $env.branch + ']('+ $env.repository + '/tree/' + $env.branch + ')'"
 toolchain:
   name: 'DYML: $switch/$case construct'
 
@@ -145,23 +142,6 @@ services:
           test24: $env.test || 10.1
           test25: $env.test || 0.0
           test26: $env.test || 0.1
-          
-          # misc object/js tests - all ignored
-          # by the yml preprocessor...
-          test27: {}
-          test28: {window}
-          test29: {eval('window')}
-          test30: {javascript:eval('window')}
-          test31: "javascript:eval('window')"
-          test32: javascript:eval('window')
-          test33: {a:1, b:2, c:3 }
-          test34: '{a:1, b:2, c:3 }'
-          test35: console.log("test34")
-          test36: javascript:console.log("test35")
-          
-          test37: "{{USERNAME}}"
-          test38: '{{form.pipeline.parameters.username}}'
-          test39: "{{services.build.parameters.configuration.env.USERNAME}}"
           
           enable_traceability: true
           has_issues: true
