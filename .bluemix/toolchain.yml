@@ -8,8 +8,11 @@ template:
     - frontend-repo
     - sample-repo
   info:
-    git url: "'[' + $env.repository + '](' + $env.repository + ')'"
-    git branch: "'[' + $env.branch + ']('+ $env.repository + '/tree/' + $env.branch + ')'"
+    git url: >
+      '[' + $env.repository + '](' + $env.repository + ')'
+    git branch: >
+      '[' + $env.branch + ']('+ $env.repository + '/tree/' + $env.branch + ')'
+
 toolchain:
   name: 'DYML: $switch/$case construct'
   
@@ -22,15 +25,9 @@ toolchain:
     $switch:
       - $expr: $env.atom
       - $default: particle
-        blah: deblah
+        foo: bar
       - $case: beam
-        atom2:
-          $switch:
-            - $expr: $env.atom2
-            - $default: particle
-              hello: "world again"
-            - $case: beam
-              foo: bar
+        hello: world
 
 services:
 
@@ -83,25 +80,6 @@ services:
       - $case: 'hostedgit'
         service_id: 'hostedgit'
         parameters:
-
-          js1: >
-            $env.toolchain.bucket
-          js2: >
-            $env.toolchain.bucket++
-          js3: >
-            $env.toolchain.bucket--
-          js4: >
-            $env.toolchain.bucket in [9,10]
-          js5: >
-            typeof $env.toolchain.bucket
-          js6: >
-            $env.toolchain.bucket instanceof Number
-          js7: >
-            $env.foo ? "process" : process
-          js8: >
-            $env.foo ? "global" : global
-          js9: >
-            $env.foo ? "this" : this
           
           # yml preprocessor translates to {{app_repo}}...
           app_repo: $env.app_repo
