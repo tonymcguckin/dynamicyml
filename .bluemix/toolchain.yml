@@ -5,6 +5,9 @@ template:
   description: "DYML - Template Path Context"
   required:
     - repo
+  info:
+    git url: "'[' + $env.repository + '](' + $env.repository + ')'"
+    git branch: "'[' + $env.branch + ']('+ $env.repository + '/tree/' + $env.branch + ')'"
 
 toolchain:
   name: 'DYML - Template Path Context'
