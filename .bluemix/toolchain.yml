@@ -2,9 +2,9 @@ version: '2'
 
 template:
 
-  name: "DYML - $env Script Sandboxing"
+  name: "DYML - $env Script Sandboxing: General"
 
-  description: "DYML - $env Script Sandboxing"
+  description: "DYML - $env Script Sandboxing: General"
   required:
     - build
     - frontend-repo
@@ -16,7 +16,7 @@ template:
       '[' + $env.branch + ']('+ $env.repository + '/tree/' + $env.branch + ')'
 
 toolchain:
-  name: 'DYML - $env Script Sandboxing'
+  name: 'DYML - $env Script Sandboxing: General'
 
   bucket:
     - 1
