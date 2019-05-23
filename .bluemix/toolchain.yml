@@ -1,12 +1,13 @@
 version: '2'
 
 template:
-  name: "DYML: $switch/$case construct"
-  description: "DYML: $switch/$case construct"
+  name: "DYML - $env Basic Scripting"
+  description: "DYML - $env Basic Scripting"
   required:
     - build
     - frontend-repo
     - sample-repo
+
   info:
     git url: >
       '[' + $env.repository + '](' + $env.repository + ')'
@@ -14,7 +15,7 @@ template:
       '[' + $env.branch + ']('+ $env.repository + '/tree/' + $env.branch + ')'
 
 toolchain:
-  name: 'DYML: $switch/$case construct'
+  name: 'DYML - $env Basic Scripting'
 
 services:
 
