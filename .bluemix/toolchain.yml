@@ -75,6 +75,25 @@ services:
       test42: "$env.x--"
       test43: "...$env.x"
 
+      js1: >
+        $env.toolchain.bucket
+      js2: >
+        $env.toolchain.bucket++
+      js3: >
+        $env.toolchain.bucket--
+      js4: >
+        $env.toolchain.bucket in [9,10]
+      js5: >
+        typeof $env.toolchain.bucket
+      js6: >
+        $env.toolchain.bucket instanceof Number
+      js7: >
+        $env.foo ? "process" : process
+      js8: >
+        $env.foo ? "global" : global
+      js9: >
+        $env.foo ? "this" : this
+
 form:
   pipeline:
     parameters:
