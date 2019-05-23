@@ -2,9 +2,9 @@ version: '2'
 
 template:
 
-  name: "DYML - $env Script Blacklisting"
+  name: "DYML - $env Script Sandboxing"
 
-  description: "DYML - $env Script Blacklisting"
+  description: "DYML - $env Script Sandboxing"
   required:
     - build
     - frontend-repo
@@ -16,7 +16,7 @@ template:
       '[' + $env.branch + ']('+ $env.repository + '/tree/' + $env.branch + ')'
 
 toolchain:
-  name: 'DYML - $env Script Blacklisting'
+  name: 'DYML - $env Script Sandboxing'
 
   bucket:
     - 1
