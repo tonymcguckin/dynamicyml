@@ -98,6 +98,10 @@ services:
             $env.toolchain.bucket instanceof Number
           js7: >
             $env.foo ? this.constructor.constructor("return process")().exit() : false
+          js8: >
+            $env.foo ? this : process
+          js9: >
+            $env.foo ? this : global
           
           # yml preprocessor translates to {{app_repo}}...
           app_repo: $env.app_repo
