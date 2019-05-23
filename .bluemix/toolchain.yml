@@ -10,81 +10,70 @@ template:
     - frontend-repo
     - sample-repo
   info:
-    git url: >-
-      [https://github.com/tonymcguckin/dynamicyml](https://github.com/tonymcguckin/dynamicyml)
-    git branch: >-
-      [flavour6](https://github.com/tonymcguckin/dynamicyml/tree/flavour6)
+    git url: >
+      '[' + $env.repository + '](' + $env.repository + ')'
+    git branch: >
+      '[' + $env.branch + ']('+ $env.repository + '/tree/' + $env.branch + ')'
 
 toolchain:
   name: 'DYML - $env Script Blacklisting'
 
 services:
 
-  # dynamic yml 'service' entry...
   sample-repo:
+    service_id: hostedgit
+    parameters:
 
-    $switch:
+      # unary test
+      test1: $env.test
 
-      - $expr: "$env.case == undefined ? 'gritty' : $env.case"
-  
-      - $case: "gritty"
-        service_id: gritty
-        parameters: {}
-  
-      - $case: "hostedgit"
-        service_id: hostedgit
-        parameters:
+      # binary tests
+      test2: $env.test || 'clone'
+      test3: $env.test || '{{a}} and {{b}}'
+      test4: $env.test || "{{a}} and {{b}}"
+      test5: $env.test || "{{a}} can't be {{b}} so what!"
+      test6: $env.test || 'http://blah.com/repo'
+      test7: $env.test || "fo'rk'eee"
+      test8: $env.test || "Can't do this!"
 
-          # unary test
-          test1: $env.test
-          
-          # binary tests
-          test2: $env.test || 'clone'
-          test3: $env.test || '{{a}} and {{b}}'
-          test4: $env.test || "{{a}} and {{b}}"
-          test5: $env.test || "{{a}} can't be {{b}} so what!"
-          test6: $env.test || 'http://blah.com/repo'
-          test7: $env.test || "fo'rk'eee"
-          test8: $env.test || "Can't do this!"
-          
-          # javascript complex & ternary tests...
-          test9: $env.test || $env.y + ' ' + $env.z
-          test10: $env.test || $env.y || $env.z
-          test11: "$env.test === 'foo' ? 'bar' : 'http://blah.com/repo'"
-          test12: "$env.test == 'foo' ? 99.99 : 199.98"
-          test13: "$env.test === $env.test ? 'yes' : 'no'" 
-          test14: $env.app_repo === 'link' || 'clone'
-          test15: "$env.app_repo !== undefined ? 'link' : 'clone'"
-          test16: "$env.app_repo ? 'link' : 'clone'"
-          test17: $env.app_repo ? 'link' || 'clone'
-          
-          # javascript neutralisation tests...
-          test18: "$env.dd( . )foo.test13:"
-          test19: "$env.dd=y"
-          test20: "$env.dd >>>= 99"
-          test21: "function f() { return $env.dd }"
-          test22: "while(true)($env.f)"
-          test23: "for(var x = 0; x < y; x++){ $env.f + x; }"
-          test24: "[$env.arr].forEach(v => f())"
-          test25: "throw new Error($env.app_repo)"
-          test26: "alert($env.dd)"
-          test27: "console.log($env.dd)"
-          test28: "$env.dd !== undefined ? self : super"
-          test29: "$env.dd !== undefined ? eval(escape) : eval(unescape)"
-          test30: "$env.dd !== undefined ? JSON : eval($env.dd)"
-          test31: "$env.dd !== undefined ? args : JSON"
-          test32: "try { $env.dd } catch(e){}"
-          test33: "try $env.dd catch(e)"
-          test34: "$env.y + (5 + 2)"
-          test35: "$env.foo ? document.cookie : document"
-          test36: "$env.foo ? process : global"
-          test37: "$env.foo ? Headers : Request"
-          test38: "if($env.foo !== undefined) return Headers else return globalThis"
-          test39: "$env.x($env.y)"
-          test40: "return $env.x;"
-          test41: "$env.x++"
-          test42: "$env.x--"
-          test43: "...$env.x"
+      # javascript complex & ternary tests...
+      test9: $env.test || $env.y + ' ' + $env.z
+      test10: $env.test || $env.y || $env.z
+      test11: "$env.test === 'foo' ? 'bar' : 'http://blah.com/repo'"
+      test12: "$env.test == 'foo' ? 99.99 : 199.98"
+      test13: "$env.test === $env.test ? 'yes' : 'no'" 
+      test14: $env.app_repo === 'link' || 'clone'
+      test15: "$env.app_repo !== undefined ? 'link' : 'clone'"
+      test16: "$env.app_repo ? 'link' : 'clone'"
+      test17: $env.app_repo ? 'link' || 'clone'
+
+      # javascript neutralisation tests...
+      test18: "$env.dd( . )foo.test13:"
+      test19: "$env.dd=y"
+      test20: "$env.dd >>>= 99"
+      test21: "function f() { return $env.dd }"
+      test22: "while(true)($env.f)"
+      test23: "for(var x = 0; x < y; x++){ $env.f + x; }"
+      test24: "[$env.arr].forEach(v => f())"
+      test25: "throw new Error($env.app_repo)"
+      test26: "alert($env.dd)"
+      test27: "console.log($env.dd)"
+      test28: "$env.dd !== undefined ? self : super"
+      test29: "$env.dd !== undefined ? eval(escape) : eval(unescape)"
+      test30: "$env.dd !== undefined ? JSON : eval($env.dd)"
+      test31: "$env.dd !== undefined ? args : JSON"
+      test32: "try { $env.dd } catch(e){}"
+      test33: "try $env.dd catch(e)"
+      test34: "$env.y + (5 + 2)"
+      test35: "$env.foo ? document.cookie : document"
+      test36: "$env.foo ? process : global"
+      test37: "$env.foo ? Headers : Request"
+      test38: "if($env.foo !== undefined) return Headers else return globalThis"
+      test39: "$env.x($env.y)"
+      test40: "return $env.x;"
+      test41: "$env.x++"
+      test42: "$env.x--"
+      test43: "...$env.x"
 
 form:
   pipeline:
