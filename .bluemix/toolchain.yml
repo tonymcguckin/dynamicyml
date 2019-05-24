@@ -24,6 +24,12 @@ toolchain:
       - $case: beam
         hello: world
 
+  1:
+    $switch:
+      - $expr: $env.atom
+      - $case: true
+        a: b
+
 services:
 
   # dynamic yml 'service' entry...
