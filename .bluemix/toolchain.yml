@@ -30,20 +30,20 @@ services:
       env8: $env.foo.bar
       env9: $env.services.repo
       env10: $env.services.repo.parameters
-      env11: $env.services
-      env12: $env.form
+      #env11: $env.services
+      #env12: $env.form
       env13: >
         $env.services.repo.parameters.env1 === $env.services.build.parameters.test5
 
       # mustache params...
-      must1: "{{services.repo.service_id}}"
-      must2: "{{services.build.parameters.test5}}"
-      must3: "{{form.pipeline.parameters.user}}"
-      must4: "{{toolchain.name}}"
-      must5: "{{template.name}}"
-      must6: "{{version}}"
-      must7: "{{foo}}"
-      must8: "{{foo.bar}}"
+      #must1: "{{services.repo.service_id}}"
+      #must2: "{{services.build.parameters.test5}}"
+      #must3: "{{form.pipeline.parameters.user}}"
+      #must4: "{{toolchain.name}}"
+      #must5: "{{template.name}}"
+      #must6: "{{version}}"
+      #must7: "{{foo}}"
+      #must8: "{{foo.bar}}"
 
   build:
     service_id: pipeline
