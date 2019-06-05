@@ -28,7 +28,7 @@ services:
       env6: $env.version
       env7: $env.foo
       env8: $env.foo.bar
-      #env9: $env.services.repo
+      env9: $env.services.repo
       #env10: $env.services.repo.parameters
       env11: $env.services
       env12: $env.form
