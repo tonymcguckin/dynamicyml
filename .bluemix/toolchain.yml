@@ -34,6 +34,7 @@ services:
       env12: $env.form
       env13: >
         $env.services.repo.parameters.env1 === $env.services.build.parameters.test5
+      env14: $env.timestamp
 
       # indirection... as these are simple $env.path refs
       # they will translate to {{mustache}} equivs...
@@ -86,6 +87,10 @@ services:
       env_m: >
         $env.m ? false : $env.services.repo.parameters.env_n
       env_n: "Hello world from env_n"
+
+      # indirection... complexes with indirection to $env.path refs...
+      env_x: >
+        $env.x ? false : "$env.services.build.service_id"
 
       # mustache params...
       #must1: "{{services.repo.service_id}}"
