@@ -77,7 +77,11 @@ services:
         $env.a ? false : $env.services.repo.parameters.env_i
       env_i: >
         $env.a ? false : $env.services.repo.parameters.env_j
-      env_j: "Hello world from env_j"
+      env_j: >
+        $env.a ? false : $env.services.repo.parameters.env_k
+      env_k: >
+        $env.a ? false : $env.services.repo.parameters.env_l
+      env_l: "Hello world from env_l"
 
       # mustache params...
       #must1: "{{services.repo.service_id}}"
