@@ -34,7 +34,9 @@ services:
       env12: $env.form
       env13: >
         $env.services.repo.parameters.env1 === $env.services.build.parameters.test5
-      # indirection... default reeval depth is 10...
+
+      # indirection... as these are simple $env.path refs
+      # they will translate to {{mustache}} equivs...
       env_1: $env.services.repo.parameters.env_2
       env_2: $env.services.repo.parameters.env_3
       env_3: $env.services.repo.parameters.env_4
@@ -55,6 +57,27 @@ services:
       env_18: $env.services.repo.parameters.env_19
       env_19: $env.services.repo.parameters.env_20
       env_20: "Hello world from env_20"
+
+      # indirection... complexes with indirection to $env.path refs...
+      env_a: >
+        $env.a ? false : "$env.services.repo.parameters.env_b"
+      env_b: >
+        $env.a ? false : "$env.services.repo.parameters.env_c"
+      env_c: >
+        $env.a ? false : "$env.services.repo.parameters.env_d"
+      env_d: >
+        $env.a ? false : "$env.services.repo.parameters.env_e"
+      env_e: >
+        $env.a ? false : "$env.services.repo.parameters.env_f"
+      env_f: >
+        $env.a ? false : "$env.services.repo.parameters.env_g"
+      env_g: >
+        $env.a ? false : "$env.services.repo.parameters.env_h"
+      env_h: >
+        $env.a ? false : "$env.services.repo.parameters.env_i"
+      env_i: >
+        $env.a ? false : "$env.services.repo.parameters.env_j"
+      env_j: "Hello world from env_j"
 
       # mustache params...
       #must1: "{{services.repo.service_id}}"
