@@ -62,29 +62,29 @@ services:
       env_a: >
         $env.a ? false : $env.services.repo.parameters.env_b
       env_b: >
-        $env.a ? false : $env.services.repo.parameters.env_c
+        $env.b ? false : $env.services.repo.parameters.env_c
       env_c: >
-        $env.a ? false : $env.services.repo.parameters.env_d
+        $env.c ? false : $env.services.repo.parameters.env_d
       env_d: >
-        $env.a ? false : $env.services.repo.parameters.env_e
+        $env.d ? false : $env.services.repo.parameters.env_e
       env_e: >
-        $env.a ? false : $env.services.repo.parameters.env_f
+        $env.e ? false : $env.services.repo.parameters.env_f
       env_f: >
-        $env.a ? false : $env.services.repo.parameters.env_g
+        $env.f ? false : $env.services.repo.parameters.env_g
       env_g: >
-        $env.a ? false : $env.services.repo.parameters.env_h
+        $env.g ? false : $env.services.repo.parameters.env_h
       env_h: >
-        $env.a ? false : $env.services.repo.parameters.env_i
+        $env.h ? false : $env.services.repo.parameters.env_i
       env_i: >
-        $env.a ? false : $env.services.repo.parameters.env_j
+        $env.i ? false : $env.services.repo.parameters.env_j
       env_j: >
-        $env.a ? false : $env.services.repo.parameters.env_k
+        $env.j ? false : $env.services.repo.parameters.env_k
       env_k: >
-        $env.a ? false : $env.services.repo.parameters.env_l
+        $env.k ? false : $env.services.repo.parameters.env_l
       env_l: >
-        $env.a ? false : $env.services.repo.parameters.env_m
+        $env.l ? false : $env.services.repo.parameters.env_m
       env_m: >
-        $env.a ? false : $env.services.repo.parameters.env_n
+        $env.m ? false : $env.services.repo.parameters.env_n
       env_n: "Hello world from env_n"
 
       # mustache params...
