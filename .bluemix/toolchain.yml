@@ -3,13 +3,15 @@ version: '2'
 template:
   name: "DYML - $env Template Path & Query Context"
   description: "DYML - $env Template Path & Query Context"
+  $configuration:
+    YML_PREPROCESSOR_VM_ENV_REEVAL_DEPTH: 10
   required:
     - repo
-  info:
-    git url: >
-      '[' + $env.repository + '](' + $env.repository + ')'
-    git branch: >
-      '[' + $env.branch + ']('+ $env.repository + '/tree/' + $env.branch + ')'
+  #info:
+  #  git url: >
+  #    '[' + $env.repository + '](' + $env.repository + ')'
+  #  git branch: >
+  #    '[' + $env.branch + ']('+ $env.repository + '/tree/' + $env.branch + ')'
 
 toolchain:
   name: 'DYML - $env Template Path & Query Context'
@@ -20,73 +22,76 @@ services:
     parameters:
 
       # $env params...
-      env1: $env.services.repo.service_id
-      env2: $env.services.build.parameters.test5
-      env3: $env.form.pipeline.parameters.user
-      env4: $env.toolchain.name
-      env5: $env.template.name
-      env6: $env.version
-      env7: $env.foo
-      env8: $env.foo.bar
-      env9: $env.services.repo
-      env10: $env.services.repo.parameters
-      env11: $env.services
-      env12: $env.form
-      env13: >
-        $env.services.repo.parameters.env1 === $env.services.build.parameters.test5
-      env14: $env.timestamp
+      
+      #env1: $env.services.repo.service_id
+      #env2: $env.services.build.parameters.test5
+      #env3: $env.form.pipeline.parameters.user
+      #env4: $env.toolchain.name
+      #env5: $env.template.name
+      #env6: $env.version
+      #env7: $env.foo
+      #env8: $env.foo.bar
+      #env9: $env.services.repo
+      #env10: $env.services.repo.parameters
+      #env11: $env.services
+      #env12: $env.form
+      #env13: >
+      #  $env.services.repo.parameters.env1 === $env.services.build.parameters.test5
+      #env14: $env.timestamp
 
       # indirection... as these are simple $env.path refs
       # they will translate to {{mustache}} equivs...
-      env_1: $env.services.repo.parameters.env_2
-      env_2: $env.services.repo.parameters.env_3
-      env_3: $env.services.repo.parameters.env_4
-      env_4: $env.services.repo.parameters.env_5
-      env_5: $env.services.repo.parameters.env_6
-      env_6: $env.services.repo.parameters.env_7
-      env_7: $env.services.repo.parameters.env_8
-      env_8: $env.services.repo.parameters.env_9
-      env_9: $env.services.repo.parameters.env_10
-      env_10: $env.services.repo.parameters.env_11
-      env_11: $env.services.repo.parameters.env_12
-      env_12: $env.services.repo.parameters.env_13
-      env_13: $env.services.repo.parameters.env_14
-      env_14: $env.services.repo.parameters.env_15
-      env_15: $env.services.repo.parameters.env_16
-      env_16: $env.services.repo.parameters.env_17
-      env_17: $env.services.repo.parameters.env_18
-      env_18: $env.services.repo.parameters.env_19
-      env_19: $env.services.repo.parameters.env_20
-      env_20: "Hello world from env_20"
+
+      #env_1: $env.services.repo.parameters.env_2
+      #env_2: $env.services.repo.parameters.env_3
+      #env_3: $env.services.repo.parameters.env_4
+      #env_4: $env.services.repo.parameters.env_5
+      #env_5: $env.services.repo.parameters.env_6
+      #env_6: $env.services.repo.parameters.env_7
+      #env_7: $env.services.repo.parameters.env_8
+      #env_8: $env.services.repo.parameters.env_9
+      #env_9: $env.services.repo.parameters.env_10
+      #env_10: $env.services.repo.parameters.env_11
+      #env_11: $env.services.repo.parameters.env_12
+      #env_12: $env.services.repo.parameters.env_13
+      #env_13: $env.services.repo.parameters.env_14
+      #env_14: $env.services.repo.parameters.env_15
+      #env_15: $env.services.repo.parameters.env_16
+      #env_16: $env.services.repo.parameters.env_17
+      #env_17: $env.services.repo.parameters.env_18
+      #env_18: $env.services.repo.parameters.env_19
+      #env_19: $env.services.repo.parameters.env_20
+      #env_20: "Hello world from env_20"
 
       # indirection... complexes with indirection to $env.path refs...
-      env_a: >
-        $env.a ? false : $env.services.repo.parameters.env_b
-      env_b: >
-        $env.b ? false : $env.services.repo.parameters.env_c
-      env_c: >
-        $env.c ? false : $env.services.repo.parameters.env_d
-      env_d: >
-        $env.d ? false : $env.services.repo.parameters.env_e
-      env_e: >
-        $env.e ? false : $env.services.repo.parameters.env_f
-      env_f: >
-        $env.f ? false : $env.services.repo.parameters.env_g
-      env_g: >
-        $env.g ? false : $env.services.repo.parameters.env_h
-      env_h: >
-        $env.h ? false : $env.services.repo.parameters.env_i
-      env_i: >
-        $env.i ? false : $env.services.repo.parameters.env_j
-      env_j: >
-        $env.j ? false : $env.services.repo.parameters.env_k
-      env_k: >
-        $env.k ? false : $env.services.repo.parameters.env_l
-      env_l: >
-        $env.l ? false : $env.services.repo.parameters.env_m
-      env_m: >
-        $env.m ? false : $env.services.repo.parameters.env_n
-      env_n: "Hello world from env_n"
+      
+      #env_a: >
+      #  $env.a ? false : $env.services.repo.parameters.env_b
+      #env_b: >
+      #  $env.b ? false : $env.services.repo.parameters.env_c
+      #env_c: >
+      #  $env.c ? false : $env.services.repo.parameters.env_d
+      #env_d: >
+      #  $env.d ? false : $env.services.repo.parameters.env_e
+      #env_e: >
+      #  $env.e ? false : $env.services.repo.parameters.env_f
+      #env_f: >
+      #  $env.f ? false : $env.services.repo.parameters.env_g
+      #env_g: >
+      # $env.g ? false : $env.services.repo.parameters.env_h
+      #env_h: >
+      #  $env.h ? false : $env.services.repo.parameters.env_i
+      #env_i: >
+      #  $env.i ? false : $env.services.repo.parameters.env_j
+      #env_j: >
+      #  $env.j ? false : $env.services.repo.parameters.env_k
+      #env_k: >
+      #  $env.k ? false : $env.services.repo.parameters.env_l
+      #env_l: >
+      #  $env.l ? false : $env.services.repo.parameters.env_m
+      #env_m: >
+      #  $env.m ? false : $env.services.repo.parameters.env_n
+      #env_n: "Hello world from env_n"
 
       # indirection... complexes with indirection to $env.path refs...
       env_x: >
