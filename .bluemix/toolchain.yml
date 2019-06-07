@@ -34,6 +34,19 @@ services:
       env12: $env.form
       env13: >
         $env.services.repo.parameters.env1 === $env.services.build.parameters.test5
+      # indirection... default reeval depth is 10...
+      env_1: $env.services.repo.parameters.env_2
+      env_2: $env.services.repo.parameters.env_3
+      env_3: $env.services.repo.parameters.env_4
+      env_4: $env.services.repo.parameters.env_5
+      env_5: $env.services.repo.parameters.env_6
+      env_6: $env.services.repo.parameters.env_7
+      env_7: $env.services.repo.parameters.env_8
+      env_8: $env.services.repo.parameters.env_9
+      env_9: $env.services.repo.parameters.env_10
+      env_10: $env.services.repo.parameters.env_11
+      env_11: $env.services.repo.parameters.env_12
+      env_12: "Hello world from env_12"
 
       # mustache params...
       #must1: "{{services.repo.service_id}}"
