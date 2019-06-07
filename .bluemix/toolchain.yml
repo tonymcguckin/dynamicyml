@@ -3,15 +3,17 @@ version: '2'
 template:
   name: "DYML - $env Template Path & Query Context"
   description: "DYML - $env Template Path & Query Context"
+
   $configuration:
     YML_PREPROCESSOR_VM_ENV_REEVAL_DEPTH: 10
+
   required:
     - repo
-  #info:
-  #  git url: >
-  #    '[' + $env.repository + '](' + $env.repository + ')'
-  #  git branch: >
-  #    '[' + $env.branch + ']('+ $env.repository + '/tree/' + $env.branch + ')'
+  info:
+    git url: >
+      '[' + $env.repository + '](' + $env.repository + ')'
+    git branch: >
+      '[' + $env.branch + ']('+ $env.repository + '/tree/' + $env.branch + ')'
 
 toolchain:
   name: 'DYML - $env Template Path & Query Context'
@@ -37,6 +39,7 @@ services:
       env12: $env.form
       env13: >
         $env.services.repo.parameters.env1 === $env.services.build.parameters.test5
+
       env14: $env.timestamp
 
       # indirection... as these are simple $env.path refs
@@ -91,13 +94,21 @@ services:
         $env.l ? false : $env.services.repo.parameters.env_m
       env_m: >
         $env.m ? false : $env.services.repo.parameters.env_n
-      env_n: "Hello world from env_n"
+      env_n: >
+        $env.n ? false : $env.services.repo.parameters.env_o
+      env_o: >
+        $env.o ? false : $env.services.repo.parameters.env_p
+      env_p: "Hello world from env_n"
 
       # indirection... complexes with indirection to stringifyed $env.path refs...
+      env_w: >
+        $env.w ? "$env.branch" : "$env.services.repo.parameters.env_x"
       env_x: >
-        $env.x ? "$env.branch" : "$env.services.build.service_id"
+        $env.x ? "$env.branch" : "$env.services.repo.parameters.env_y"
       env_y: >
-        $env.y ? "$env.timestamp" : "$env.services.build.service_id + ' is the service_id'"
+        $env.y ? "$env.branch" : "$env.services.build.service_id + \" is the service_id.\""
+      env_z: >
+        $env.z ? "$env.timestamp" : "$env.services.build.service_id + ' ' + $env.timestamp"
 
       # mustache params...
       must1: "{{services.repo.service_id}}"
