@@ -5,7 +5,7 @@ template:
   description: "DYML - $env Template Path & Query Context"
 
   $configuration:
-    YML_PREPROCESSOR_VM_ENV_REEVAL_DEPTH: 10
+    YML_PREPROCESSOR_EVALUATION_DEPTH: 10
 
   required:
     - repo
