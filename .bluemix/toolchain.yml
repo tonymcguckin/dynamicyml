@@ -112,13 +112,10 @@ services:
         $env.z ? "$env.timestamp" : "$env.services.build.service_id + ' ' + $env.timestamp"
 
       env_ww: >
-        $env.ww ? "$env.repository" : "$env.branch + ' ' + $env.env_id + ' ' + '{{foo}}'"
+        $env.ww ? "$env.branch" : "$env.branch + ' ' + $env.env_id"
 
       env_xx: >
-        $env.xx ? "$env.repository" : "'branch is: ' + $env.branch + ' and ' + $env.services.repo.parameters.env_yy"
-
-      env_yy: >
-        "'env id is: ' + $env.env_id + ' and foo says: ' + '{{foo}}'"
+        $env.xx ? "$env.repository" : "'foo: ' + $env.foo + ' foo.bar: {{foo.bar}}'"
 
       # mustache params...
       must1: "{{services.repo.service_id}}"
