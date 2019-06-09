@@ -38,14 +38,10 @@ services:
       env6: $env.version
       env7: $env.foo
       env8: $env.foo.bar
-      env9: $env.services.repo
-      env10: $env.services.repo.parameters
-      env11: $env.services
-      env12: $env.form
-      env13: >
+      env9: >
         $env.services.repo.parameters.env1 === $env.services.build.parameters.test5
 
-      env14: $env.timestamp
+      env10: $env.timestamp
 
       # indirection... as these are simple $env.path refs
       # they will translate to {{mustache}} equivs...
