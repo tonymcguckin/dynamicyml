@@ -6,7 +6,7 @@ template:
 
   $configuration:
     EVALUATION_DEPTH: 10
-    EVALUATE_TIMESTAMP_SERVERSIDE: false
+    EVALUATE_TIMESTAMP_SERVERSIDE: true
 
   required:
     - repo
