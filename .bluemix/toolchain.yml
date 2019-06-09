@@ -118,7 +118,7 @@ services:
         $env.xx ? "$env.repository" : "'branch is: ' + $env.branch + ' and ' + $env.services.repo.parameters.env_yy"
 
       env_yy: >
-        $env.yy ? "$env.repository" : "'env id is: ' + $env.env_id + ' and foo says: ' + '{{foo}}'"
+        "'env id is: ' + $env.env_id + ' and foo says: ' + '{{foo}}'"
 
       # mustache params...
       must1: "{{services.repo.service_id}}"
