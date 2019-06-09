@@ -5,7 +5,7 @@ template:
   description: "DYML - $env Template Path & Query Context"
 
   $configuration:
-    EVALUATION_DEPTH: 2
+    EVALUATION_DEPTH: 10
     EVALUATE_TIMESTAMP_SERVERSIDE: true
 
   required:
