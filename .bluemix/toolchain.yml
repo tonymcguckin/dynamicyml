@@ -8,6 +8,9 @@ template:
     EVALUATION_DEPTH: 10
     EVALUATE_TIMESTAMP_SERVERSIDE: true
     BASIC_WARNINGS: true
+    EXPRESSION_MAXLENGTH: 20
+    ENABLE_IF_ELSE: false
+    ENABLE_EXTENSIONS: false
 
   required:
     - repo
