@@ -4,13 +4,11 @@ template:
   name: "DYML - $env Template Path & Query Context"
   description: "DYML - $env Template Path & Query Context"
 
-  $configuration:
-    EVALUATION_DEPTH: 10
-    EVALUATE_TIMESTAMP_SERVERSIDE: true
-    BASIC_WARNINGS: false
-    EXPRESSION_MAXLENGTH: 200
-    ENABLE_IF_ELSE: false
-    ENABLE_EXTENSIONS: false
+  #$configuration:
+    #EVALUATION_DEPTH: 10
+    #EVALUATE_TIMESTAMP_SERVERSIDE: true
+    #BASIC_WARNINGS: false
+    #EXPRESSION_MAXLENGTH: 200
 
   required:
     - repo
