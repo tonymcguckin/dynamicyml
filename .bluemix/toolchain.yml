@@ -7,7 +7,7 @@ template:
   $configuration:
     EVALUATION_DEPTH: 10
     EVALUATE_TIMESTAMP_SERVERSIDE: true
-    BASIC_WARNINGS: true
+    BASIC_WARNINGS: false
     EXPRESSION_MAXLENGTH: 20
     ENABLE_IF_ELSE: false
     ENABLE_EXTENSIONS: false
