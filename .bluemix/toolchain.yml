@@ -5,7 +5,8 @@ template:
   description: "DYML - $env Template Path & Query Context"
 
   $configuration:
-    YML_PREPROCESSOR_EVALUATION_DEPTH: 10
+    EVALUATION_DEPTH: 10
+    EVALUATE_TIMESTAMP_SERVERSIDE: true
 
   required:
     - repo
@@ -109,6 +110,15 @@ services:
         $env.y ? "$env.branch" : "$env.services.build.service_id + \" is the service_id.\""
       env_z: >
         $env.z ? "$env.timestamp" : "$env.services.build.service_id + ' ' + $env.timestamp"
+
+      env_ww: >
+        $env.ww ? "$env.repository" : "$env.branch + ' ' + $env.env_id + ' ' + '{{foo}}'"
+
+      env_xx: >
+        $env.xx ? "$env.repository" : "'branch is: ' + $env.branch + ' and ' + $env.services.repo.parameters.env_yy"
+
+      env_yy: >
+        $env.yy ? "$env.repository" : "'env id is: ' + $env.env_id + ' and foo says: ' + '{{foo}}'"
 
       # mustache params...
       must1: "{{services.repo.service_id}}"
