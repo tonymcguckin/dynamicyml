@@ -22,9 +22,9 @@ toolchain:
   $configuration:
     #EVALUATION_DEPTH: 10
     #EVALUATE_TIMESTAMP_SERVERSIDE: true
-    #BASIC_WARNINGS: false
+    BASIC_WARNINGS: false
     #EXPRESSION_MAXLENGTH: 200
-    
+    ENABLE_EXTENSIONS: true
     ENABLE_SECRET_EXPANSION: true
 
 services:
@@ -32,7 +32,7 @@ services:
     service_id: hostedgit
     parameters:
       test1: >
-        $env.getSecret("")
+        $env.getSecret("kms:us-south:default:acme_kms_store:acme_git_password")
       test2: $env.timestamp
 
 form:
