@@ -1,8 +1,8 @@
 version: '2'
 
 template:
-  name: "DYML: pipeline.yml Handling"
-  description: "DYML: pipeline.yml Handling"
+  name: "DYML_SECRETS_VIA_ENV_ENGINE"
+  description: "DYML_SECRETS_VIA_ENV_ENGINE"
   required:
     - build
     - repo
@@ -17,41 +17,22 @@ template:
           "/tree/" + $env.branch + ")"
 
 toolchain:
-  name: 'DYML: pipeline.yml Handling'
+  name: 'DYML_SECRETS_VIA_ENV_ENGINE'
+
+  #$configuration:
+    #EVALUATION_DEPTH: 10
+    #EVALUATE_TIMESTAMP_SERVERSIDE: true
+    #BASIC_WARNINGS: false
+    #EXPRESSION_MAXLENGTH: 200
+    #RESOLVE_SECRETS_SERVERSIDE: true
 
 services:
   repo:
     service_id: hostedgit
     parameters:
       test1: >
-        if($env.foo == 1234){
-          88;
-        } else {
-          99;
-        }
-      test2: if($env.foo == "5678"){ 44; } else { 55 };
-      test3: if($env.foo == '9101112'){ 22; } else { 11; }
-      test4: if($env.foo == "736363"){ 231; } else { 244; }
-
-  build:
-    service_id: pipeline
-    parameters:
-      services:
-        - repo
-      name: 'Pipeline 1'
-      ui-pipeline: true
-      configuration:
-        content:
-          $text: pipeline.yml
-        env:
-          REPO: repo
-          USERNAME: '{{form.pipeline.parameters.username}}'
-          PASSWORD: '{{form.pipeline.parameters.password}}'
-          API_KEY: '{{form.pipeline.parameters.api-key}}'
-          SPACE: '{{form.pipeline.parameters.space}}'
-          ORG: '{{form.pipeline.parameters.organization}}'
-          REGION: '{{form.pipeline.parameters.region}}'
-        execute: true
+        $env.getSecret()
+      test2: $env.timestamp
 
 form:
   pipeline:
