@@ -32,7 +32,7 @@ services:
     service_id: hostedgit
     parameters:
       test1: >
-        $env.getSecret("kms:us-south:default:acme_kms_store:acme_git_password")
+        $env.getSecret("kms:us-south:default:tmg-kp-1:tmg-common-service-id-apikey")
       test2: $env.timestamp
 
 form:
