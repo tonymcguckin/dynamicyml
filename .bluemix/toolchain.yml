@@ -16,9 +16,6 @@ template:
         "(" + $env.repository +
           "/tree/" + $env.branch + ")"
 
-toolchain:
-  name: 'DYML_SECRETS_VIA_ENV_ENGINE'
-
   $configuration:
     #EVALUATION_DEPTH: 10
     #EVALUATE_TIMESTAMP_SERVERSIDE: true
@@ -26,6 +23,9 @@ toolchain:
     #EXPRESSION_MAXLENGTH: 200
     ENABLE_EXTENSIONS: true
     ENABLE_SECRET_EXPANSION: true
+
+toolchain:
+  name: 'DYML_SECRETS_VIA_ENV_ENGINE'
 
 services:
   repo:
