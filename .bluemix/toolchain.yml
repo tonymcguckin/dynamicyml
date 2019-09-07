@@ -3,24 +3,20 @@ version: '2'
 template:
   name: "DYML_SECRETS_VIA_ENV_ENGINE"
   description: "DYML_SECRETS_VIA_ENV_ENGINE"
-  required:
-    - build
-    - repo
+  #required:
+  #  - repo
 
-  info:
-    git url: >
-      "[" + $env.repository + "]" +
-        "(" + $env.repository + ")"
-    git branch: >
-      "[" + $env.branch + "]" +
-        "(" + $env.repository +
-          "/tree/" + $env.branch + ")"
+  #info:
+  #  git url: >
+  #    "[" + $env.repository + "]" +
+  #      "(" + $env.repository + ")"
+  #  git branch: >
+  #    "[" + $env.branch + "]" +
+  #      "(" + $env.repository +
+  #        "/tree/" + $env.branch + ")"
 
   $configuration:
-    #EVALUATION_DEPTH: 10
-    #EVALUATE_TIMESTAMP_SERVERSIDE: true
     BASIC_WARNINGS: false
-    #EXPRESSION_MAXLENGTH: 200
     ENABLE_EXTENSIONS: true
     ENABLE_SECRET_EXPANSION: true
 
