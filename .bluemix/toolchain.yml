@@ -6,14 +6,9 @@ template:
   #required:
   #  - repo
 
-  #info:
-  #  git url: >
-  #    "[" + $env.repository + "]" +
-  #      "(" + $env.repository + ")"
-  #  git branch: >
-  #    "[" + $env.branch + "]" +
-  #      "(" + $env.repository +
-  #        "/tree/" + $env.branch + ")"
+  info:
+    git url: foo
+    git branch: bar
 
   $configuration:
     BASIC_WARNINGS: false
