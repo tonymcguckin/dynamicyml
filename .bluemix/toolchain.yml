@@ -3,12 +3,12 @@ version: '2'
 template:
   name: "DYML_SECRETS_VIA_ENV_ENGINE"
   description: "DYML_SECRETS_VIA_ENV_ENGINE"
-  #required:
-  #  - repo
+  required:
+    - repo
 
   info:
-    git url: foo
-    git branch: bar
+    git url: "foo"
+    git branch: "bar"
 
   $configuration:
     BASIC_WARNINGS: false
