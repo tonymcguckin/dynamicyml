@@ -1,14 +1,16 @@
 version: '2'
 
 template:
-  name: "DYML_SECRETS_VIA_ENV_ENGINE"
-  description: "DYML_SECRETS_VIA_ENV_ENGINE"
+  name: "SECRETS_VIA_ENV_ENGINE"
+  description: "SECRETS_VIA_ENV_ENGINE"
   required:
     - repo
 
   info:
-    git url: "foo"
-    git branch: "bar"
+    git url: >
+      '[' + $env.repository + '](' + $env.repository + ')'
+    git branch: >
+      '[' + $env.branch + ']('+ $env.repository + '/tree/' + $env.branch + ')'
 
   $configuration:
     BASIC_WARNINGS: false
@@ -16,7 +18,7 @@ template:
     ENABLE_SECRET_EXPANSION: true
 
 toolchain:
-  name: 'DYML_SECRETS_VIA_ENV_ENGINE'
+  name: 'SECRETS_VIA_ENV_ENGINE'
 
 services:
   repo:
@@ -24,7 +26,9 @@ services:
     parameters:
       test1: >
         $env.getSecret("kms:us-south:default:tmg-kp-1:tmg-common-service-id-apikey")
-      test2: $env.timestamp
+      test2: >
+        $ibmcloud.secret("kms:us-south:default:tmg-kp-1:tmg-common-service-id-apikey")
+      test3: $env.timestamp
       test4: $env.branch
 
 form:
