@@ -25,6 +25,7 @@ services:
       test1: >
         $env.getSecret("kms:us-south:default:tmg-kp-1:tmg-common-service-id-apikey")
       test2: $env.timestamp
+      test4: $env.branch
 
 form:
   pipeline:
