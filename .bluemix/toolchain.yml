@@ -25,7 +25,9 @@ services:
     service_id: hostedgit
     parameters:
       test1: >
-        $env.getSecret("kms:us-south:default:tmg-kp-1:tmg-common-service-id-apikey")
+        $env.getSecret("kms:public:us-south:default:tmg-kp-1:tmg-common-service-id-apikey")
+      #test1: >
+      #  $env.getSecret("kms:private:us-south:default:tmg-kp-1:tmg-common-service-id-apikey")
       test2: $env.timestamp
       test4: $env.branch
       test5: >
