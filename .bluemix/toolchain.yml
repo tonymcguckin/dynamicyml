@@ -31,12 +31,18 @@ services:
     parameters:
       test1: >
         $env.getSecret("kms:public:us-south:default:tmg-kp-1:tmg-common-service-id-apikey")
-      #test1: >
-      #  $env.getSecret("kms:private:us-south:default:tmg-kp-1:tmg-common-service-id-apikey")
+      test1: >
+        $env.getSecret(
+          "kms:us-south:default:tmg-kp-1:master-root-key:cloud-apikey",
+          "eyJjaXBoZXJ0ZXh0Ijoic1ZZRnZVcjdQanZXQ0tFakMwRFFWZktqQ3AyRmtiOFJOSDJSTkpZRzVmU1hWNDJScDRDVythU0h3Y009IiwiaGFzaCI6IjVWNzNBbm9XdUxxM1BvZEZpd1AxQTdQMUZrTkZOajVPMmtmMkNxdVBxL0NRdFlOZnBvempiYUxjRDNCSWhxOGpKZ2JNR0xhMHB4dDA4cTYyc0RJMGRBPT0iLCJpdiI6Ilc1T2tNWFZuWDFCTERDUk51M05EUlE9PSIsInZlcnNpb24iOiIzLjAuMCIsImhhbmRsZSI6IjRkZjg5ZGVlLWU3OTMtNGY5Ny05MGNjLTc1ZWQ5YjZlNWM4MiJ9"
+        )
       test2: $env.timestamp
       test4: $env.branch
       test5: >
-        $ibmcloud.secret("kms:us-south:default:tmg-kp-1:tmg-common-service-id-apikey")
+        $env.getWrappedSecret(
+          "kms:us-south:default:tmg-kp-1:master-root-key:cloud-apikey",
+          "eyJjaXBoZXJ0ZXh0Ijoic1ZZRnZVcjdQanZXQ0tFakMwRFFWZktqQ3AyRmtiOFJOSDJSTkpZRzVmU1hWNDJScDRDVythU0h3Y009IiwiaGFzaCI6IjVWNzNBbm9XdUxxM1BvZEZpd1AxQTdQMUZrTkZOajVPMmtmMkNxdVBxL0NRdFlOZnBvempiYUxjRDNCSWhxOGpKZ2JNR0xhMHB4dDA4cTYyc0RJMGRBPT0iLCJpdiI6Ilc1T2tNWFZuWDFCTERDUk51M05EUlE9PSIsInZlcnNpb24iOiIzLjAuMCIsImhhbmRsZSI6IjRkZjg5ZGVlLWU3OTMtNGY5Ny05MGNjLTc1ZWQ5YjZlNWM4MiJ9"
+        )
 
 form:
   pipeline:
