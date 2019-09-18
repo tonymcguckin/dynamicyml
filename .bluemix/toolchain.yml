@@ -88,9 +88,11 @@ services:
       # 'wrap' the given ciphertext using master key 'root-key'...
       test1: >
         let value = $env.wrapSecretValue("kms:us-south:default:tmg-kp-1:root-key", "Hello Jupiter!");
-        console.log(value); // => "eyJjaXBoZXJ0ZXh0Ijoic1Zi...pZRzVmU1hWNDJScDRDVythU0h"
+        console.log(value); // => "eyJjaXBoZXJ0ZXh0Ijoic1Zi"
 
-        value = $env.unwrapValue("kms:us-south:default:tmg-kp-1:root-key", value);
+      # 'unwrap' the given ciphertext using master key 'root-key'...
+      test1: >
+        let value = $env.unwrapSecretValue("kms:us-south:default:tmg-kp-1:root-key", "eyJjaXBoZXJ0ZXh0Ijoic1Zi");
         console.log(value); // => "Hello Jupiter!"
 
       # ------------------------------
