@@ -85,38 +85,15 @@ services:
 
       # ------------------------------
 
-      # 'unwrap' the given ciphertext using master key 'master-root-key'...
+      # 'wrap' the given ciphertext using master key 'root-key'...
       test1: >
-        $env.getSecret("kms:us-south:default:tmg-kp-1:master-root-key",
-          "eyJjaXBoZXJ0ZXh0Ijoic1ZZRnZVcjdQanZXQ0tFakMwRFFWZktqQ3AyRmtiOFJOSDJSTkpZRzVmU1hWNDJScDRDVythU0h3Y009IiwiaGFzaCI6IjVWNzNBbm9XdUxxM1BvZEZpd1AxQTdQMUZrTkZOajVPMmtmMkNxdVBxL0NRdFlOZnBvempiYUxjRDNCSWhxOGpKZ2JNR0xhMHB4dDA4cTYyc0RJMGRBPT0iLCJpdiI6Ilc1T2tNWFZuWDFCTERDUk51M05EUlE9PSIsInZlcnNpb24iOiIzLjAuMCIsImhhbmRsZSI6IjRkZjg5ZGVlLWU3OTMtNGY5Ny05MGNjLTc1ZWQ5YjZlNWM4MiJ9"
-        )
+        let value = $env.wrapSecretValue("kms:us-south:default:tmg-kp-1:root-key", "Hello Jupiter!");
+        console.log(value); // => "eyJjaXBoZXJ0ZXh0Ijoic1Zi...pZRzVmU1hWNDJScDRDVythU0h"
 
-      # 'unwrap' the given ciphertext using master key 'master-root-key'...
-      test1: >
-        $env.getSecret("kms:us-south:default:tmg-kp-1:master-root-key",
-          "eyJjaXBoZXJ0ZXh0Ijoic1ZZRnZVcjdQanZXQ0tFakMwRFFWZktqQ3AyRmtiOFJOSDJSTkpZRzVmU1hWNDJScDRDVythU0h3Y009IiwiaGFzaCI6IjVWNzNBbm9XdUxxM1BvZEZpd1AxQTdQMUZrTkZOajVPMmtmMkNxdVBxL0NRdFlOZnBvempiYUxjRDNCSWhxOGpKZ2JNR0xhMHB4dDA4cTYyc0RJMGRBPT0iLCJpdiI6Ilc1T2tNWFZuWDFCTERDUk51M05EUlE9PSIsInZlcnNpb24iOiIzLjAuMCIsImhhbmRsZSI6IjRkZjg5ZGVlLWU3OTMtNGY5Ny05MGNjLTc1ZWQ5YjZlNWM4MiJ9"
-        )
+        value = $env.unwrapValue("kms:us-south:default:tmg-kp-1:root-key", value);
+        console.log(value); // => "Hello Jupiter!"
 
-      # 'unwrap' the given ciphertext using master key 'master-root-key'...
-      test1: >
-        $env.getSecret("kms:us-south:default:tmg-kp-1:master-root-key",
-          "eyJjaXBoZXJ0ZXh0Ijoic1ZZRnZVcjdQanZXQ0tFakMwRFFWZktqQ3AyRmtiOFJOSDJSTkpZRzVmU1hWNDJScDRDVythU0h3Y009IiwiaGFzaCI6IjVWNzNBbm9XdUxxM1BvZEZpd1AxQTdQMUZrTkZOajVPMmtmMkNxdVBxL0NRdFlOZnBvempiYUxjRDNCSWhxOGpKZ2JNR0xhMHB4dDA4cTYyc0RJMGRBPT0iLCJpdiI6Ilc1T2tNWFZuWDFCTERDUk51M05EUlE9PSIsInZlcnNpb24iOiIzLjAuMCIsImhhbmRsZSI6IjRkZjg5ZGVlLWU3OTMtNGY5Ny05MGNjLTc1ZWQ5YjZlNWM4MiJ9"
-        )
-
-      # get standard key 'cloud-apikey' and 'unwrap' it using master key 'master-root-key'...
-      test1: >
-        $env.getSecret(
-          "kms:us-south:default:tmg-kp-1:master-root-key:cloud-apikey",
-          "eyJjaXBoZXJ0ZXh0Ijoic1ZZRnZVcjdQanZXQ0tFakMwRFFWZktqQ3AyRmtiOFJOSDJSTkpZRzVmU1hWNDJScDRDVythU0h3Y009IiwiaGFzaCI6IjVWNzNBbm9XdUxxM1BvZEZpd1AxQTdQMUZrTkZOajVPMmtmMkNxdVBxL0NRdFlOZnBvempiYUxjRDNCSWhxOGpKZ2JNR0xhMHB4dDA4cTYyc0RJMGRBPT0iLCJpdiI6Ilc1T2tNWFZuWDFCTERDUk51M05EUlE9PSIsInZlcnNpb24iOiIzLjAuMCIsImhhbmRsZSI6IjRkZjg5ZGVlLWU3OTMtNGY5Ny05MGNjLTc1ZWQ5YjZlNWM4MiJ9"
-        )
-
-      test2: $env.timestamp
-      test4: $env.branch
-      test5: >
-        $env.getWrappedSecret(
-          "kms:us-south:default:tmg-kp-1:master-root-key:cloud-apikey",
-          "eyJjaXBoZXJ0ZXh0Ijoic1ZZRnZVcjdQanZXQ0tFakMwRFFWZktqQ3AyRmtiOFJOSDJSTkpZRzVmU1hWNDJScDRDVythU0h3Y009IiwiaGFzaCI6IjVWNzNBbm9XdUxxM1BvZEZpd1AxQTdQMUZrTkZOajVPMmtmMkNxdVBxL0NRdFlOZnBvempiYUxjRDNCSWhxOGpKZ2JNR0xhMHB4dDA4cTYyc0RJMGRBPT0iLCJpdiI6Ilc1T2tNWFZuWDFCTERDUk51M05EUlE9PSIsInZlcnNpb24iOiIzLjAuMCIsImhhbmRsZSI6IjRkZjg5ZGVlLWU3OTMtNGY5Ny05MGNjLTc1ZWQ5YjZlNWM4MiJ9"
-        )
+      # ------------------------------
 
 form:
   pipeline:
