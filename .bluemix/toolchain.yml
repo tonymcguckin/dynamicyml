@@ -32,23 +32,56 @@ services:
 
       # ------------------------------
 
-      # save standard key 'cloud-apikey'...
+      # create standard key 'cloud-apikey'...
       test1: >
-        $env.saveSecret("kms:us-south:default:tmg-kp-1:cloud-apikey", "Hello World!")
+        $env.createSecret("kms:us-south:default:tmg-kp-1:cloud-apikey", "Hello World!")
 
-      # get standard key 'cloud-apikey'...
+      # retrieve standard key 'cloud-apikey'...
       test1: >
-        $env.getSecret("kms:us-south:default:tmg-kp-1:cloud-apikey")
+        $env.retrieveSecret("kms:us-south:default:tmg-kp-1:cloud-apikey")
+
+      # update standard key 'cloud-apikey'...
+      # - assumes the secret already exists
+      # - backs up existing key, deletes existing key, recreates new key
+      test1: >
+        $env.updateSecret("kms:us-south:default:tmg-kp-1:cloud-apikey", "Hello Mars!")
+
+      # delete standard key 'cloud-apikey'...
+      test1: >
+        $env.deleteSecret("kms:us-south:default:tmg-kp-1:cloud-apikey")
 
       # ------------------------------
 
-      # save standard key 'cloud-apikey' after 'wrapping' the given value using master key 'root-key'...
+      # create master key 'root-key' if it doesn't already exist...
       test1: >
-        $env.saveSecret("kms:us-south:default:tmg-kp-1:cloud-apikey:root-key", "Hello World!")
+        $env.createKey("kms:us-south:default:tmg-kp-1:root-key")
+
+      # create standard key 'cloud-apikey' after 'wrapping' the given value using master key 'root-key'...
+      # - note: 'cloud-apikey' will contain the wrapped ciphertext afterwards
+      #         if 'root-key' is deleted, then 'cloud-apikey' can never be 'unwrapped'!
+      test1: >
+        $env.createSecret("kms:us-south:default:tmg-kp-1:cloud-apikey:root-key", "Hello World!")
         
-      # get standard key 'cloud-apikey' and 'unwrap' it using master key 'root-key'...
+      # retrieve standard key 'cloud-apikey' and 'unwrap' it using master key 'root-key'...
       test1: >
-        $env.getSecret("kms:us-south:default:tmg-kp-1:cloud-apikey:root-key")
+        $env.retrieveSecret("kms:us-south:default:tmg-kp-1:cloud-apikey:root-key")
+
+      # update standard key 'cloud-apikey' after 'wrapping' the given value using master key 'root-key'...
+      # - assumes the secret and key already exists
+      # - backs up existing key, deletes existing key, recreates new key
+      # - note: 'cloud-apikey' will contain the wrapped ciphertext afterwards
+      #         if 'root-key' is deleted, then 'cloud-apikey' can never be 'unwrapped'!
+      test1: >
+        $env.updateSecret("kms:us-south:default:tmg-kp-1:cloud-apikey:root-key", "Hello Mars!")
+
+      # rotate master key 'root-key'...
+      test1: >
+        $env.rotateKey("kms:us-south:default:tmg-kp-1:root-key")
+
+      # delete standard key and root key...
+      test1: >
+        $env.deleteKey("kms:us-south:default:tmg-kp-1:root-key")
+        $env.deleteSecret("kms:us-south:default:tmg-kp-1:cloud-apikey")
 
       # ------------------------------
 
