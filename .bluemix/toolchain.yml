@@ -29,13 +29,54 @@ services:
   repo:
     service_id: hostedgit
     parameters:
+
+      # ------------------------------
+
+      # save standard key 'cloud-apikey'...
       test1: >
-        $env.getSecret("kms:public:us-south:default:tmg-kp-1:tmg-common-service-id-apikey")
+        $env.saveSecret("kms:us-south:default:tmg-kp-1:cloud-apikey", "Hello World!")
+
+      # get standard key 'cloud-apikey'...
+      test1: >
+        $env.getSecret("kms:us-south:default:tmg-kp-1:cloud-apikey")
+
+      # ------------------------------
+
+      # save standard key 'cloud-apikey' after 'wrapping' the given value using master key 'root-key'...
+      test1: >
+        $env.saveSecret("kms:us-south:default:tmg-kp-1:cloud-apikey:root-key", "Hello World!")
+        
+      # get standard key 'cloud-apikey' and 'unwrap' it using master key 'root-key'...
+      test1: >
+        $env.getSecret("kms:us-south:default:tmg-kp-1:cloud-apikey:root-key")
+
+      # ------------------------------
+
+      # 'unwrap' the given ciphertext using master key 'master-root-key'...
+      test1: >
+        $env.getSecret("kms:us-south:default:tmg-kp-1:master-root-key",
+          "eyJjaXBoZXJ0ZXh0Ijoic1ZZRnZVcjdQanZXQ0tFakMwRFFWZktqQ3AyRmtiOFJOSDJSTkpZRzVmU1hWNDJScDRDVythU0h3Y009IiwiaGFzaCI6IjVWNzNBbm9XdUxxM1BvZEZpd1AxQTdQMUZrTkZOajVPMmtmMkNxdVBxL0NRdFlOZnBvempiYUxjRDNCSWhxOGpKZ2JNR0xhMHB4dDA4cTYyc0RJMGRBPT0iLCJpdiI6Ilc1T2tNWFZuWDFCTERDUk51M05EUlE9PSIsInZlcnNpb24iOiIzLjAuMCIsImhhbmRsZSI6IjRkZjg5ZGVlLWU3OTMtNGY5Ny05MGNjLTc1ZWQ5YjZlNWM4MiJ9"
+        )
+
+      # 'unwrap' the given ciphertext using master key 'master-root-key'...
+      test1: >
+        $env.getSecret("kms:us-south:default:tmg-kp-1:master-root-key",
+          "eyJjaXBoZXJ0ZXh0Ijoic1ZZRnZVcjdQanZXQ0tFakMwRFFWZktqQ3AyRmtiOFJOSDJSTkpZRzVmU1hWNDJScDRDVythU0h3Y009IiwiaGFzaCI6IjVWNzNBbm9XdUxxM1BvZEZpd1AxQTdQMUZrTkZOajVPMmtmMkNxdVBxL0NRdFlOZnBvempiYUxjRDNCSWhxOGpKZ2JNR0xhMHB4dDA4cTYyc0RJMGRBPT0iLCJpdiI6Ilc1T2tNWFZuWDFCTERDUk51M05EUlE9PSIsInZlcnNpb24iOiIzLjAuMCIsImhhbmRsZSI6IjRkZjg5ZGVlLWU3OTMtNGY5Ny05MGNjLTc1ZWQ5YjZlNWM4MiJ9"
+        )
+
+      # 'unwrap' the given ciphertext using master key 'master-root-key'...
+      test1: >
+        $env.getSecret("kms:us-south:default:tmg-kp-1:master-root-key",
+          "eyJjaXBoZXJ0ZXh0Ijoic1ZZRnZVcjdQanZXQ0tFakMwRFFWZktqQ3AyRmtiOFJOSDJSTkpZRzVmU1hWNDJScDRDVythU0h3Y009IiwiaGFzaCI6IjVWNzNBbm9XdUxxM1BvZEZpd1AxQTdQMUZrTkZOajVPMmtmMkNxdVBxL0NRdFlOZnBvempiYUxjRDNCSWhxOGpKZ2JNR0xhMHB4dDA4cTYyc0RJMGRBPT0iLCJpdiI6Ilc1T2tNWFZuWDFCTERDUk51M05EUlE9PSIsInZlcnNpb24iOiIzLjAuMCIsImhhbmRsZSI6IjRkZjg5ZGVlLWU3OTMtNGY5Ny05MGNjLTc1ZWQ5YjZlNWM4MiJ9"
+        )
+
+      # get standard key 'cloud-apikey' and 'unwrap' it using master key 'master-root-key'...
       test1: >
         $env.getSecret(
           "kms:us-south:default:tmg-kp-1:master-root-key:cloud-apikey",
           "eyJjaXBoZXJ0ZXh0Ijoic1ZZRnZVcjdQanZXQ0tFakMwRFFWZktqQ3AyRmtiOFJOSDJSTkpZRzVmU1hWNDJScDRDVythU0h3Y009IiwiaGFzaCI6IjVWNzNBbm9XdUxxM1BvZEZpd1AxQTdQMUZrTkZOajVPMmtmMkNxdVBxL0NRdFlOZnBvempiYUxjRDNCSWhxOGpKZ2JNR0xhMHB4dDA4cTYyc0RJMGRBPT0iLCJpdiI6Ilc1T2tNWFZuWDFCTERDUk51M05EUlE9PSIsInZlcnNpb24iOiIzLjAuMCIsImhhbmRsZSI6IjRkZjg5ZGVlLWU3OTMtNGY5Ny05MGNjLTc1ZWQ5YjZlNWM4MiJ9"
         )
+
       test2: $env.timestamp
       test4: $env.branch
       test5: >
