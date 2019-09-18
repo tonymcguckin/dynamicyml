@@ -96,6 +96,23 @@ services:
         console.log(value); // => "Hello Jupiter!"
 
       # ------------------------------
+        
+      # scenario involving secret retrieval and key rotation...
+      test1: >
+        let value = $env.retrieveSecret("kms:us-south:default:tmg-kp-1:cloud-apikey:root-key");
+        console.log(value); // => "Hello Mars!"
+        
+        $env.rotateKey("kms:us-south:default:tmg-kp-1:root-key");
+        
+        value = $env.retrieveSecret("kms:us-south:default:tmg-kp-1:cloud-apikey:root-key");
+        console.log(value); // => "HTTP:409-Conflict: Secret cannot be 'unwrapped' with specified key."
+
+        $env.updateSecret("kms:us-south:default:tmg-kp-1:cloud-apikey:root-key", "Hello Saturn!");
+
+        value = $env.retrieveSecret("kms:us-south:default:tmg-kp-1:cloud-apikey:root-key");
+        console.log(value); // => "Hello Saturn!"
+
+      # ------------------------------
 
 form:
   pipeline:
