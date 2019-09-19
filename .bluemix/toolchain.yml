@@ -97,6 +97,55 @@ services:
 
       # ------------------------------
         
+      # scenario involving secret retrieval and key rotation (self-managed secret)...
+      test1: >
+        $env.createKey("kms:us-south:default:my-kms:my-root-key");
+        $env.createSecret("kms:us-south:default:my-kms:my-secret:my-root-key", "Hello Mars!");
+        
+        // retrieve my-secret without specifying unwrapping root-key name...
+        // in this case the encoded ciphertext is returned...
+
+        let ciphertext = $env.retrieveSecret("kms:us-south:default:my-kms:my-secret");
+        console.log(ciphertext); // => "eyJjaXBoZXJ0ZXh0...kYTFmYzFhZiJ9"
+        
+        // whereas when the root-key name is suffixed to the end of the reference,
+        // that root-key will be used to unwrap the secret and return the original
+        // plaintext value of the secret...
+
+        let plaintext = $env.retrieveSecret("kms:us-south:default:my-kms:my-secret:my-root-key");
+        console.log(plaintext); // => "Hello Mars!"
+        
+        // the root-key gets rotated (it's key material is changed) either via
+        // an API call or in the Key Protect Web UI.  This means that any secrets
+        // 'wrapped' with the pre-rotated root-key are now defunct and need to be
+        // rewrapped...
+
+        $env.rotateKey("kms:us-south:default:my-kms:my-secret:my-root-key");
+        
+        // when trying to retrieve such wrapped secret, where the original plaintext
+        // value of the secret was provided (ie: imported) when the secret was created,
+        // then upon subsequent retrieval after root-key rotation, an HTTP/409/Conflict
+        // error will be returned indicating the fact that the secret ciphertext cannot
+        // be unwrapped by the newly rotated root-key...
+
+        plaintext = $env.retrieveSecret("kms:us-south:default:my-kms:my-secret:my-root-key");
+        console.log(plaintext); // => "HTTP:409-Conflict: Secret cannot be 'unwrapped' with specified key."
+
+        // this state requires the admin/ops intervention to update the secret with a new
+        // plaintext value and by also specifying the root-key as a suffix of course, will
+        // cause the secret to be rewrapped with the newly rotated root-key...
+        
+        $env.updateSecret("kms:us-south:default:my-kms:my-secret:my-root-key", "Hello Saturn!");
+
+        // subsequent retrieval of the secret will then successfully return the new
+        // updated plaintext value of the secret after unwrapping it with the newly
+        // rotated root-key...
+
+        plaintext = $env.retrieveSecret("kms:us-south:default:my-kms:my-secret:my-root-key");
+        console.log(plaintext); // => "Hello Saturn!"
+
+      # ------------------------------
+        
       # scenario involving secret retrieval and key rotation...
       test1: >
         let value = $env.retrieveSecret("kms:us-south:default:tmg-kp-1:cloud-apikey:root-key");
