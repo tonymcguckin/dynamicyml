@@ -178,11 +178,9 @@ services:
 
         $env.rotateKey("kms:us-south:default:my-kms:my-secret:my-root-key");
         
-        // when trying to retrieve such a wrapped secret, where the original plaintext
-        // value of the secret was provided (ie: imported), then upon subsequent retrieval
-        // after root-key rotation, an HTTP/409/Conflict error will be returned indicating
-        // the fact that the secret ciphertext cannot simply be unwrapped by the newly
-        // rotated root-key...
+        // when trying to retrieve such a wrapped secret, the API internally recognises that
+        // an 'auto-managed' secret is being requested and seamlessly manages the update
+        // and rewrapping process before returning the new secret value...
 
         plaintext = $env.retrieveSecret("kms:us-south:default:my-kms:my-secret:my-root-key");
         console.log(plaintext); // => "PRbhKu5xNvZvZFSYvm4Tf7QhW1cgHJeYvx0HivIKB99="
