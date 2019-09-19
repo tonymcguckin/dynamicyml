@@ -147,20 +147,45 @@ services:
 
       # ------------------------------
         
-      # scenario involving secret retrieval and key rotation...
+      # scenario 2: involving auto-managed secret and key rotation
       test1: >
-        let value = $env.retrieveSecret("kms:us-south:default:tmg-kp-1:cloud-apikey:root-key");
-        console.log(value); // => "Hello Mars!"
+        // the notable difference here between scenario 1 and this scenario 2, is
+        // the fact that NO plaintext value is provided when creating the secret!
+        // the underlying KMS will auto-generate the secret value AND take care
+        // of updating/rewrapping the auto-generated secret value upon root-key
+        // rotation...
         
-        $env.rotateKey("kms:us-south:default:tmg-kp-1:root-key");
+        $env.createKey("kms:us-south:default:my-kms:my-root-key");
+        $env.createSecret("kms:us-south:default:my-kms:my-secret:my-root-key"); // <-- auto-gen!
         
-        value = $env.retrieveSecret("kms:us-south:default:tmg-kp-1:cloud-apikey:root-key");
-        console.log(value); // => "HTTP:409-Conflict: Secret cannot be 'unwrapped' with specified key."
+        // retrieve my-secret without specifying unwrapping root-key name...
+        // in this case the encoded ciphertext is returned...
 
-        $env.updateSecret("kms:us-south:default:tmg-kp-1:cloud-apikey:root-key", "Hello Saturn!");
+        let secret = $env.retrieveSecret("kms:us-south:default:my-kms:my-secret");
+        console.log(secret); // => "eyJjaXBoZXJ0ZXh0...kYTFmYzFhZiJ9"
+        
+        // whereas when the root-key name is suffixed to the end of the reference,
+        // that root-key will be used to unwrap the secret and return the original
+        // plaintext value of the secret...
 
-        value = $env.retrieveSecret("kms:us-south:default:tmg-kp-1:cloud-apikey:root-key");
-        console.log(value); // => "Hello Saturn!"
+        secret = $env.retrieveSecret("kms:us-south:default:my-kms:my-secret:my-root-key");
+        console.log(secret); // => "ILchJu1xAvRVZFSWvm0Tf4QhW5cgHJqUvx9GivKJC68="
+        
+        // when the root-key gets rotated (it's key material is changed) either via
+        // an API call or in the Key Protect Web UI, this means that any 'auto-managed'
+        // secret 'wrapped' with the pre-rotated root-key is automatically updated and
+        // rewrapped with the newly rotated root-key...
+
+        $env.rotateKey("kms:us-south:default:my-kms:my-secret:my-root-key");
+        
+        // when trying to retrieve such a wrapped secret, where the original plaintext
+        // value of the secret was provided (ie: imported), then upon subsequent retrieval
+        // after root-key rotation, an HTTP/409/Conflict error will be returned indicating
+        // the fact that the secret ciphertext cannot simply be unwrapped by the newly
+        // rotated root-key...
+
+        plaintext = $env.retrieveSecret("kms:us-south:default:my-kms:my-secret:my-root-key");
+        console.log(plaintext); // => "PRbhKu5xNvZvZFSYvm4Tf7QhW1cgHJeYvx0HivIKB99="
 
       # ------------------------------
 
