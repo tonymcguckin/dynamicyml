@@ -186,6 +186,48 @@ services:
         console.log(plaintext); // => "PRbhKu5xNvZvZFSYvm4Tf7QhW1cgHJeYvx0HivIKB99="
 
       # ------------------------------
+        
+      # scenario 3: involving auto-managed secret and key rotation with secret-type provider/broker
+      test1: >
+        // the notable difference here between scenario 1 and this scenario 2, is
+        // the fact that NO plaintext value is provided when creating the secret!
+        // the underlying KMS will auto-generate the secret value AND take care
+        // of updating/rewrapping the auto-generated secret value upon root-key
+        // rotation...
+        
+        $env.createKey("kms:us-south:default:my-kms:my-root-key");
+        $env.createSecret("kms:us-south:default:my-kms:my-secret:my-root-key", "ibm-api-key");
+        $env.createSecret("kms:us-south:default:my-kms:my-secret:my-root-key", "ibm-cloudant");
+        
+        // retrieve my-secret without specifying unwrapping root-key name...
+        // in this case the encoded ciphertext is returned...
+
+        let secret = $env.retrieveSecret("kms:us-south:default:my-kms:my-secret");
+        console.log(secret); // => "eyJjaXBoZXJ0ZXh0...kYTFmYzFhZiJ9"
+        
+        // whereas when the root-key name is suffixed to the end of the reference,
+        // that root-key will be used to unwrap the secret and return the original
+        // plaintext value of the secret...
+
+        secret = $env.retrieveSecret("kms:us-south:default:my-kms:my-secret:my-root-key");
+        console.log(secret); // => "IBMAPIKEY-ILchJu1xAvRVZFSWvm0Tf4QhW5cgHJqUvx9GivKJC68="
+        
+        // when the root-key gets rotated (it's key material is changed) either via
+        // an API call or in the Key Protect Web UI, this means that any 'auto-managed'
+        // secret 'wrapped' with the pre-rotated root-key is automatically updated and
+        // rewrapped with the newly rotated root-key...
+
+        $env.rotateKey("kms:us-south:default:my-kms:my-secret:my-root-key");
+        
+        // when trying to retrieve such a wrapped secret, the API internally recognises that
+        // an 'auto-managed' secret is being requested and seamlessly manages the update
+        // and rewrapping process before returning the new secret value...
+
+        plaintext = $env.retrieveSecret("kms:us-south:default:my-kms:my-secret:my-root-key");
+        // -> interogates ibm api-key interface 
+        console.log(plaintext); // => "IBMAPIKEY-PRbhKu5xNvZvZFSYvm4Tf7QhW1cgHJeYvx0HivIKB99="
+
+      # ------------------------------
 
 form:
   pipeline:
