@@ -34,14 +34,14 @@ services:
       #
       # Reference format specifies details to resolve a secret on IBM Cloud:
       #
-      # "provider-type:region:resource-group:provider-instance-name:secret-name"
+      # "provider-type:region:resource-group:provider-instance-name:secret-name[:root-key-name]"
       #
       # Provider-Type:  kms | vault
       # Region:         us-south, eu-gb, etc
       #
       # eg:
       # 
-      # Reference to Key Protect provider type for 'my-secret' key in 'my-kms'
+      #     Reference to Key Protect provider type for 'my-secret' key in 'my-kms'
       #     Key Protect instance in 'default' resource-group on 'us-south' region
       #
       #     "kms:us-south:default:my-kms:my-secret"
@@ -56,8 +56,17 @@ services:
       #     C++:    SECRET* secret = &ENV.retrieveSecret("kms:us-south:default:my-kms:my-secret");
       #
       #     yaml:   secret: $SECRET("kms:us-south:default:my-kms:my-secret")
-      #
 
+      # ------------------------------
+      
+      # Secrets Management REST API:
+      #
+      # GET|PUT|POST|DELETE
+      #   /secrets/providers/:provider_type/:instance_name/:secret_name?key&action&region&resource_group&resource_group_id
+      #
+      # GET|PUT|POST|DELETE
+      #   /secrets/providers/:provider_type?secret_reference&action
+      
       # ------------------------------
       
       # Standard Key (aka "secret") CRUD API:
@@ -103,7 +112,7 @@ services:
       # ------------------------------
         
       # scenario 1: involving self-managed secret and key rotation
-      test1: >
+      test6: >
         $env.createKey("kms:us-south:default:my-kms:my-root-key");
         $env.createSecret("kms:us-south:default:my-kms:my-secret:my-root-key", "Hello Mars!");
         
@@ -153,7 +162,7 @@ services:
       # ------------------------------
         
       # scenario 2: involving auto-managed secret and key rotation
-      test1: >
+      test7: >
         // the notable difference here between scenario 1 and this scenario 2, is
         // the fact that NO plaintext value is provided when creating the secret!
         // the underlying KMS will auto-generate the secret value AND take care
@@ -193,7 +202,7 @@ services:
       # ------------------------------
         
       # scenario 3: involving auto-managed secret and key rotation with secret-type provider/broker
-      test1: >
+      test8: >
         // 
         
         $env.createKey("kms:us-south:default:my-kms:my-root-key");
