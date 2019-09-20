@@ -189,15 +189,10 @@ services:
         
       # scenario 3: involving auto-managed secret and key rotation with secret-type provider/broker
       test1: >
-        // the notable difference here between scenario 1 and this scenario 2, is
-        // the fact that NO plaintext value is provided when creating the secret!
-        // the underlying KMS will auto-generate the secret value AND take care
-        // of updating/rewrapping the auto-generated secret value upon root-key
-        // rotation...
+        // 
         
         $env.createKey("kms:us-south:default:my-kms:my-root-key");
         $env.createSecret("kms:us-south:default:my-kms:my-secret:my-root-key", "ibm-api-key");
-        $env.createSecret("kms:us-south:default:my-kms:my-secret:my-root-key", "ibm-cloudant");
         
         // retrieve my-secret without specifying unwrapping root-key name...
         // in this case the encoded ciphertext is returned...
@@ -224,7 +219,7 @@ services:
         // and rewrapping process before returning the new secret value...
 
         plaintext = $env.retrieveSecret("kms:us-south:default:my-kms:my-secret:my-root-key");
-        // -> interogates ibm api-key interface 
+        // -> interogates ibm api-key interface
         console.log(plaintext); // => "IBMAPIKEY-PRbhKu5xNvZvZFSYvm4Tf7QhW1cgHJeYvx0HivIKB99="
 
       # ------------------------------
