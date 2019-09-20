@@ -20,79 +20,84 @@ template:
 toolchain:
   name: 'SECRETS_VIA_ENV_ENGINE'
 
-# {
-#   "plaintext": "tF9ss0W9HQUVkddcjSeGg/MqZFs2CVh/FFKLPLLnOwY=",
-#   "ciphertext": "eyJjaXBoZXJ0ZXh0Ijoic1ZZRnZVcjdQanZXQ0tFakMwRFFWZktqQ3AyRmtiOFJOSDJSTkpZRzVmU1hWNDJScDRDVythU0h3Y009IiwiaGFzaCI6IjVWNzNBbm9XdUxxM1BvZEZpd1AxQTdQMUZrTkZOajVPMmtmMkNxdVBxL0NRdFlOZnBvempiYUxjRDNCSWhxOGpKZ2JNR0xhMHB4dDA4cTYyc0RJMGRBPT0iLCJpdiI6Ilc1T2tNWFZuWDFCTERDUk51M05EUlE9PSIsInZlcnNpb24iOiIzLjAuMCIsImhhbmRsZSI6IjRkZjg5ZGVlLWU3OTMtNGY5Ny05MGNjLTc1ZWQ5YjZlNWM4MiJ9"
-# }
-
 services:
   repo:
     service_id: hostedgit
     parameters:
+    
+      # ------------------------------
+
+      # Secret Reference Format:
+      #
+      # A secret is declared by reference in application code/annotations/resources
+      # and resolved 'just-in-time' when required by a consumer (CI/CD, App runtime code, etc)
+      #
+      # Reference format specifies details to resolve a secret on IBM Cloud:
+      #
+      # "provider-type:region:resource-group:provider-instance-name:secret-name"
+      #
+      # Provider-Type:  kms | vault
+      # Region:         us-south, eu-gb, etc
+      #
+      # eg:
+      # 
+      # Reference to Key Protect provider type for 'my-secret' key in 'my-kms'
+      #     Key Protect instance in 'default' resource-group on 'us-south' region
+      #
+      #     "kms:us-south:default:my-kms:my-secret"
+      #
+      # Consumers use the same common reference format regardless of handler/broker:
+      #
+      # eg:
+      #     Shell:  MYSECRET=$(ibmcloud secrets get "kms:us-south:default:my-kms:my-secret")
+      #
+      #     JS:     let mysecret = $env.retrieveSecret("kms:us-south:default:my-kms:my-secret");
+      #
+      #     C++:    SECRET* secret = &ENV.retrieveSecret("kms:us-south:default:my-kms:my-secret");
+      #
+      #     yaml:   secret: $SECRET("kms:us-south:default:my-kms:my-secret")
+      #
+
+      # ------------------------------
+      
+      # Standard Key (aka "secret") CRUD API:
+
+      test1: >
+        $env.createSecret("kms:us-south:default:my-kms:my-secret", "Hello World!")
+        $env.retrieveSecret("kms:us-south:default:my-kms:my-secret")
+        $env.updateSecret("kms:us-south:default:my-kms:my-secret", "Hello Mars!")
+        $env.deleteSecret("kms:us-south:default:my-kms:my-secret")
+
+      # ------------------------------
+      
+      # Root Key (aka "key") CRUD API:
+
+      test2: >
+        $env.createKey("kms:us-south:default:my-kms:my-root-key")
+        $env.rotateKey("kms:us-south:default:my-kms:my-root-key")
+        $env.deleteKey("kms:us-south:default:my-kms:my-root-key")
+
+      # ------------------------------
+      
+      # Root Key and Standard Key wrapping/unwrapping via Root Key name reference:
+
+      test3: >
+        $env.createKey("kms:us-south:default:my-kms:my-root-key")
+        $env.createSecret("kms:us-south:default:my-kms:my-secret:my-root-key", "Hello World!")  // wrapped
+        $env.retrieveSecret("kms:us-south:default:my-kms:my-secret:my-root-key")                // unwrapped
+        $env.updateSecret("kms:us-south:default:my-kms:my-secret:my-root-key", "Hello Mars!")   // rewrapped
+        $env.retrieveSecret("kms:us-south:default:my-kms:my-secret:my-root-key")                // unwrapped
 
       # ------------------------------
 
-      # create standard key 'cloud-apikey'...
-      test1: >
-        $env.createSecret("kms:us-south:default:tmg-kp-1:cloud-apikey", "Hello World!")
-
-      # retrieve standard key 'cloud-apikey'...
-      test1: >
-        $env.retrieveSecret("kms:us-south:default:tmg-kp-1:cloud-apikey")
-
-      # update standard key 'cloud-apikey'...
-      # - assumes the secret already exists
-      # - backs up existing key, deletes existing key, recreates new key
-      test1: >
-        $env.updateSecret("kms:us-south:default:tmg-kp-1:cloud-apikey", "Hello Mars!")
-
-      # delete standard key 'cloud-apikey'...
-      test1: >
-        $env.deleteSecret("kms:us-south:default:tmg-kp-1:cloud-apikey")
-
-      # ------------------------------
-
-      # create master key 'root-key' if it doesn't already exist...
-      test1: >
-        $env.createKey("kms:us-south:default:tmg-kp-1:root-key")
-
-      # create standard key 'cloud-apikey' after 'wrapping' the given value using master key 'root-key'...
-      # - note: 'cloud-apikey' will contain the wrapped ciphertext afterwards
-      #         if 'root-key' is deleted, then 'cloud-apikey' can never be 'unwrapped'!
-      test1: >
-        $env.createSecret("kms:us-south:default:tmg-kp-1:cloud-apikey:root-key", "Hello World!")
-        
-      # retrieve standard key 'cloud-apikey' and 'unwrap' it using master key 'root-key'...
-      test1: >
-        $env.retrieveSecret("kms:us-south:default:tmg-kp-1:cloud-apikey:root-key")
-
-      # update standard key 'cloud-apikey' after 'wrapping' the given value using master key 'root-key'...
-      # - assumes the secret and key already exists
-      # - backs up existing key, deletes existing key, recreates new key
-      # - note: 'cloud-apikey' will contain the wrapped ciphertext afterwards
-      #         if 'root-key' is deleted, then 'cloud-apikey' can never be 'unwrapped'!
-      test1: >
-        $env.updateSecret("kms:us-south:default:tmg-kp-1:cloud-apikey:root-key", "Hello Mars!")
-
-      # rotate master key 'root-key'...
-      test1: >
-        $env.rotateKey("kms:us-south:default:tmg-kp-1:root-key")
-
-      # delete standard key and root key...
-      test1: >
-        $env.deleteKey("kms:us-south:default:tmg-kp-1:root-key")
-        $env.deleteSecret("kms:us-south:default:tmg-kp-1:cloud-apikey")
-
-      # ------------------------------
-
-      # 'wrap' the given ciphertext using master key 'root-key'...
-      test1: >
-        let value = $env.wrapSecretValue("kms:us-south:default:tmg-kp-1:root-key", "Hello Jupiter!");
+      # 'wrap' the given plaintext using root key 'my-root-key'...
+      test4: >
+        let value = $env.wrapSecretValue("kms:us-south:default:my-kms:my-root-key", "Hello Jupiter!");
         console.log(value); // => "eyJjaXBoZXJ0ZXh0Ijoic1Zi"
 
-      # 'unwrap' the given ciphertext using master key 'root-key'...
-      test1: >
-        let value = $env.unwrapSecretValue("kms:us-south:default:tmg-kp-1:root-key", "eyJjaXBoZXJ0ZXh0Ijoic1Zi");
+      # 'unwrap' the given ciphertext using root key 'my-root-key'...
+      test5: >
+        let value = $env.unwrapSecretValue("kms:us-south:default:my-kms:my-root-key", "eyJjaXBoZXJ0ZXh0Ijoic1Zi");
         console.log(value); // => "Hello Jupiter!"
 
       # ------------------------------
@@ -192,34 +197,36 @@ services:
         // 
         
         $env.createKey("kms:us-south:default:my-kms:my-root-key");
-        $env.createSecret("kms:us-south:default:my-kms:my-secret:my-root-key", "ibm-api-key");
+        $env.createSecret("kms:us-south:default:my-kms:my-secret:my-api-key", "ibm-api-key");
         
         // retrieve my-secret without specifying unwrapping root-key name...
         // in this case the encoded ciphertext is returned...
 
-        let secret = $env.retrieveSecret("kms:us-south:default:my-kms:my-secret");
+        let secret = $env.retrieveSecret("kms:us-south:default:my-kms:my-api-key");
         console.log(secret); // => "eyJjaXBoZXJ0ZXh0...kYTFmYzFhZiJ9"
         
         // whereas when the root-key name is suffixed to the end of the reference,
         // that root-key will be used to unwrap the secret and return the original
         // plaintext value of the secret...
 
-        secret = $env.retrieveSecret("kms:us-south:default:my-kms:my-secret:my-root-key");
+        secret = $env.retrieveSecret("kms:us-south:default:my-kms:my-secret:my-api-key");
         console.log(secret); // => "IBMAPIKEY-ILchJu1xAvRVZFSWvm0Tf4QhW5cgHJqUvx9GivKJC68="
         
         // when the root-key gets rotated (it's key material is changed) either via
         // an API call or in the Key Protect Web UI, this means that any 'auto-managed'
-        // secret 'wrapped' with the pre-rotated root-key is automatically updated and
-        // rewrapped with the newly rotated root-key...
+        // secret 'wrapped' with the pre-rotated root-key is automatically refreshed via
+        // the secret- type provider/broker as originally specified when created (eg: ibm-api-key)
+        // and rewrapped with the newly rotated root-key...
 
         $env.rotateKey("kms:us-south:default:my-kms:my-secret:my-root-key");
         
         // when trying to retrieve such a wrapped secret, the API internally recognises that
-        // an 'auto-managed' secret is being requested and seamlessly manages the update
-        // and rewrapping process before returning the new secret value...
+        // an 'auto-managed' secret of a specified secret-type is being requested and
+        // seamlessly manages the value refresh by requesting a new secret value from the
+        // secret-type provider/broker again (eg: ibm-api-key type ==> ibm.createApiKey())
+        // then rewraps before returning the new secret value...
 
-        plaintext = $env.retrieveSecret("kms:us-south:default:my-kms:my-secret:my-root-key");
-        // -> interogates ibm api-key interface
+        plaintext = $env.retrieveSecret("kms:us-south:default:my-kms:my-secret:my-api-key");
         console.log(plaintext); // => "IBMAPIKEY-PRbhKu5xNvZvZFSYvm4Tf7QhW1cgHJeYvx0HivIKB99="
 
       # ------------------------------
