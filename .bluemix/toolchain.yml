@@ -9,7 +9,7 @@ template:
   $configuration:
     EVALUATION_DEPTH: 10
     EVALUATE_TIMESTAMP_SERVERSIDE: true
-    BASIC_WARNINGS: false
+    BASIC_WARNINGS: true
     EXPRESSION_MAXLENGTH: 2000
 
   required:
