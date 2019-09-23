@@ -7,10 +7,10 @@ template:
   description: "DYML - $env Script Sandboxing: General"
 
   $configuration:
-    #EVALUATION_DEPTH: 10
-    #EVALUATE_TIMESTAMP_SERVERSIDE: true
+    EVALUATION_DEPTH: 10
+    EVALUATE_TIMESTAMP_SERVERSIDE: true
     BASIC_WARNINGS: false
-    #EXPRESSION_MAXLENGTH: 200
+    EXPRESSION_MAXLENGTH: 2000
 
   required:
     - build
