@@ -7,7 +7,7 @@ template:
   description: "DYML - $env Script Sandboxing: General"
 
   $configuration:
-    BASIC_WARNINGS: true
+    BASIC_WARNINGS: false
 
   required:
     - build
